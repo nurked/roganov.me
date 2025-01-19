@@ -2,9 +2,9 @@ import React from 'react';
 
 export const About = () => {
     return (
-        <div className="w-full h-auto md:h-screen flex flex-col md:flex-row">
+        <div id="about" className=" bg-[#96C9F4] w-full h-auto md:h-screen flex flex-col md:flex-row">
             {/* Left section (Image and Name) */}
-            <div className="w-full md:w-1/3 bg-[#F6F1D1] relative flex flex-col items-center justify-center p-4">
+            <div className="w-full md:w-1/3  relative flex flex-col items-center justify-center p-4">
                 <img
                     src="https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                     alt="Placeholder"
@@ -17,7 +17,7 @@ export const About = () => {
             </div>
 
             {/* Right section (Content) */}
-            <div className="w-full md:w-2/3 bg-[#CFD7C7] p-8 flex flex-col items-center justify-center">
+            <div className="w-full md:w-2/3  p-8 flex flex-col items-center justify-center">
                 <div className="w-full max-w-3xl">
                     <p className="mb-4 text-lg font-bold">
                     With 25 years of experience in IT, I’ve been programming since 1999, honing my skills and expertise across multiple areas of technology. I graduated from Moscow State University of Informatics in 2008 with a degree in Computer Science, where my foundation in IT was solidified.

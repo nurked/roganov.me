@@ -13,10 +13,25 @@ export const Hero = () => {
   const bottomText = "I’m here to help you.";
   const bottomTextForButton = "Let’s get to know each other";
 
+  // Function to scroll to the About section
+  const handleScrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <motion.div
-      className="hero w-full h-screen flex flex-col border border-black bg-cover bg-center"
-      style={{ backgroundImage: `url(${heroImage})` }}
+      className="w-full h-[calc(100vh_-_78px)] flex flex-col border border-black bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${heroImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
@@ -184,6 +199,7 @@ export const Hero = () => {
             ease: "easeOut",
             delay: 0 
           }}
+          onClick={handleScrollToAbout} // Add the click handler
         >
           ↓
         </motion.button>
