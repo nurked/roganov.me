@@ -234,7 +234,7 @@ export const NavBar = () => {
             {/* Portfolio */}
             <li>
               <p
-                className="cursor-pointer text-white hover:opacity-90 p-2"
+                className="cursor-pointer text-white hover:opacity-90 px-2 mt-2"
                 onClick={() => handleClick("Portfolio")}
               >
                 Portfolio
@@ -244,7 +244,7 @@ export const NavBar = () => {
             {/* Contact */}
             <li>
               <p
-                className="cursor-pointer text-white hover:opacity-90 p-2"
+                className="cursor-pointer text-white hover:opacity-90 px-2 mb-2"
                 onClick={() => handleClick("Contact")}
               >
                 Contact
