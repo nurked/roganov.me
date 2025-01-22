@@ -1,66 +1,61 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const items = [
-  '25+ Years',
-  '20 Projects',
-  'Example'
-];
+const ANIMATION_DURATION = 40;
 
-export const Banner = () => {
+export const Banner = ({
+  items = [
+    "25+ years of experience",
+    "20 Projects",
+    "6 teams",
+    "Over $1M saved in production costs",
+    "100+ articles",
+    "3 companies founded",
+    "6 years of education experience",
+    "10000+ hours of volounteer work",
+  ],
+  backgroundColor = "rgb(97,0,175)",
+  textColor = "white",
+  fontSize = "text-lg sm:text-xl",
+}) => {
+  const [contentWidth, setContentWidth] = useState(0);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentWidth(contentRef.current.offsetWidth);
+    }
+  }, [items]);
+
   return (
-    <div className="bg-[rgb(97,0,175)] text-white overflow-hidden">
-      <div className="flex items-center justify-between w-full h-auto sm:h-24 px-4">
-        {/* Left Item */}
-        <motion.div
-          className="text-lg sm:text-xl text-center w-auto flex-shrink-0"
-          animate={{
-            x: ['100%', '-100%'], 
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: 'loop',
-            ease: 'linear',
-            yoyo: Infinity, 
-          }}
-        >
-          {items[0]}
-        </motion.div>
-
-        {/* Center Item */}
-        <motion.div
-          className="text-lg sm:text-xl text-center w-auto flex-shrink-0"
-          animate={{
-            x: ['100%', '-100%'],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: 'loop',
-            ease: 'linear',
-            yoyo: Infinity, 
-          }}
-        >
-          {items[1]}
-        </motion.div>
-
-        {/* Right Item */}
-        <motion.div
-          className="text-lg sm:text-xl text-center w-auto flex-shrink-0"
-          animate={{
-            x: ['100%', '-100%'],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: 'loop',
-            ease: 'linear',
-            yoyo: Infinity, // This causes the animation to reverse and go back to the right
-          }}
-        >
-          {items[2]}
-        </motion.div>
+    <div
+      className={`bg-[${backgroundColor}] text-${textColor} overflow-hidden relative`}
+    >
+      <div className="flex whitespace-nowrap">
+        {[...Array(2)].map((_, arrayIndex) => (
+          <motion.div
+            key={arrayIndex}
+            ref={contentRef}
+            className="flex gap-[4rem]"
+            initial={{ x: 0 }}
+            animate={{ x: -contentWidth }}
+            transition={{
+              duration: ANIMATION_DURATION,
+              repeat: Infinity,
+              ease: "linear",
+              repeatType: "loop",
+            }}
+          >
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className={`${fontSize} px-4 py-6 flex-shrink-0`}
+              >
+                {item}
+              </div>
+            ))}
+          </motion.div>
+        ))}
       </div>
     </div>
   );
