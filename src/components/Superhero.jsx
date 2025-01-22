@@ -18,7 +18,7 @@ export const Superhero = () => {
   const description5 = "This is a superhero description. It provides additional information about the superhero.";
 
   return (
-    <div id='superhero' className="min-h-screen bg-[#3FA2F6] text-white flex flex-col">
+    <div id='superhero' className="min-h-screen bg-[#e4eef7] text-white flex flex-col">
       {/* Top Section with two cards, gap between them, covering entire width */}
       <div className="flex-1 flex flex-wrap justify-between items-center p-4 sm:p-2 md:p-8">
         <div className="flex w-full gap-4">
@@ -28,7 +28,7 @@ export const Superhero = () => {
       </div>
       
       {/* Middle Section with one card that covers the whole section */}
-      <div className="p-4 sm:p-6 md:p-8 flex-1 flex justify-center items-center bg-[#3F72AF]">
+      <div className="p-4 sm:p-6 md:p-8 flex-1 flex justify-center items-center bg-[#d4e2f5]">
         <Card imageSrc={image3} description={description3} className="w-full h-auto sm:h-[300px] lg:h-[500px] max-h-full overflow-auto" />
       </div>
       
