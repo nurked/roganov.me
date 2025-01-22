@@ -4,7 +4,7 @@ export const About = () => {
     return (
         <div id="about" className=" bg-[#fafbfb] w-full h-auto md:h-screen flex flex-col md:flex-row">
             {/* Left section (Image and Name) */}
-            <div className="w-full md:w-1/3 relative flex flex-col items-center justify-center ">
+            <div className="w-full md:w-1/3 md:mb-24 lg:mb-0  relative flex flex-col items-center justify-center ">
                 <img
                     src="https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                     alt="Placeholder"
@@ -18,7 +18,7 @@ export const About = () => {
 
             {/* Right section (Content) */}
             <div className="w-full flex flex-col items-center justify-center">
-                <div className="w-3/4 md:w-3/4 max-w-3xl">
+                <div className="w-3/4 md:w-3/4 md:mt-16 lg:mt-0 max-w-3xl">
                     <p className=" text-lg font-bold">
                     With 25 years of experience in IT, I’ve been programming since 1999, honing my skills and expertise across multiple areas of technology. I graduated from Moscow State University of Informatics in 2008 with a degree in Computer Science, where my foundation in IT was solidified.
                     </p>
@@ -34,7 +34,7 @@ export const About = () => {
                     <p className="mb-4 text-lg font-bold">
                         There isn’t a program that can’t be fixed, and there isn’t an IT system that can’t be made operational.
                     </p>
-                    <p className="mb-10 text-lg font-bold">
+                    <p className="lg:mb-10 md:mb-8 text-lg font-bold">
                     In my career, I’ve learned that no program is beyond repair, and no IT system is beyond restoration. There’s always a way to fix it and make it better.
                     </p>
                 </div>
