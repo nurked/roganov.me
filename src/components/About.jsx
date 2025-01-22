@@ -4,7 +4,7 @@ export const About = () => {
     return (
         <div id="about" className=" bg-[#fafbfb] w-full h-auto md:h-screen flex flex-col md:flex-row">
             {/* Left section (Image and Name) */}
-            <div className="w-full md:w-1/3 md:mb-24 lg:mb-0  relative flex flex-col items-center justify-center ">
+            <div className="w-full md:w-1/3 md:mb-24 lg:mb-0 relative flex flex-col items-center justify-center ">
                 <img
                     src="https://images.pexels.com/photos/1105379/pexels-photo-1105379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                     alt="Placeholder"

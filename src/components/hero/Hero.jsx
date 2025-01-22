@@ -26,7 +26,7 @@ export const Hero = () => {
 
   return (
     <motion.div
-      className="w-full h-[calc(100vh_-_78px)] flex flex-col border border-black bg-cover bg-center"
+      className="w-full h-[calc(100vh_-_74px)] flex flex-col border border-black bg-cover bg-center"
       style={{
         backgroundImage: `url(${heroImage})`,
         backgroundSize: 'cover',

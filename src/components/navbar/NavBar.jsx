@@ -27,7 +27,7 @@ export const NavBar = () => {
     >
       {/* Logo */}
       <div className="w-1/3 ml-4">
-        <div className="text-white font-bold text-xl">Logo</div>
+        <div className="text-white font-bold text-xl"></div>
       </div>
 
       {/* Menu Items for Large Screens */}
