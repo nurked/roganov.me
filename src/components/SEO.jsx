@@ -24,6 +24,20 @@ export const SEO = () => {
       <meta name="twitter:description" content={profile.meta.description} />
       <meta name="twitter:image" content={`${canonicalUrl}/ivan.png`} />
 
+      {/* Google Analytics */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-3WR8FYRV2N"
+      ></script>
+      <script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3WR8FYRV2N');
+        `}
+      </script>
+
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",

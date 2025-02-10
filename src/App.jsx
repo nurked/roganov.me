@@ -1,15 +1,22 @@
 import "./App.css";
 import { About } from "./components/About";
 import { Banner } from "./components/Banner";
-import { Client } from "./components/Clients";
+// import { Client } from "./components/Clients";
 import { Contact } from "./components/contact/Contact";
 import { Footer } from "./components/Footter";
 import { Hero } from "./components/hero/Hero";
 import { NavBar } from "./components/navbar/NavBar";
 import { Superhero } from "./components/Superhero";
 import { SEO } from "./components/SEO";
+import ReactGA from "react-ga4";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    ReactGA.initialize("G-3WR8FYRV2N");
+    ReactGA.send("pageview");
+  }, []);
+
   return (
     <>
       <SEO />
