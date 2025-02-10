@@ -1,5 +1,8 @@
-import React, { useRef, useEffect, useState } from "react";
+// import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+
+import { useRef, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 const ANIMATION_DURATION = 40;
 
@@ -20,6 +23,13 @@ export const Banner = ({
 }) => {
   const [contentWidth, setContentWidth] = useState(0);
   const contentRef = useRef(null);
+
+  Banner.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.string),
+    backgroundColor: PropTypes.string,
+    textColor: PropTypes.string,
+    fontSize: PropTypes.string,
+  };
 
   useEffect(() => {
     if (contentRef.current) {

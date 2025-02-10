@@ -1,4 +1,3 @@
-import React from "react";
 import { HeroCard } from "./hero/HeroCard";
 import { HeroRow } from "./hero/HeroRow";
 

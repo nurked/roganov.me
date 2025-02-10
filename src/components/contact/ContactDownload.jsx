@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import QRCodeStyling from "qr-code-styling";
 import { FaAddressCard, FaQrcode, FaApple } from "react-icons/fa";
 import {

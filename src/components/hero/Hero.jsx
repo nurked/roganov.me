@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import heroImage from "../../assets/Hero.jpeg";
 
 export const Hero = () => {
