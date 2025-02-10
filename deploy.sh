@@ -5,15 +5,8 @@ set -e
 
 echo "🏗️ Starting build process..."
 
-# Build the site (assuming you're using a static site generator - adjust the build command as needed)
-# For example, if using Jekyll:
-# bundle exec jekyll build
-# Or if using Hugo:
-# hugo
-# Or if using npm:
-# npm run build
-
-# Add your actual build command here
+# Build the site with npm
+npm run build
 
 # Check if build was successful
 if [ $? -eq 0 ]; then
@@ -23,8 +16,8 @@ else
     exit 1
 fi
 
-# Check if the build directory exists (adjust the directory name as needed)
-BUILD_DIR="./dist" # or "./public" or "_site" depending on your setup
+# Check if the build directory exists
+BUILD_DIR="./dist"
 if [ ! -d "$BUILD_DIR" ]; then
     echo "❌ Build directory not found!"
     exit 1
@@ -38,21 +31,32 @@ fi
 
 echo "🚀 Deploying to S3..."
 
-# Sync build directory with S3 bucket
-aws s3 sync $BUILD_DIR s3://roganov.me \
-    --delete \
-    --cache-control "max-age=31536000,public" \
-    --exclude "*.html" \
-    --exclude "*.xml" \
-    --exclude "*.txt"
+# List contents of build directory
+echo "📁 Contents of $BUILD_DIR:"
+ls -la $BUILD_DIR
 
-# Sync HTML, XML, and TXT files with different cache settings
+# Sync all files first
 aws s3 sync $BUILD_DIR s3://roganov.me \
     --delete \
-    --cache-control "no-cache" \
-    --include "*.html" \
+    --exclude ".DS_Store" \
+    --exclude "*.xml" \
+    --exclude "*.txt" \
+    --cache-control "max-age=31536000,public"
+
+echo "📤 First sync completed"
+
+# Sync XML and TXT files with different cache settings
+aws s3 sync $BUILD_DIR s3://roganov.me \
+    --exclude "*" \
     --include "*.xml" \
-    --include "*.txt"
+    --include "*.txt" \
+    --cache-control "no-cache"
+
+echo "📤 Second sync completed"
+
+# List contents of S3 bucket
+echo "📁 Contents of S3 bucket:"
+aws s3 ls s3://roganov.me --recursive
 
 # Check if deployment was successful
 if [ $? -eq 0 ]; then
