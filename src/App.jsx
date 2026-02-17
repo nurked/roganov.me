@@ -9,6 +9,7 @@ import { NavBar } from "./components/navbar/NavBar";
 import { Superhero } from "./components/Superhero";
 import { SEO } from "./components/SEO";
 import { Birthday } from "./components/Birthday";
+import { Birthday2026 } from "./components/Birthday2026";
 import ReactGA from "react-ga4";
 import { useEffect } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
@@ -41,6 +42,7 @@ function App() {
           }
         />
         <Route path="/birthday-2025" element={<Birthday />} />
+        <Route path="/birthday-2026" element={<Birthday2026 />} />
       </Routes>
     </Router>
   );

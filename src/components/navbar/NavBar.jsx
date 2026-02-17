@@ -62,11 +62,11 @@ export const NavBar = () => {
 
         {/* Birthday Link */}
         <Link
-          to="/birthday-2025"
+          to="/birthday-2026"
           className="cursor-pointer text-white hover:opacity-[0.9]"
           onClick={() => window.scrollTo(0, 0)}
         >
-          Birthday 2025
+          Birthday 2026
         </Link>
       </div>
 
@@ -117,14 +117,14 @@ export const NavBar = () => {
 
             <li>
               <Link
-                to="/birthday-2025"
+                to="/birthday-2026"
                 className="cursor-pointer text-white hover:opacity-90 px-2 mb-2 block"
                 onClick={() => {
                   setIsMenuOpen(false);
                   window.scrollTo(0, 0);
                 }}
               >
-                Birthday 2025
+                Birthday 2026
               </Link>
             </li>
           </ul>
