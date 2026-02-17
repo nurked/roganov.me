@@ -1,0 +1,45 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import { useTranslations } from '../../i18n/utils.js';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.lang === 'en' && !data.draft;
+})).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<PageLayout
+  title={`${t('blog.title')} | Ivan Roganov`}
+  lang={lang}
+  canonicalPath="/blog/"
+  alternateLangPath="/ru/blog/"
+  alternateLang="ru"
+>
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-white mb-8">{t('blog.title')}</h1>
+
+    <div class="space-y-8">
+      {posts.map((post) => (
+        <article class="border-b border-white/10 pb-8">
+          <h2 class="text-2xl font-bold text-white mb-2">
+            <a href={`/blog/${post.data.slug}/`} class="hover:text-brand-accent transition-colors">
+              {post.data.title}
+            </a>
+          </h2>
+          <time class="text-gray-500 text-sm" datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('en-US', {
+              year: 'numeric', month: 'long', day: 'numeric',
+            })}
+          </time>
+          <p class="mt-2 text-gray-400">{post.data.description}</p>
+          <a href={`/blog/${post.data.slug}/`} class="text-brand-light hover:text-brand-accent text-sm mt-2 inline-block transition-colors">
+            {t('blog.readMore')} &rarr;
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</PageLayout>

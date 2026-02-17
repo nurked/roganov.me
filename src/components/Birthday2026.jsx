@@ -1,17 +1,12 @@
-import { NavBar } from "./navbar/NavBar";
-import { Footer } from "./Footter";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import React from "react";
 
 const getPlatform = () => {
-  // Try modern API first
   if (navigator.userAgentData?.platform) {
     return navigator.userAgentData.platform.toLowerCase();
   }
 
-  // Fallback to user agent checking
   const userAgent = navigator.userAgent.toLowerCase();
   if (
     userAgent.includes("mac") ||
@@ -119,9 +114,9 @@ const contentBlocks = [
   {
     type: "text",
     en: `<strong>What should I give as a gift?</strong><br><br>
-         If you want to make a present, you can use this <a href="https://www.amazon.com/hz/wishlist/ls/1C6NMOXEVD7L4?ref_=wl_share" class="text-blue-600 hover:text-blue-800 underline">Amazon wishlist</a> or donate towards my future services via <a href="https://www.paypal.com/pool/9m3GcDeC6F?sr=wccr" class="text-blue-600 hover:text-blue-800 underline">PayPal</a> or <a href="https://buy.stripe.com/5kQ8wQf5x3yd09a7f25EY0u" class="text-blue-600 hover:text-blue-800 underline">Stripe</a>. But honestly, your presence is the best gift!`,
+         If you want to make a present, you can use this <a href="https://www.amazon.com/hz/wishlist/ls/1C6NMOXEVD7L4?ref_=wl_share" class="text-blue-400 hover:text-blue-300 underline">Amazon wishlist</a> or donate towards my future services via <a href="https://www.paypal.com/pool/9m3GcDeC6F?sr=wccr" class="text-blue-400 hover:text-blue-300 underline">PayPal</a> or <a href="https://buy.stripe.com/5kQ8wQf5x3yd09a7f25EY0u" class="text-blue-400 hover:text-blue-300 underline">Stripe</a>. But honestly, your presence is the best gift!`,
     ru: `<strong>Что мне подарить?</strong><br><br>
-         Если вы хотите сделать подарок, можете воспользоваться <a href="https://www.amazon.com/hz/wishlist/ls/1C6NMOXEVD7L4?ref_=wl_share" class="text-blue-600 hover:text-blue-800 underline">этим списком в Амазоне</a> или сделать пожертвование на мои будущие услуги через <a href="https://www.paypal.com/pool/9m3GcDeC6F?sr=wccr" class="text-blue-600 hover:text-blue-800 underline">PayPal</a> или <a href="https://buy.stripe.com/5kQ8wQf5x3yd09a7f25EY0u" class="text-blue-600 hover:text-blue-800 underline">Stripe</a>. Но честно говоря, ваше присутствие - лучший подарок!`,
+         Если вы хотите сделать подарок, можете воспользоваться <a href="https://www.amazon.com/hz/wishlist/ls/1C6NMOXEVD7L4?ref_=wl_share" class="text-blue-400 hover:text-blue-300 underline">этим списком в Амазоне</a> или сделать пожертвование на мои будущие услуги через <a href="https://www.paypal.com/pool/9m3GcDeC6F?sr=wccr" class="text-blue-400 hover:text-blue-300 underline">PayPal</a> или <a href="https://buy.stripe.com/5kQ8wQf5x3yd09a7f25EY0u" class="text-blue-400 hover:text-blue-300 underline">Stripe</a>. Но честно говоря, ваше присутствие - лучший подарок!`,
   },
   {
     type: "text",
@@ -151,10 +146,6 @@ const CalendarButton = ({ language }) => (
   </button>
 );
 
-CalendarButton.propTypes = {
-  language: PropTypes.oneOf(["en", "ru"]).isRequired,
-};
-
 const paragraphVariants = {
   hidden: {
     opacity: 0,
@@ -182,7 +173,7 @@ const containerVariants = {
 const TextBlock = ({ content, language, isMobile }) => (
   <motion.div
     variants={paragraphVariants}
-    className={`text-lg text-gray-700 leading-relaxed ${
+    className={`text-lg text-gray-300 leading-relaxed ${
       isMobile ? "mb-8 px-4" : ""
     }`}
     dangerouslySetInnerHTML={{ __html: content[language] }}
@@ -216,11 +207,11 @@ const FullWidthMap = ({ googleSrc, appleMapsUrl, title }) => {
             href={appleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full h-full bg-gray-100 rounded-lg items-center justify-center"
+            className="flex w-full h-full bg-surface-card rounded-lg items-center justify-center border border-white/10"
           >
             <div className="text-center p-4">
-              <p className="text-lg mb-2">Click to open in Apple Maps</p>
-              <p className="text-sm text-gray-600">
+              <p className="text-lg text-white mb-2">Click to open in Apple Maps</p>
+              <p className="text-sm text-gray-400">
                 For the best experience on your device
               </p>
             </div>
@@ -239,7 +230,7 @@ const FullWidthMap = ({ googleSrc, appleMapsUrl, title }) => {
           />
         )}
       </div>
-      <div className="text-center text-sm text-gray-600">
+      <div className="text-center text-sm text-gray-400">
         <p>
           If you can&apos;t see the map, open in{" "}
           <a
@@ -265,36 +256,10 @@ const FullWidthMap = ({ googleSrc, appleMapsUrl, title }) => {
   );
 };
 
-TextBlock.propTypes = {
-  content: PropTypes.shape({
-    en: PropTypes.string,
-    ru: PropTypes.string,
-  }).isRequired,
-  language: PropTypes.oneOf(["en", "ru"]).isRequired,
-  isMobile: PropTypes.bool,
-};
-
-FullWidthImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.shape({
-    en: PropTypes.string,
-    ru: PropTypes.string,
-  }).isRequired,
-};
-
-FullWidthMap.propTypes = {
-  googleSrc: PropTypes.string.isRequired,
-  appleMapsUrl: PropTypes.string.isRequired,
-  title: PropTypes.shape({
-    en: PropTypes.string,
-    ru: PropTypes.string,
-  }).isRequired,
-};
-
-export const Birthday2026 = () => {
+export default function Birthday2026({ language = "ru" }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [language, setLanguage] = useState("ru");
+  const [lang, setLang] = useState(language);
 
   useEffect(() => {
     setIsVisible(true);
@@ -302,132 +267,121 @@ export const Birthday2026 = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Check URL parameters for language preference
-    const urlParams = new URLSearchParams(window.location.search);
-    const langParam = urlParams.get("lang");
-    if (langParam === "en") {
-      setLanguage("en");
-    }
-
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => (prev === "ru" ? "en" : "ru"));
+    setLang((prev) => (prev === "ru" ? "en" : "ru"));
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <NavBar />
-      <div className="flex-grow bg-gradient-to-b from-blue-50 to-white py-16">
-        <div className="max-w-7xl mx-auto">
-          {isMobile && (
-            <div className="px-4 mb-8">
-              <button
-                onClick={toggleLanguage}
-                className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                {language === "ru" ? "Switch to English" : "Показать по-русски"}
-              </button>
-            </div>
-          )}
+    <div className="flex-grow bg-gradient-to-b from-gray-900 to-surface-base py-16">
+      <div className="max-w-7xl mx-auto">
+        {isMobile && (
+          <div className="px-4 mb-8">
+            <button
+              onClick={toggleLanguage}
+              className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              {lang === "ru" ? "Switch to English" : "Показать по-русски"}
+            </button>
+          </div>
+        )}
 
-          <motion.div
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={containerVariants}
-            className={`grid grid-cols-1 ${
-              isMobile ? "" : "md:grid-cols-2"
-            } gap-8 md:gap-16`}
-          >
-            {isMobile ? (
-              <>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 px-4">
-                  {language === "ru" ? "День Рождения" : "Birthday Celebration"}
-                </h2>
-                <div className="px-4">
-                  <CalendarButton language={language} />
-                </div>
-                <div className="space-y-8">
-                  {contentBlocks.map((block, index) => {
-                    switch (block.type) {
-                      case "fullwidth-image":
-                        return (
-                          <div className="px-4" key={`image-${index}`}>
-                            <FullWidthImage {...block} />
-                          </div>
-                        );
-                      case "fullwidth-map":
-                        return (
-                          <div className="px-4" key={`map-${index}`}>
-                            <FullWidthMap {...block} />
-                          </div>
-                        );
-                      case "text":
-                        return (
-                          <TextBlock
-                            key={`text-${index}`}
-                            content={block}
-                            language={language}
-                            isMobile={true}
-                          />
-                        );
-                      default:
-                        return null;
-                    }
-                  })}
-                </div>
-                <div className="px-4">
-                  <CalendarButton language={language} />
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 px-4">
-                  Birthday Celebration
-                </h2>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 px-4">
-                  День Рождения
-                </h2>
-                <div className="px-4">
-                  <CalendarButton language="en" />
-                </div>
-                <div className="px-4">
-                  <CalendarButton language="ru" />
-                </div>
+        <motion.div
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+          variants={containerVariants}
+          className={`grid grid-cols-1 ${
+            isMobile ? "" : "md:grid-cols-2"
+          } gap-8 md:gap-16`}
+        >
+          {isMobile ? (
+            <>
+              <h2 className="text-3xl font-bold text-white mb-8 px-4">
+                {lang === "ru" ? "День Рождения" : "Birthday Celebration"}
+              </h2>
+              <div className="px-4">
+                <CalendarButton language={lang} />
+              </div>
+              <div className="space-y-8">
                 {contentBlocks.map((block, index) => {
                   switch (block.type) {
                     case "fullwidth-image":
                       return (
-                        <FullWidthImage key={`image-${index}`} {...block} />
+                        <div className="px-4" key={`image-${index}`}>
+                          <FullWidthImage {...block} />
+                        </div>
                       );
                     case "fullwidth-map":
-                      return <FullWidthMap key={`map-${index}`} {...block} />;
+                      return (
+                        <div className="px-4" key={`map-${index}`}>
+                          <FullWidthMap {...block} />
+                        </div>
+                      );
                     case "text":
                       return (
-                        <React.Fragment key={`text-${index}`}>
-                          <TextBlock content={block} language="en" />
-                          <TextBlock content={block} language="ru" />
-                        </React.Fragment>
+                        <TextBlock
+                          key={`text-${index}`}
+                          content={block}
+                          language={lang}
+                          isMobile={true}
+                        />
                       );
                     default:
                       return null;
                   }
                 })}
-                <div className="px-4">
-                  <CalendarButton language="en" />
-                </div>
-                <div className="px-4">
-                  <CalendarButton language="ru" />
-                </div>
-              </>
-            )}
-          </motion.div>
-        </div>
+              </div>
+              <div className="px-4">
+                <CalendarButton language={lang} />
+              </div>
+            </>
+          ) : (
+            <>
+              <h2 className="text-3xl font-bold text-white mb-8 px-4">
+                Birthday Celebration
+              </h2>
+              <h2 className="text-3xl font-bold text-white mb-8 px-4">
+                День Рождения
+              </h2>
+              <div className="px-4">
+                <CalendarButton language="en" />
+              </div>
+              <div className="px-4">
+                <CalendarButton language="ru" />
+              </div>
+              {contentBlocks.map((block, index) => {
+                switch (block.type) {
+                  case "fullwidth-image":
+                    return (
+                      <FullWidthImage key={`image-${index}`} {...block} />
+                    );
+                  case "fullwidth-map":
+                    return <FullWidthMap key={`map-${index}`} {...block} />;
+                  case "text":
+                    return (
+                      <React.Fragment key={`text-${index}`}>
+                        <TextBlock content={block} language="en" />
+                        <TextBlock content={block} language="ru" />
+                      </React.Fragment>
+                    );
+                  default:
+                    return null;
+                }
+              })}
+              <div className="px-4">
+                <CalendarButton language="en" />
+              </div>
+              <div className="px-4">
+                <CalendarButton language="ru" />
+              </div>
+            </>
+          )}
+        </motion.div>
       </div>
-      <Footer />
     </div>
   );
-};
+}

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NavBar from '../../components/NavBar.astro';
+import Footer from '../../components/Footer.astro';
+import Birthday2026 from '../../components/Birthday2026.jsx';
+---
+
+<BaseLayout
+  title="День Рождения Ивана 2026"
+  description="Празднование дня рождения в парке Крест Лейк"
+  lang="ru"
+  canonicalPath="/ru/birthday-2026/"
+  alternateLangPath="/birthday-2026/"
+  alternateLang="en"
+>
+  <div class="min-h-screen flex flex-col">
+    <NavBar lang="ru" />
+    <Birthday2026 client:load language="ru" />
+    <Footer lang="ru" />
+  </div>
+</BaseLayout>

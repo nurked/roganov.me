@@ -1,12 +1,9 @@
-// import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
 import { useRef, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 
 const ANIMATION_DURATION = 40;
 
-export const Banner = ({
+export default function Banner({
   items = [
     "25+ years of experience",
     "20 Projects",
@@ -15,21 +12,12 @@ export const Banner = ({
     "100+ articles",
     "3 companies founded",
     "6 years of education experience",
-    "10000+ hours of volounteer work",
+    "10000+ hours of volunteer work",
   ],
-  backgroundColor = "rgb(97,0,175)",
-  textColor = "white",
   fontSize = "text-lg sm:text-xl",
-}) => {
+}) {
   const [contentWidth, setContentWidth] = useState(0);
   const contentRef = useRef(null);
-
-  Banner.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.string),
-    backgroundColor: PropTypes.string,
-    textColor: PropTypes.string,
-    fontSize: PropTypes.string,
-  };
 
   useEffect(() => {
     if (contentRef.current) {
@@ -38,9 +26,7 @@ export const Banner = ({
   }, [items]);
 
   return (
-    <div
-      className={`bg-[${backgroundColor}] text-${textColor} overflow-hidden relative`}
-    >
+    <div className="bg-surface-card border-y border-white/10 overflow-hidden relative">
       <div className="flex whitespace-nowrap">
         {[...Array(2)].map((_, arrayIndex) => (
           <motion.div
@@ -59,7 +45,13 @@ export const Banner = ({
             {items.map((item, index) => (
               <div
                 key={index}
-                className={`${fontSize} px-4 py-6 flex-shrink-0`}
+                className={`${fontSize} px-4 py-6 flex-shrink-0 font-semibold`}
+                style={{
+                  background: 'linear-gradient(135deg, #3B82F6, #22D3EE)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
               >
                 {item}
               </div>
@@ -69,4 +61,4 @@ export const Banner = ({
       </div>
     </div>
   );
-};
+}

@@ -1,0 +1,149 @@
+---
+title: "Qualiflation"
+slug: "qualiflation"
+date: 2020-04-01
+description: "What happens when the result of your actions amounts to nothing? A look at how quality degradation affects our economy and our lives."
+lang: "en"
+tags: ["economics", "quality", "opinion"]
+---
+
+### My Kid
+
+What happens when the result of your actions amounts to nothing? Let me demonstrate.
+
+My five-year-old receives money for the work he does. All extra cleaning or special chores are paid—a buck each. But hey, he started this when he was three. He understands that money is worth something. His "salary" isn't insanely high, but he's better off than any of his peers and has a sense of responsibility. He also knows that things don't magically appear in his hands; he has to make them appear.
+
+(Okay, this is a tricky part. I love explaining things using little kids as examples. They're straightforward, honest, and don't overthink. So they're very obvious examples. For those who can't imagine this, I'll just tell you what to do: the kid represents a worker in the USA. So think of the kid as if it's you.)
+
+What does he spend money on? It's under his discretion. I won't tell him what to spend his money on, so naturally, he spends his dough on toys and entertainment. It used to be that he was happy to work hard the entire week to hitch a ride with me to a grocery store and pick up some trinket along the way.
+
+So now he's five, and thank you, Walmart, he doesn't want to work anymore.
+
+Why? you might ask.
+
+Well, just because his money doesn't buy him what he wants. It used to be that he could buy a car for five bucks and walk around playing with this car. But that was while we lived abroad. Now, we have access to all the fruits of advanced civilization. The toys are only a buck a pop. He can buy more of those. He sees endless rows of toys in Walmart and can splurge.
+
+Yet there's a substantial difference between a $5 car toy and a $1 car toy. The latter breaks in seconds. His toys are so flimsy, they fall apart at a touch. There are definitely more toys, although we have to shed the scattered remains of plastic all the time.
+
+And thus, he believes that he can't earn anything because everything he's ever bought is just trash by now. So there's no point in doing any work. Naturally, there's no use in making money.
+
+> Qualiflation. A term I use to describe the degradation of quality.
+
+### When I Was a Kid
+
+Now, let us think about those awesome times when we were young. I vividly remember Christmas of 1996. I got my first big Lego set, and my sister got a toy kitten. That kitten survived the following seven years while two kids played with it. We loved that kitten because it had some interesting material stuffed in its toe beans, and it was filled with water. So the kitten would act like a heating pad. If you kept it under a blanket, it would heat up. An awesome toy.
+
+We both played with this kitten just because our live cat loved to fight that little kitten. It was our cat's greatest nemesis. So we would pick up the kitten and start a "fight" between the cat and the toy. It was fun to watch how our cat, which grew to be three times bigger than the kitten, was punching the fluff out of the toy.
+
+But the kitten lived. It survived for seven years of constant play and the cat's abuse. And it ceased to exist because we grew up. We moved on with our lives. My sister and I went to college, and the little kitten became a toy for a little kid of the guys who were renting from us. RIP little Purina. You were a great toy.
+
+So hold on. Seven years? For a Walmart toy? Seriously? I can plow through the entire Amazon, Walmart, or whatnot, and I won't be able to find any toy that's going to last me seven years. Or at least a year.
+
+### Qualiflation
+
+So now, we want to improve the quality of our life. We know how to do that. You work hard, you earn money (which is just a measure of energy you've expended into your work), and you buy things to improve your life.
+
+When you're succeeding in this, you're happy. When you're not succeeding, you become very depressed.
+
+> Money won't make you happy. But the absence of money will make you miserable. (c) Grant Cardone.
+
+Yes, you can't really buy happiness. But if you don't use your money right, you'll be unhappy.
+
+When you come back home with your pockets full of dough from this new sweet job you've just landed, you're full of joy. You expect an improvement. You want your life to change, and here are the means—in your hands. You can go and buy a new mattress. You don't even have to use your credit for that. You can afford to do that outright. You'll finally be able to sleep like a normal person. What a joy!
+
+And now, enter the magic. You live in 2025. It's an awesome time where you can purchase those mattresses for only $199 on Amazon. Delivery fee included. Mattress is delivered, and you're all happy. Until a week later, you'll find yourself having a bad sleep because said mattress is sagging.
+
+You try to return it; you go into a month-long email chain with their tech support only to find out that you can't return the product. You're already upset. You thought that you'd improved your life; instead, you made it worse. Now you're not only unable to sleep on a decent mattress, but you have to go through the pain of finding a new mattress and arguing with low-quality tech support.
+
+Now you decide that enough is enough, and you don't want to do this anymore. $199 isn't worth the hassle, and it will be better to just buy a new mattress. You won't do the stupid thing anymore. You won't go and buy something cheap from Amazon or TEMU. You'll go to the local furniture store with your wife and choose a normal mattress.
+
+Oh, good luck, you poor little chap. After three hours in your local store, you'll find out two things:
+
+1. The mattresses they have are the exact same color, size, and pattern as the one you ditched. They do have different names, but they're dead ringers for the one you just tossed in the garbage.
+
+2. Those mattresses are $600–$1000 a pop.
+
+You grow anxious; you throw a fit in the store; you get upset, and your wife can't figure out what has bitten you that you've suddenly become so bitter. The thing is—you don't want to waste your hard-earned money on this piece of crap.
+
+So after three or four months of searching, plowing through some forums, and consulting with doctors, you do go to the bank to get a loan to buy a $4500 mattress.
+
+You're upset. The mattress is fine and seems to be decent. But you've just given $4500, and you live on credit yet again because you can't afford a normal mattress outright. In fact, you're very upset because you've just found out that despite the fact that your salary came up from $120k to $300k, you still can't have a thing that's going to make you happy.
+
+
+
+### So What Happened?
+
+Welcome to the world of qualiflation.
+
+It looks like things have improved. We have an abundance of access to pretty much any merchandise from the entire world. But we've missed something. While the prices stayed the same, or even seemingly dropped, the quality has quietly deteriorated to a degree that products have become miserable suffering.
+
+You've been missing the bandwagon for the past 25 years, boy. You have an idea that $300k per year is a decent salary. Yet in order to get things of quality for the same money, you better get $700k per year. At least!
+
+Don't believe me?
+
+Well, enter the US housing market. I used to be a network tech, and I have ultimately studied the quality of builds of many US properties with my hands-on.
+
+And oh my gawd! Don't even talk to me about this ridiculous "median price" house. For Pete's sake, I'm so happy I'm renting now and not owning this! I live in a newly-built house. It was completed in 2023. It's brand new. And I hate it.
+
+Not a single wall is straight. The floor is uneven, and there are nails sticking through the floor. Wooden beams that this thing holds on are cracked. We've already called a tech to fix the AC because it was leaking. Fuses blow. Some meth-head installed "a reliable internet connection." He punched a hole in a wall with a screwdriver and ran 20 feet of cable across several rooms. The cable isn't installed in the conduit, nor is it hidden in the walls. It's just lying on the floor. No, Spectrum, I'm not blaming anyone. He installed a wall plate, though. He punched a hole in the wall yet again and screwed the wall plate into the drywall. Why bother installing frames and boxes? It'll hold.
+
+And you might think that the meth-head at least used the same color screws to install the freaking wall plate, right? Yeah, sure, you wish.
+
+Do I need to mention the fact that I have to replace all the sealant silicone in the shower and in the bathroom? The fact that they're leaking and moldy is now part of the package. We expect them to be so.
+
+
+
+### AI and Software
+
+Just don't. Don't make me start.
+
+We used to be able to pay $30 for a game that we'd play for years. Now you have to buy subscriptions and pay-to-win on everything.
+
+Software is changing at a rapid speed for no particular reason. Everyone is adding this "AI" button and charging more for it for no reason at all. In fact, if you want to see THE most useless thing in the world—look at the LinkedIn "AI comment" feature. They position it as the thing that's going to make communications easier, and now the communications (especially comments) have become useless.
+
+And let's not even talk about the fact that we have a black hole called OpenAI where we're literally burning our money. Look at the rounds of investments into a technology that only 5% of engineers can use. Everyone else is just dicking around with it. Kid you not, it's just like Onion News Money Hole. https://theonion.com/in-the-know-should-the-government-stop-dumping-money-i-1819594755/.
+
+I can write about 10 more articles about software here; let's just skip it for now.
+
+### And What Now?
+
+My kid doesn't want to work because his money is worth nothing. Do you feel depressed? Do you feel like your work is worth nothing? Well, probably because it does.
+
+And in the middle of all that, we have those fake baloney news about "Walmart is going to hit tariffs on its customers." We've been using fake prices that actually represent an inverse bubble.
+
+Products in the economy are supposed to produce economic growth. Look at a $250 folding knife I had when I used to work as a network administrator. It had networking tools built in. I used to sport around with this knife for seven years. I completed much more projects with the assistance of that knife than the $250 I spent on it could have otherwise afforded. That was value.
+
+A screwdriver for $25 will outlive you—and probably your great-grandchildren.
+
+But a screwdriver for $0.99? It'll break on the first attempt to unscrew a bolt. So instead of contributing value to the economy, that cheap tool becomes a liability. It added no worth, and now you're wasting your time replacing it. Not only did the $0.99 not bring you any return, but it's now costing you more — your time, your energy, and your faith in effort itself.
+
+If you listen to Yahoo Finance or any other blah-blah show, they'll talk about a worldwide recession or some other economic myth. Supposed causes include tariff wars or inflation trends. Bullocks. The recession started much earlier. It began the moment we, as a global society, chose quantity over quality — chose lesser things.
+
+The problem isn't that the screwdriver costs $25. The problem is that the $0.99 screwdriver costs more in the long run. Because not only does it fail to perform, it adds waste, effort, and inefficiency. Its "cheapness" creates invisible costs: wasted time, environmental burden, mental frustration, and emotional fatigue. We're not just failing to count those costs—we're refusing to acknowledge them at all.
+
+Not one so-called financier is asking: "How much worth does this thing truly bring to our economy?"
+
+Why are we concerned about the inability to trade cheap cutlery with China—cutlery that breaks thirty seconds after first use?
+
+These products don't generate wealth. They suck attention and energy. Instead of driving toward our life goals, we're stuck changing tires on metaphorical cars made of duct tape and broken promises. Instead of giving ourselves well-deserved rewards, we're buying disposable junk destined for a landfill.
+
+Surveys show people are increasingly depressed. And the core driver of that depression? It's the crushing sense that we ourselves don't matter. That our time, effort, and money are meaningless.
+
+### Why do we feel this way?
+
+Because we don't have goals greater than just going to work, making dough, and buying trinkets that fall apart before we can even enjoy them.
+
+Our jobs feel meaningless because we're unable to reap the harvest of our labor. Our money barely stretches to cover the rising tide of qualiflation. And here's the kicker—the sad truth: a decent phone now costs at least $1500. A laptop under $2500 is likely a waste of money. An entry-level car starts around $40,000. Expensive? Yes. But these things, if done right, will at least serve you. They'll be tools that support your ambitions, not distractions that sabotage them.
+
+They'll give you time, not take it.
+
+So what do you do?
+
+Simple:
+
+1. Figure out how to earn more. I know — $700k sounds outrageous. But let that be your target. Even if you fall short and "only" hit $350k, that will transform your life.
+2. Write down your goals. Then sit with your spouse and write down your shared goals. Then sit down with your team and do the same. Clarity kills depression and procrastination.
+3. Stop looking for your goals on TEMU or Amazon. You won't find them there. If you're shopping by sorting "Lowest Price First," you're looking in the wrong direction.
+4. Stop listening to financial advice from anyone who isn't extremely wealthy. And if they claim they are—verify it. Truth beats talk.
+5. Purpose is not mystical. If you have a worthy goal and you're chasing it, that is your purpose. And you won't be vulnerable to qualiflation.
+6. Demand quality. From yourself. From your peers. From the world around you.

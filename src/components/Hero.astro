@@ -1,0 +1,85 @@
+---
+import { useTranslations } from '../i18n/utils.js';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
+const stats = lang === 'ru'
+  ? [
+      { value: '25+', label: 'лет опыта' },
+      { value: '20+', label: 'проектов' },
+      { value: '100+', label: 'статей' },
+      { value: '$1M+', label: 'экономии' },
+    ]
+  : [
+      { value: '25+', label: 'Years Experience' },
+      { value: '20+', label: 'Projects' },
+      { value: '100+', label: 'Articles' },
+      { value: '$1M+', label: 'Cost Saved' },
+    ];
+---
+
+<div class="relative w-full min-h-[calc(100vh_-_60px)] flex items-center justify-center overflow-hidden">
+  <!-- Floating gradient orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-brand/20 rounded-full blur-[128px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-brand-accent/15 rounded-full blur-[128px] pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/10 rounded-full blur-[128px] pointer-events-none"></div>
+
+  <!-- Dot grid pattern overlay -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center p-6 md:p-16 space-y-8 max-w-5xl mx-auto text-center">
+    <!-- Availability badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-gray-300">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+      </span>
+      {lang === 'ru' ? 'Доступен для проектов' : 'Available for Projects'}
+    </div>
+
+    <!-- Main heading -->
+    <div class="space-y-4">
+      <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight">
+        {t('hero.greeting')}
+      </h1>
+      <h2 class="text-2xl md:text-3xl text-gray-300 font-light max-w-2xl mx-auto">
+        {t('hero.subtitle')}
+      </h2>
+      <p class="text-xl md:text-2xl text-gradient font-semibold">
+        {t('hero.cta')}
+      </p>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 mt-4">
+      <a href="#contact" class="px-8 py-3 bg-brand hover:bg-brand-light text-white font-medium rounded-lg transition-all duration-300 hover:shadow-brand">
+        {lang === 'ru' ? 'Связаться' : 'Get in Touch'}
+      </a>
+      <a href="#superhero" class="px-8 py-3 border border-white/20 hover:border-white/40 text-gray-300 hover:text-white font-medium rounded-lg transition-all duration-300">
+        {lang === 'ru' ? 'Портфолио' : 'View Portfolio'}
+      </a>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 w-full max-w-3xl">
+      {stats.map((stat) => (
+        <div class="glass rounded-xl px-6 py-4 text-center">
+          <div class="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
+          <div class="text-sm text-gray-400 mt-1">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Scroll indicator -->
+    <a href="#about" class="mt-8 text-gray-500 hover:text-gray-300 transition-colors animate-bounce" aria-label="Scroll to About section">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </a>
+  </div>
+</div>

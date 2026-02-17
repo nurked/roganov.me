@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  lang?: string;
+  canonicalPath?: string;
+  alternateLangPath?: string;
+  alternateLang?: string;
+}
+
+const props = Astro.props;
+---
+
+<BaseLayout {...props}>
+  <div class="min-h-screen bg-surface-base flex flex-col">
+    <NavBar lang={props.lang || 'en'} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={props.lang || 'en'} />
+  </div>
+</BaseLayout>

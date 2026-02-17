@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "portfolio": "Portfolio",
+    "contact": "Contact",
+    "birthday2026": "Birthday 2026",
+    "blog": "Blog"
+  },
+  "hero": {
+    "greeting": "Hi there!",
+    "subtitle": "My name is Ivan and I'm here to help you",
+    "cta": "Let's get to know each other"
+  },
+  "about": {
+    "name": "Ivan Roganov",
+    "role": "Entrepreneur",
+    "p1": "With 25 years of experience in IT, I've been programming since 1999, honing my skills and expertise across multiple areas of technology.",
+    "p2": "Since 2004, I've gained hands-on programming experience. Over the years, I've developed a strong leading teams and managing projects, applying my knowledge to problem-solving approach, believing that every issue can be fixed.",
+    "p3": "I have successfully managed over 20 failing IT projects in the past 15 years, turning them around and making them operational. I am confident in my ability to tackle any project, no matter how challenging.",
+    "p4": "There isn't a program that can't be fixed, and there isn't an IT system that can't be made operational.",
+    "p5": "In my career, I've learned that no program is beyond repair, and no IT system is beyond restoration. There's always a way to fix it and make it better."
+  },
+  "banner": {
+    "items": [
+      "25+ years of experience",
+      "20 Projects",
+      "6 teams",
+      "Over $1M saved in production costs",
+      "100+ articles",
+      "3 companies founded",
+      "6 years of education experience",
+      "10000+ hours of volunteer work"
+    ]
+  },
+  "superhero": {
+    "roles": [
+      {
+        "title": "Problem Solver",
+        "subtitle": "You can always fix this",
+        "image": "/img/hero0.png",
+        "description": "Veteran IT troubleshooter with over 20 recovered failing projects in 15 years. Specialized in modernizing legacy systems, from 1990s databases to modern architectures, with a perfect track record of making any system operational again. No IT challenge too complex to solve."
+      },
+      {
+        "title": "Educator",
+        "subtitle": "Teaching is about understanding",
+        "image": "/img/hero1.png",
+        "description": "Dedicated educator with 6 years of global teaching experience and over 5,000 hours of mentoring. From university lectures to one-on-one sessions, successfully guided thousands of students through computer programming and game development, maintaining a remarkable 97.5% success rate."
+      },
+      {
+        "title": "Writer",
+        "subtitle": "Every story deserves to be told",
+        "image": "/img/hero2.png",
+        "description": "Prolific writer with over 1 million words published and read. Distinguished contributor to habr.com with 100+ articles reaching over 1 million readers. Active writer across multiple platforms including LinkedIn, Medium, and Telegram, crafting content that ranges from technical documentation to personal narratives."
+      },
+      {
+        "title": "Volunteer",
+        "subtitle": "Making a difference, one person at a time",
+        "image": "/img/hero3.png",
+        "description": "Dedicated volunteer with over 1,000 hours of community service in three years, impacting over 10,000 lives. From pandemic relief efforts to community cleanup projects, committed to hands-on involvement in various humanitarian initiatives that make a real difference in people's lives."
+      },
+      {
+        "title": "Hobby Enthusiast",
+        "subtitle": "Life is meant to be enjoyed together",
+        "image": "/img/hero4.png",
+        "description": "Versatile enthusiast combining professional paintball experience with passion for bringing people together through games and events. Proven track record of organizing large-scale gatherings, including a 120-person event, and completing ambitious adventures like coast-to-coast drives."
+      },
+      {
+        "title": "Entrepreneur",
+        "subtitle": "Building solutions for tomorrow",
+        "image": "",
+        "description": "Founder of multiple successful ventures including IFC LLC, providing comprehensive IT solutions with a team of seven professionals, and IGAP LLC, specializing in arts and crafts services. Focused on delivering high-quality, client-centered solutions across diverse industries."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "services": [
+      "Software development. Solving any IT-related problems",
+      "Business and entertainment event organization",
+      "Professional in-time translation",
+      "A/V equipment setups and training",
+      "Personal consultation",
+      "Anything I can help you with"
+    ],
+    "callText": "Just give me a call,",
+    "callText2": "I would love to hear from you",
+    "downloadCard": "Download Contact Card",
+    "addToIOS": "Add to iOS Contacts",
+    "scanToAdd": "Scan to add contact"
+  },
+  "footer": {
+    "copyright": "IFC LLC. All rights reserved."
+  },
+  "blog": {
+    "title": "Blog",
+    "readMore": "Read more",
+    "publishedOn": "Published on",
+    "backToBlog": "Back to Blog"
+  },
+  "language": {
+    "switchTo": "Показать по-русски",
+    "current": "English"
+  }
+}

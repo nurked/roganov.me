@@ -1,0 +1,47 @@
+---
+import { useTranslations } from '../i18n/utils.js';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div id="about" class="relative bg-surface-base w-full py-20 md:py-32">
+  <!-- Gradient divider at top -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent"></div>
+
+  <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+    <!-- Image side -->
+    <div class="w-full md:w-2/5 flex flex-col items-center fade-in-section">
+      <div class="relative">
+        <div class="absolute -inset-4 bg-brand/20 rounded-2xl blur-2xl pointer-events-none"></div>
+        <img src="/ivan.png" alt={t('about.name')} class="relative w-64 md:w-80 rounded-2xl border border-white/10 object-contain" />
+      </div>
+      <div class="mt-6 text-center">
+        <p class="font-bold text-lg text-white">{t('about.name')}</p>
+        <p class="text-sm text-brand-accent">{t('about.role')}</p>
+      </div>
+    </div>
+
+    <!-- Text side -->
+    <div class="w-full md:w-3/5 fade-in-section">
+      <!-- Section label -->
+      <div class="mb-8">
+        <span class="text-xs font-semibold tracking-widest uppercase text-brand-accent">{lang === 'ru' ? 'Обо мне' : 'About Me'}</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 tracking-tight">{t('about.name')}</h2>
+        <div class="w-16 h-1 bg-gradient-to-r from-brand-light to-brand-accent rounded-full mt-4"></div>
+      </div>
+
+      <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
+        <p>{t('about.p1')}</p>
+        <p>{t('about.p2')}</p>
+        <p>{t('about.p3')}</p>
+        <p>{t('about.p4')}</p>
+        <p>{t('about.p5')}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import Birthday from '../components/Birthday.jsx';
+---
+
+<BaseLayout
+  title="Ivan's Birthday Party 2025"
+  description="Birthday celebration at Fred Howard Park"
+  lang="en"
+  canonicalPath="/birthday-2025/"
+  alternateLangPath="/ru/birthday-2025/"
+  alternateLang="ru"
+>
+  <div class="min-h-screen flex flex-col">
+    <NavBar lang="en" />
+    <Birthday client:load language="en" />
+    <Footer lang="en" />
+  </div>
+</BaseLayout>

@@ -15,8 +15,11 @@ import {
 } from "../../utils/contactUtils";
 import QRCodeStyling from "qr-code-styling";
 import { useEffect, useRef, useState } from "react";
+import en from "../../i18n/en.json";
+import ru from "../../i18n/ru.json";
 
-export const Contact = () => {
+export default function Contact({ lang = "en" }) {
+  const strings = lang === "ru" ? ru.contact : en.contact;
   const vCardData = generateVCard(profile);
   const appleContactURL = generateAppleContactURL(profile);
   const qrCode = useRef(null);
@@ -37,11 +40,11 @@ export const Contact = () => {
     if (qrRef.current && !isMobile) {
       qrRef.current.innerHTML = "";
       qrCode.current = new QRCodeStyling({
-        width: 400,
-        height: 400,
+        width: 300,
+        height: 300,
         data: vCardData,
         dotsOptions: {
-          color: "#000000",
+          color: "#0F67B1",
           type: "rounded",
         },
         backgroundOptions: {
@@ -68,135 +71,150 @@ export const Contact = () => {
     window.URL.revokeObjectURL(url);
   };
 
+  const contactMethods = [
+    {
+      icon: FaWhatsapp,
+      color: "#25D366",
+      label: profile.contact.phone,
+      href: `https://wa.me/${profile.contact.phone.replace(/\D/g, "")}`,
+      external: true,
+    },
+    {
+      icon: FaEnvelope,
+      color: "#3B82F6",
+      label: profile.contact.email,
+      href: `mailto:${profile.contact.email}`,
+    },
+    {
+      icon: FaEnvelope,
+      color: "#8B5CF6",
+      label: profile.contact.businessEmail,
+      href: `mailto:${profile.contact.businessEmail}`,
+    },
+    {
+      icon: FaTelegramPlane,
+      color: "#229ED9",
+      label: "@nurked",
+      href: profile.social.telegram,
+      external: true,
+    },
+    {
+      icon: FaLinkedin,
+      color: "#0A66C2",
+      label: "ivan-roganov",
+      href: profile.social.linkedin,
+      external: true,
+    },
+    {
+      icon: FaMapMarkerAlt,
+      color: "#EF4444",
+      label: profile.location,
+    },
+  ];
+
   return (
-    <div id="contact" className="w-full min-h-screen flex flex-col mt-24 pb-24">
-      <div className="flex-grow basis-1/3 flex flex-col justify-center items-center px-4 sm:px-8 md:px-16">
-        <h1 className="text-3xl sm:text-4xl font-bold flex items-center text-center">
-          <span>Get in Touch</span>
-          <span className="ml-2 w-1 h-8 bg-green-500 animate-blink"></span>
-        </h1>
-
-        <ul className="mt-4 text-sm sm:text-base space-y-1 text-left w-full max-w-md mb-24 list-disc pl-4">
-          <li>Software development. Solving any IT-related problems</li>
-          <li>Business and entertainment event organization</li>
-          <li>Professional in-time translation</li>
-          <li>A/V equipment setups and training</li>
-          <li>Personal consultation</li>
-          <li>Anything I can help you with</li>
-        </ul>
-      </div>
-
-      <div className="flex-grow bg-gray-200 flex flex-col justify-start items-center px-4 sm:px-8 md:px-16 pb-24">
-        <div className="text-center sm:mt-28 mt-24 lg:mt-16 space-y-4 relative">
-          <h2 className="text-xl sm:text-2xl">
-            Just give me a call, <br />I would love to hear from
+    <div id="contact" className="w-full py-20 md:py-32">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
+        {/* Section header */}
+        <div className="mb-16">
+          <span className="text-xs font-semibold tracking-widest uppercase text-cyan-400">
+            {lang === "ru" ? "Контакт" : "Contact"}
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 tracking-tight flex items-center">
+            <span>{strings.title}</span>
+            <span className="ml-2 w-1 h-8 bg-green-500 animate-blink"></span>
           </h2>
-
-          <div className="flex flex-col items-center mt-4 space-y-4 w-full max-w-md sm:max-w-lg">
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <a
-                href={`https://wa.me/${profile.contact.phone.replace(/\D/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-              >
-                <FaWhatsapp className="text-3xl sm:text-4xl mr-4" />
-                <span className="text-lg sm:text-2xl">
-                  {profile.contact.phone}
-                </span>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <a
-                href={`mailto:${profile.contact.email}`}
-                className="flex items-center"
-              >
-                <FaEnvelope className="text-3xl sm:text-4xl mr-4" />
-                <span className="text-lg sm:text-2xl">
-                  {profile.contact.email}
-                </span>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <a
-                href={`mailto:${profile.contact.businessEmail}`}
-                className="flex items-center"
-              >
-                <FaEnvelope className="text-3xl sm:text-4xl mr-4" />
-                <span className="text-lg sm:text-2xl">
-                  {profile.contact.businessEmail}
-                </span>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <a
-                href={profile.social.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-              >
-                <FaTelegramPlane className="text-3xl sm:text-4xl mr-4" />
-                <span className="text-lg sm:text-2xl">@nurked</span>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <FaLinkedin className="text-3xl sm:text-4xl mr-4" />
-              <span className="text-lg sm:text-2xl">
-                <a
-                  href={profile.social.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  linkedin.com/in/ivan-roganov
-                </a>
-              </span>
-            </div>
-
-            <div className="flex items-center justify-start w-full ml-0 md:ml-64">
-              <FaMapMarkerAlt className="text-3xl sm:text-4xl mr-4" />
-              <span className="text-lg sm:text-2xl">{profile.location}</span>
-            </div>
-
-            {isMobile && (
-              <div className="flex space-x-4">
-                <button
-                  onClick={downloadVCard}
-                  className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  <FaAddressCard />
-                  <span>Download Contact Card</span>
-                </button>
-
-                <a
-                  href={appleContactURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-2 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
-                >
-                  <FaApple />
-                  <span>Add to iOS Contacts</span>
-                </a>
-              </div>
-            )}
-
-            {!isMobile && (
-              <div className="flex flex-col items-center space-y-2 mb-24">
-                <div className="text-lg flex items-center space-x-2">
-                  <FaQrcode />
-                  <span>Scan to add contact</span>
-                </div>
-                <div className="p-2 bg-white rounded-lg">
-                  <div ref={qrRef} />
-                </div>
-              </div>
-            )}
-          </div>
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mt-4"></div>
         </div>
+
+        {/* Services list */}
+        <ul className="mb-16 space-y-3 max-w-lg">
+          {strings.services.map((service, index) => (
+            <li key={index} className="flex items-start gap-3 text-gray-300">
+              <svg className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              {service}
+            </li>
+          ))}
+        </ul>
+
+        {/* Contact info heading */}
+        <h3 className="text-xl md:text-2xl text-gray-300 mb-8 text-center">
+          {strings.callText} <br />{strings.callText2}
+        </h3>
+
+        {/* Contact methods grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+          {contactMethods.map((method, index) => {
+            const Icon = method.icon;
+            const content = (
+              <div
+                key={index}
+                className="flex items-center gap-4 p-5 rounded-xl bg-surface-card border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style={{ backgroundColor: `${method.color}20` }}>
+                  <Icon className="text-xl" style={{ color: method.color }} />
+                </div>
+                <span className="text-gray-300 text-sm md:text-base truncate">{method.label}</span>
+              </div>
+            );
+
+            if (method.href) {
+              return (
+                <a
+                  key={index}
+                  href={method.href}
+                  target={method.external ? "_blank" : undefined}
+                  rel={method.external ? "noopener noreferrer" : undefined}
+                  className="block"
+                >
+                  {content}
+                </a>
+              );
+            }
+            return content;
+          })}
+        </div>
+
+        {/* Mobile buttons */}
+        {isMobile && (
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <button
+              onClick={downloadVCard}
+              className="flex items-center justify-center gap-2 bg-brand hover:bg-brand-light text-white px-6 py-3 rounded-lg transition-colors"
+            >
+              <FaAddressCard />
+              <span>{strings.downloadCard}</span>
+            </button>
+
+            <a
+              href={appleContactURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-6 py-3 rounded-lg hover:bg-white/20 transition-colors"
+            >
+              <FaApple />
+              <span>{strings.addToIOS}</span>
+            </a>
+          </div>
+        )}
+
+        {/* QR Code (desktop) */}
+        {!isMobile && (
+          <div className="flex flex-col items-center space-y-4">
+            <div className="text-lg flex items-center gap-2 text-gray-400">
+              <FaQrcode />
+              <span>{strings.scanToAdd}</span>
+            </div>
+            <div className="p-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10">
+              <div className="p-3 bg-white rounded-xl">
+                <div ref={qrRef} />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-};
+}
