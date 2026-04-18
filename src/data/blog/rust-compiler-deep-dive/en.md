@@ -5,6 +5,8 @@ date: 2021-01-31
 description: "A walkthrough of the Rust compiler source code — from parsing a source file to generating a binary via LLVM. We trace a program's journey through AST, HIR, and MIR."
 lang: "en"
 tags: ["Rust", "compilers", "systems programming", "LLVM"]
+series: "rust-2021"
+seriesOrder: 3
 ---
 
 In my previous article about Rust, I tried to tell the story of the language and show where it came from. The article was full of simplifications. An absolutely absurd number of them. People were not happy. But in the poll at the end, you said you wanted me to show the compiler's guts. Well then — below the fold you'll find a walkthrough of the Rust compiler source code. We'll trace the journey of a program, from source file straight to binary.

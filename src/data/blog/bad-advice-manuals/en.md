@@ -2,9 +2,11 @@
 title: "Bad Advice for Manual Writers (in the Style of Grigory Oster)"
 slug: "bad-advice-manuals"
 date: 2021-11-08
-description: "Why people don't read manuals, how to make your documentation even worse, and why you should probably just sit down and write a decent one — presented as satirical 'Bad Advice' poems in the style of Grigory Oster."
+description: "Why people don't read manuals, how to make docs even worse, and why you should write decent ones — satirical Bad Advice in the Grigory Oster style."
 lang: "en"
 tags: ["documentation", "management", "writing"]
+series: "bad-advice"
+seriesOrder: 1
 ---
 
 Recently, someone tried to sell me on TikTok again. The youth were singing praises about how wonderful this new platform is. "Perhaps," I said. "So what makes it so wonderful?"

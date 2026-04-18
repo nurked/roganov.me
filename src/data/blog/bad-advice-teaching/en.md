@@ -1,10 +1,12 @@
 ---
-title: "Bad Advice for Teaching People to Code (in the Style of Grigory Oster)"
+title: "Bad Advice for Teaching People to Code (Oster Style)"
 slug: "bad-advice-teaching"
 date: 2021-12-02
-description: "How to teach people programming without killing the spark in their eyes. On three idiotic claims, understanding vs. rote memorization, and why 'couldn't learn' actually means 'you didn't try hard enough.'"
+description: "How to teach programming without killing the spark: three idiotic claims, understanding vs. rote memorization, and why 'couldn't learn' is a cop-out."
 lang: "en"
 tags: ["teaching", "programming", "management", "Grigory Oster"]
+series: "bad-advice"
+seriesOrder: 2
 ---
 
 Humans have this wonderful perk. We can teach other humans useful things. Sure, some animals can do it too, but they're nowhere near the staggering scale at which we teach one another. We've industrialized the whole thing and crank it out in such volumes that it's frankly impressive.

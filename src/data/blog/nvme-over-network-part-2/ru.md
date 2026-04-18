@@ -5,6 +5,8 @@ date: 2022-02-22
 description: "Продолжаем издеваться над NVMe-over-TCP. Настоящий тестовый стенд из двух Dell PowerEdge, 10-гигабитная сеть, новое ядро 5.16 и ответы на вопросы из первой части."
 lang: "ru"
 tags: ["NVMe", "Linux", "sysadmin", "networking", "TCP"]
+series: "nvme-over-network"
+seriesOrder: 2
 ---
 
 Привет всем! Рад вас снова видеть, и я счастлив, что вам так понравилась моя [предыдущая статья](/ru/blog/nvme-over-network-part-1/) под названием «А все ли врут? Продолжаем издеваться над NVMe».

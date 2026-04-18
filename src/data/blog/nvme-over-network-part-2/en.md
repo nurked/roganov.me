@@ -5,6 +5,8 @@ date: 2022-02-22
 description: "Round two of beating up NVMe-over-TCP. A real test bench made of two Dell PowerEdge boxes, a 10-gigabit network, kernel 5.16, and answers to the questions you raised."
 lang: "en"
 tags: ["NVMe", "Linux", "sysadmin", "networking", "TCP"]
+series: "nvme-over-network"
+seriesOrder: 2
 ---
 
 Hi everyone! Glad to see you again, and I'm thrilled you enjoyed my [previous article](/blog/nvme-over-network-part-1/) titled "So is everyone lying? Let's keep abusing NVMe."

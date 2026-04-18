@@ -5,6 +5,8 @@ date: 2021-01-17
 description: "A real-world experience of adopting Rust in production — from reading the documentation inside out to replacing 16 Docker containers with a 564 KB binary."
 lang: "en"
 tags: ["Rust", "systems programming", "learning", "DevOps"]
+series: "rust-2021"
+seriesOrder: 1
 ---
 
 Everyone kept saying — switch to Rust! Start using the most beloved language on StackOverflow and all that.

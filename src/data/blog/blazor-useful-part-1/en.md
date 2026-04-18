@@ -5,6 +5,8 @@ date: 2021-10-25
 description: "Part one of how, instead of yet another ToDo list, we built a useful IoT relay control system in Blazor: Entity Framework, MVC controller, server-side rendering, and C# instead of JavaScript."
 lang: "en"
 tags: ["C#", ".NET", "Blazor", "WebAssembly", "IoT"]
+series: "blazor-useful"
+seriesOrder: 1
 ---
 
 Whenever I see someone teaching a programming language, I often notice a tendency to show beginners primitive examples in the form of a ToDo list. Besides the fact that such examples don't teach anything actually useful about programming, they're incredibly one-sided and don't let you appreciate all the pros and cons of a given development platform.

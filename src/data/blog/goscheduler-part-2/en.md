@@ -5,6 +5,8 @@ date: 2021-10-11
 description: "Part two of the series on Go's task scheduler: breaking down G, P, and M, thread parking, system calls, netpoll, and sysmon — all based on runtime source code."
 lang: "en"
 tags: ["Go", "goroutines", "scheduler", "systems programming"]
+series: "goscheduler"
+seriesOrder: 2
 ---
 
 I recommend starting with [Part I](/blog/goscheduler-part-1/), where we torment an OS with an absurd number of threads, see what comes of it, and learn that concurrency is not necessarily multithreading.

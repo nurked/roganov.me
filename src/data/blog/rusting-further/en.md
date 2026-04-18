@@ -5,6 +5,8 @@ date: 2021-01-24
 description: "A deep dive into the history of compilation — from processors and opcodes through C, Java, and JavaScript to LLVM and Rust. Understanding why Rust exists and when to use it for web."
 lang: "en"
 tags: ["Rust", "systems programming", "WebAssembly", "LLVM", "compilers"]
+series: "rust-2021"
+seriesOrder: 2
 ---
 
 The previous article about Rust turned out to be rather popular. A lot of people reached out with the question: "Can Rust do web?"

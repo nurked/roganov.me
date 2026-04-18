@@ -5,6 +5,8 @@ date: 2022-01-10
 description: "NVMe is more than just a fast disk — it's a protocol. Here's how to expose an NVMe drive over the network through plain TCP, using nothing but your stock Linux kernel."
 lang: "en"
 tags: ["NVMe", "Linux", "sysadmin", "networking"]
+series: "nvme-over-network"
+seriesOrder: 1
 ---
 
 While my colleagues wrestle with the joys of server-grade NVMe RAID arrays, I decided to come at the problem from a different angle. NVMe, after all, isn't just a hard drive — it's three or four protocols for moving data around in a hurry.

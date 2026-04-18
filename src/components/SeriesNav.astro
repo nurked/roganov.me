@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import { getSeriesTitle } from '../config/series.js';
+import { getLocalePath } from '../i18n/utils.js';
+
+interface Props {
+  series: string;
+  currentOrder: number;
+  lang: string;
+}
+
+const { series, currentOrder, lang } = Astro.props;
+
+// Collect all sibling posts in this series for the current locale
+const siblings = (await getCollection('blog', ({ data }) => {
+  return data.series === series && data.lang === lang && !data.draft;
+})).sort((a, b) => (a.data.seriesOrder ?? 0) - (b.data.seriesOrder ?? 0));
+
+const seriesTitle = getSeriesTitle(series, lang);
+const total = siblings.length;
+
+const labels = lang === 'ru'
+  ? {
+      label: 'Часть серии',
+      partOf: (n, total) => `Часть ${n} из ${total}`,
+      previous: 'Предыдущая',
+      next: 'Следующая',
+    }
+  : {
+      label: 'Part of a series',
+      partOf: (n, total) => `Part ${n} of ${total}`,
+      previous: 'Previous',
+      next: 'Next',
+    };
+
+const prev = siblings.find((p) => (p.data.seriesOrder ?? 0) === currentOrder - 1);
+const next = siblings.find((p) => (p.data.seriesOrder ?? 0) === currentOrder + 1);
+---
+
+{total > 1 && (
+  <aside
+    class="mb-10 rounded-xl border border-white/10 bg-surface-card/40 p-5 sm:p-6"
+    aria-label={labels.label}
+  >
+    <div class="flex items-center justify-between gap-3 mb-4">
+      <p class="text-[11px] uppercase tracking-[0.2em] text-brand-accent font-mono">
+        {labels.label}
+      </p>
+      <span class="text-xs text-gray-500 font-mono tabular-nums">
+        {labels.partOf(currentOrder, total)}
+      </span>
+    </div>
+    {seriesTitle && (
+      <h2 class="text-lg font-semibold text-white tracking-tight mb-4">{seriesTitle}</h2>
+    )}
+    <ol class="space-y-2">
+      {siblings.map((s) => {
+        const isCurrent = s.data.seriesOrder === currentOrder;
+        const href = getLocalePath(lang, `blog/${s.data.slug}/`);
+        return (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'flex items-baseline gap-3 py-1.5 text-sm transition-colors group',
+                isCurrent
+                  ? 'text-white'
+                  : 'text-gray-400 hover:text-brand-accent',
+              ]}
+              aria-current={isCurrent ? 'page' : undefined}
+            >
+              <span class="font-mono text-gray-500 tabular-nums text-xs pt-0.5">
+                {String(s.data.seriesOrder ?? 0).padStart(2, '0')}
+              </span>
+              <span class="flex-1">{s.data.title}</span>
+              {isCurrent && (
+                <span class="text-[10px] uppercase tracking-wider text-brand-accent font-mono" aria-hidden="true">&bull; you are here</span>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+    {(prev || next) && (
+      <div class="mt-5 pt-4 border-t border-white/5 flex items-center justify-between gap-3 text-sm font-mono">
+        {prev ? (
+          <a
+            href={getLocalePath(lang, `blog/${prev.data.slug}/`)}
+            class="text-gray-400 hover:text-brand-accent transition-colors inline-flex items-center gap-1.5"
+            rel="prev"
+          >
+            <span aria-hidden="true">&larr;</span>
+            <span>{labels.previous}</span>
+          </a>
+        ) : (
+          <span></span>
+        )}
+        {next ? (
+          <a
+            href={getLocalePath(lang, `blog/${next.data.slug}/`)}
+            class="text-gray-400 hover:text-brand-accent transition-colors inline-flex items-center gap-1.5"
+            rel="next"
+          >
+            <span>{labels.next}</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        ) : (
+          <span></span>
+        )}
+      </div>
+    )}
+  </aside>
+)}

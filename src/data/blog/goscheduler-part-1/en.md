@@ -5,6 +5,8 @@ date: 2021-10-04
 description: "Part one of a series on Go's task scheduler: what happens with OS threads, why 180,000 threads will kill your system, and what work stealing has to do with any of it."
 lang: "en"
 tags: ["Go", "goroutines", "scheduler", "systems programming"]
+series: "goscheduler"
+seriesOrder: 1
 ---
 
 Every time I pick up a new book about golang, I inevitably flip to the chapter on goroutines and once again read about how ruthlessly magnificent Go is. Just think about it — instead of spawning OS threads to handle concurrent tasks, we get to use the language's own built-in tools!

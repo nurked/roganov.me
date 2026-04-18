@@ -5,6 +5,8 @@ date: 2021-11-01
 description: "Part two on Blazor: WASM binary pitfalls, Razor gotchas, component communication struggles, lifecycle traps, and the state of the ecosystem."
 lang: "en"
 tags: ["C#", ".NET", "Blazor", "WebAssembly"]
+series: "blazor-useful"
+seriesOrder: 2
 ---
 
 As I mentioned in [Part I](/blog/blazor-useful-part-1/) of this article, we decided to build a system that converts commands for sending various instructions to multiple IoT relays using Blazor. We threw together a solid system for working with these relays practically on a shoestring. Everything was great and fast! But not everything was as simple as advertised.
