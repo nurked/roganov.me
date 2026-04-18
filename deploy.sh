@@ -3,7 +3,7 @@
 # Exit on error
 set -e
 
-echo "🏗️ Starting build process..."
+echo "🏗️  Starting build process..."
 
 # Build the site with npm
 npm run build
@@ -29,40 +29,57 @@ if ! command -v aws &> /dev/null; then
     exit 1
 fi
 
+# Strip stray .DS_Store files from the build output so they never make it to S3
+find "$BUILD_DIR" -name ".DS_Store" -type f -print -delete || true
+
 echo "🚀 Deploying to S3..."
 
-# List contents of build directory
-echo "📁 Contents of $BUILD_DIR:"
-ls -la $BUILD_DIR
-
-# Sync all files first
-aws s3 sync $BUILD_DIR s3://roganov.me \
+# Pass 1: everything EXCEPT XML/TXT/HTML. Hashed asset bundles and images
+# get the 1-year immutable cache.
+#
+# Astro's _astro/ bundles and the OG PNGs are content-hashed or
+# content-addressed, so we can push aggressive caching. Anything not matched
+# here falls into pass 2.
+aws s3 sync "$BUILD_DIR" s3://roganov.me \
     --delete \
-    --exclude ".DS_Store" \
+    --exclude "*.DS_Store" \
     --exclude "*.xml" \
     --exclude "*.txt" \
-    --cache-control "max-age=31536000,public"
+    --exclude "*.html" \
+    --cache-control "max-age=31536000,public,immutable"
 
-echo "📤 First sync completed"
+echo "📤 Pass 1 (assets) complete"
 
-# Sync XML and TXT files with different cache settings
-aws s3 sync $BUILD_DIR s3://roganov.me \
+# Pass 2: HTML pages — medium-lived, revalidate regularly. Uses --delete
+# (scoped by include/exclude) so stale HTML pages get pruned when slugs
+# are renamed or removed.
+aws s3 sync "$BUILD_DIR" s3://roganov.me \
+    --delete \
+    --exclude "*" \
+    --include "*.html" \
+    --cache-control "public,max-age=300,must-revalidate"
+
+echo "📤 Pass 2 (HTML) complete"
+
+# Pass 3: XML feeds, sitemap, robots.txt — no-cache so crawlers always see
+# the freshest version.
+aws s3 sync "$BUILD_DIR" s3://roganov.me \
     --exclude "*" \
     --include "*.xml" \
     --include "*.txt" \
     --cache-control "no-cache"
 
-echo "📤 Second sync completed"
+echo "📤 Pass 3 (feeds + robots) complete"
 
-# List contents of S3 bucket
+# One-shot cleanup: remove stale objects that predate the Astro rebuild and
+# are excluded from the sync --delete globs above.
+aws s3 rm s3://roganov.me/sitemap.xml 2>/dev/null || true
+
+echo "🧹 Stale-object cleanup complete"
+
+# Final listing
 echo "📁 Contents of S3 bucket:"
-aws s3 ls s3://roganov.me --recursive
+aws s3 ls s3://roganov.me --recursive | tail -20
 
-# Check if deployment was successful
-if [ $? -eq 0 ]; then
-    echo "✅ Deployment successful!"
-    echo "🌎 Site is now live at http://roganov.me"
-else
-    echo "❌ Deployment failed!"
-    exit 1
-fi
+echo "✅ Deployment successful!"
+echo "🌎 Site is now live at https://roganov.me"

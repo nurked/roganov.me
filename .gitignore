@@ -1,5 +1,20 @@
+# Dependencies / build output
 node_modules
 .astro
-.playwright_mcp
-old_files
 dist
+
+# Local-only source archives and agent/session state
+old_files
+.playwright-mcp
+.claude
+
+# macOS turds
+.DS_Store
+
+# Test screenshots / transient artifacts at repo root
+before-*.jpeg
+after-*.jpeg
+final-*.jpeg
+home-*.jpeg
+blog-*.jpeg
+*-viewport.jpeg
