@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import { getLocalePath } from '../i18n/utils.js';
+import { tagSlug } from '../utils/tagUtils.js';
+
+interface Props {
+  currentSlug: string;
+  currentTags?: string[];
+  currentSeries?: string;
+  lang: string;
+  limit?: number;
+}
+
+const {
+  currentSlug,
+  currentTags = [],
+  currentSeries,
+  lang,
+  limit = 3,
+} = Astro.props;
+
+// Pull all posts in the current locale, excluding the current one.
+const allPosts = (await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+})).filter((p) => p.data.slug !== currentSlug);
+
+// Score candidates by shared tags. Same-series posts are shown by SeriesNav
+// already, so exclude them here to avoid duplication.
+const currentTagSlugs = new Set(currentTags.map(tagSlug));
+
+const scored = allPosts
+  .filter((p) => !currentSeries || p.data.series !== currentSeries)
+  .map((post) => {
+    const postTagSlugs = (post.data.tags ?? []).map(tagSlug);
+    const shared = postTagSlugs.filter((t) => currentTagSlugs.has(t));
+    return { post, score: shared.length };
+  })
+  .filter((x) => x.score > 0)
+  .sort((a, b) => {
+    // Higher shared-tag count wins; tie-break by recency.
+    if (b.score !== a.score) return b.score - a.score;
+    return b.post.data.date.valueOf() - a.post.data.date.valueOf();
+  })
+  .slice(0, limit);
+
+const labels = lang === 'ru'
+  ? {
+      eyebrow: 'Читать дальше',
+      title: 'Похожие посты',
+    }
+  : {
+      eyebrow: 'Keep reading',
+      title: 'Related posts',
+    };
+
+const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
+---
+
+{scored.length > 0 && (
+  <section class="mt-16 pt-10 border-t border-white/10">
+    <div class="mb-8">
+      <p class="text-brand-accent text-[11px] uppercase tracking-[0.2em] font-mono mb-2">{labels.eyebrow}</p>
+      <h2 class="text-2xl font-bold text-white tracking-tight">{labels.title}</h2>
+    </div>
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 border border-white/5 rounded-xl overflow-hidden">
+      {scored.map(({ post }) => (
+        <li class="bg-surface-base">
+          <a
+            href={getLocalePath(lang, `blog/${post.data.slug}/`)}
+            class="group block h-full p-5 hover:bg-surface-card/50 transition-colors"
+          >
+            <time
+              class="text-[11px] text-gray-500 font-mono tabular-nums mb-2 block"
+              datetime={post.data.date.toISOString()}
+            >
+              {post.data.date.toLocaleDateString(dateLocale, {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+                timeZone: 'UTC',
+              })}
+            </time>
+            <h3 class="text-base font-semibold text-white group-hover:text-brand-accent transition-colors mb-2 leading-snug tracking-tight">
+              {post.data.title}
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed line-clamp-2">
+              {post.data.description}
+            </p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
