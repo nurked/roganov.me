@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+import { getLocalePath } from '../i18n/utils.js';
+
+interface Props {
+  lang?: string;
+  limit?: number;
+}
+
+const { lang = 'en', limit = 4 } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+}))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, limit);
+
+const labels = lang === 'ru'
+  ? {
+      eyebrow: 'Писательство',
+      title: 'Последние публикации',
+      subtitle: 'Свежие заметки из блога.',
+      viewAll: 'Все статьи',
+    }
+  : {
+      eyebrow: 'Writing',
+      title: 'Latest from the blog',
+      subtitle: 'Recent notes and long-form pieces.',
+      viewAll: 'Browse all posts',
+    };
+
+const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
+---
+
+<section class="relative bg-surface-base py-20 md:py-28 border-t border-white/5">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="mb-12 flex items-end justify-between flex-wrap gap-4">
+      <div>
+        <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-3">{labels.eyebrow}</p>
+        <h2 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3">{labels.title}</h2>
+        <p class="text-gray-400">{labels.subtitle}</p>
+      </div>
+      <a
+        href={getLocalePath(lang, 'blog/')}
+        class="text-sm font-mono text-gray-400 hover:text-brand-accent transition-colors inline-flex items-center gap-2 group"
+      >
+        {labels.viewAll}
+        <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+      </a>
+    </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-xl overflow-hidden">
+      {posts.map((post) => (
+        <li class="bg-surface-base">
+          <a
+            href={getLocalePath(lang, `blog/${post.data.slug}/`)}
+            class="group block h-full p-6 sm:p-8 hover:bg-surface-card/50 transition-colors"
+          >
+            <time
+              class="text-xs text-gray-500 font-mono tabular-nums mb-3 block"
+              datetime={post.data.date.toISOString()}
+            >
+              {post.data.date.toLocaleDateString(dateLocale, {
+                year: 'numeric',
+                month: 'short',
+                day: '2-digit',
+                timeZone: 'UTC',
+              })}
+            </time>
+            <h3 class="text-xl font-semibold text-white group-hover:text-brand-accent transition-colors mb-3 tracking-tight leading-snug">
+              {post.data.title}
+            </h3>
+            <p class="text-gray-400 leading-relaxed text-sm line-clamp-3 mb-4">
+              {post.data.description}
+            </p>
+            {post.data.tags && post.data.tags.length > 0 && (
+              <div class="flex flex-wrap gap-x-3 gap-y-1">
+                {post.data.tags.slice(0, 4).map((tag) => (
+                  <span class="text-[11px] text-gray-500 font-mono">#{tag}</span>
+                ))}
+              </div>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

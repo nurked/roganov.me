@@ -2,6 +2,7 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils.js';
+import { profile } from '../../config/profile.js';
 
 const lang = 'en';
 const t = useTranslations(lang);
@@ -9,36 +10,97 @@ const t = useTranslations(lang);
 const posts = (await getCollection('blog', ({ data }) => {
   return data.lang === 'en' && !data.draft;
 })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group by year
+const byYear = new Map();
+for (const post of posts) {
+  const year = post.data.date.getFullYear();
+  if (!byYear.has(year)) byYear.set(year, []);
+  byYear.get(year).push(post);
+}
+const years = Array.from(byYear.entries()); // already sorted desc via posts
+
+const siteUrl = 'https://roganov.me';
+const blogLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: `${profile.name} — Blog`,
+  description: "Writing on engineering, tools, writing, and the occasional opinion.",
+  url: `${siteUrl}/blog/`,
+  inLanguage: 'en-US',
+  author: {
+    "@type": "Person",
+    name: profile.name,
+    url: siteUrl,
+  },
+  blogPost: posts.slice(0, 20).map((post) => ({
+    "@type": "BlogPosting",
+    headline: post.data.title,
+    description: post.data.description,
+    url: `${siteUrl}/blog/${post.data.slug}/`,
+    datePublished: post.data.date.toISOString(),
+    author: { "@type": "Person", name: profile.name },
+    ...(post.data.tags && post.data.tags.length > 0 ? { keywords: post.data.tags.join(', ') } : {}),
+  })),
+};
 ---
 
 <PageLayout
   title={`${t('blog.title')} | Ivan Roganov`}
+  description="Writing on engineering, tools, writing itself, and the occasional opinion — by Ivan Roganov."
   lang={lang}
   canonicalPath="/blog/"
   alternateLangPath="/ru/blog/"
   alternateLang="ru"
+  structuredData={blogLd}
 >
-  <div class="max-w-3xl mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold text-white mb-8">{t('blog.title')}</h1>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <header class="mb-20 border-b border-white/10 pb-10">
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">Writing</p>
+      <h1 class="text-5xl sm:text-6xl font-bold text-white mb-5 tracking-tight">Blog</h1>
+      <p class="text-lg text-gray-400 max-w-2xl leading-relaxed">
+        Notes on engineering, tools, writing, and the occasional opinion.
+        <span class="text-gray-500">{posts.length} articles, oldest dated {posts[posts.length - 1]?.data.date.getFullYear()}.</span>
+      </p>
+    </header>
 
-    <div class="space-y-8">
-      {posts.map((post) => (
-        <article class="border-b border-white/10 pb-8">
-          <h2 class="text-2xl font-bold text-white mb-2">
-            <a href={`/blog/${post.data.slug}/`} class="hover:text-brand-accent transition-colors">
-              {post.data.title}
-            </a>
-          </h2>
-          <time class="text-gray-500 text-sm" datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString('en-US', {
-              year: 'numeric', month: 'long', day: 'numeric',
-            })}
-          </time>
-          <p class="mt-2 text-gray-400">{post.data.description}</p>
-          <a href={`/blog/${post.data.slug}/`} class="text-brand-light hover:text-brand-accent text-sm mt-2 inline-block transition-colors">
-            {t('blog.readMore')} &rarr;
-          </a>
-        </article>
+    <div class="space-y-20">
+      {years.map(([year, yearPosts]) => (
+        <section>
+          <div class="flex items-baseline gap-4 mb-8">
+            <h2 class="text-3xl font-bold text-white/90 tracking-tight">{year}</h2>
+            <span class="text-xs text-gray-500 font-mono uppercase tracking-wider">
+              {yearPosts.length} {yearPosts.length === 1 ? 'post' : 'posts'}
+            </span>
+          </div>
+          <ul class="space-y-0">
+            {yearPosts.map((post) => (
+              <li>
+                <a
+                  href={`/blog/${post.data.slug}/`}
+                  class="group grid grid-cols-[88px_1fr] sm:grid-cols-[120px_1fr] gap-5 sm:gap-10 py-6 border-b border-white/5 hover:border-white/20 transition-colors"
+                >
+                  <time class="text-sm text-gray-500 font-mono pt-1 tabular-nums" datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', timeZone: 'UTC' })}
+                  </time>
+                  <div>
+                    <h3 class="text-xl sm:text-2xl font-semibold text-white group-hover:text-brand-accent transition-colors mb-2 tracking-tight">
+                      {post.data.title}
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed mb-3">{post.data.description}</p>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-x-3 gap-y-1">
+                        {post.data.tags.map((tag) => (
+                          <span class="text-xs text-gray-500 font-mono">#{tag}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
       ))}
     </div>
   </div>

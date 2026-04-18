@@ -1,6 +1,7 @@
 ---
 import PageLayout from './PageLayout.astro';
 import { useTranslations, getLocalePath, getAlternateLang } from '../i18n/utils.js';
+import { profile } from '../config/profile.js';
 
 interface Props {
   title: string;
@@ -14,42 +15,142 @@ interface Props {
 const { title, date, description, lang, slug, tags } = Astro.props;
 const t = useTranslations(lang);
 const altLang = getAlternateLang(lang);
+
+const siteUrl = 'https://roganov.me';
+const canonicalPath = getLocalePath(lang, `blog/${slug}/`);
+const canonicalUrl = `${siteUrl}${canonicalPath}`;
+const alternateLangPath = getLocalePath(altLang, `blog/${slug}/`);
+
+// JSON-LD: BlogPosting + BreadcrumbList
+const blogPosting = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  inLanguage: lang === 'ru' ? 'ru-RU' : 'en-US',
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": canonicalUrl,
+  },
+  url: canonicalUrl,
+  author: {
+    "@type": "Person",
+    name: profile.name,
+    url: siteUrl,
+  },
+  publisher: {
+    "@type": "Person",
+    name: profile.name,
+    url: siteUrl,
+  },
+  ...(tags && tags.length > 0 ? { keywords: tags.join(', ') } : {}),
+};
+
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: lang === 'ru' ? 'Главная' : 'Home',
+      item: `${siteUrl}${getLocalePath(lang)}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: t('blog.title'),
+      item: `${siteUrl}${getLocalePath(lang, 'blog/')}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: title,
+      item: canonicalUrl,
+    },
+  ],
+};
 ---
 
 <PageLayout
   title={`${title} | Blog`}
   description={description}
   lang={lang}
-  canonicalPath={getLocalePath(lang, `blog/${slug}/`)}
-  alternateLangPath={getLocalePath(altLang, `blog/${slug}/`)}
+  canonicalPath={canonicalPath}
+  alternateLangPath={alternateLangPath}
   alternateLang={altLang}
+  ogType="article"
+  article={{
+    publishedTime: date.toISOString(),
+    modifiedTime: date.toISOString(),
+    author: profile.name,
+    tags: tags,
+    section: 'Blog',
+  }}
+  structuredData={[blogPosting, breadcrumbs]}
 >
-  <article class="max-w-3xl mx-auto px-4 py-16">
-    <header class="mb-8">
-      <h1 class="text-4xl font-bold text-white mb-2">{title}</h1>
-      <time class="text-gray-500" datetime={date.toISOString()}>
-        {t('blog.publishedOn')}: {date.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}
-      </time>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 text-sm" aria-label="Breadcrumb">
+      <a href={getLocalePath(lang, 'blog/')} class="text-gray-500 hover:text-brand-accent transition-colors font-mono">
+        &larr; {t('blog.title')}
+      </a>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-12 pb-10 border-b border-white/10">
+      <div class="mb-5 flex items-center gap-3 text-sm text-gray-500 font-mono">
+        <time datetime={date.toISOString()} class="tabular-nums">
+          {date.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            timeZone: 'UTC',
+          })}
+        </time>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-5">{title}</h1>
+      {description && (
+        <p class="text-lg text-gray-400 leading-relaxed">{description}</p>
+      )}
       {tags && tags.length > 0 && (
-        <div class="flex gap-2 mt-3">
+        <div class="flex flex-wrap gap-x-3 gap-y-1 mt-6">
           {tags.map((tag) => (
-            <span class="text-sm bg-white/5 border border-white/10 text-gray-400 px-3 py-1 rounded-lg">{tag}</span>
+            <span class="text-xs text-gray-500 font-mono">#{tag}</span>
           ))}
         </div>
       )}
     </header>
 
-    <div class="prose prose-lg prose-dark max-w-none">
+    <!-- Body -->
+    <div class="prose prose-lg prose-invert max-w-none
+      prose-headings:tracking-tight prose-headings:font-semibold
+      prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4
+      prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-3
+      prose-a:text-brand-accent prose-a:no-underline hover:prose-a:underline
+      prose-code:text-brand-accent prose-code:bg-white/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[0.9em] prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-surface-elevated prose-pre:border prose-pre:border-white/10
+      prose-blockquote:border-brand-accent prose-blockquote:text-gray-300
+      prose-strong:text-white
+      prose-li:marker:text-brand-accent">
       <slot />
     </div>
 
-    <footer class="mt-12 pt-8 border-t border-white/10">
-      <a href={getLocalePath(lang, 'blog/')} class="text-brand-light hover:text-brand-accent transition-colors">
+    <!-- Footer -->
+    <footer class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+      <a href={getLocalePath(lang, 'blog/')} class="text-gray-400 hover:text-brand-accent transition-colors font-mono text-sm">
         &larr; {t('blog.backToBlog')}
+      </a>
+      <a
+        href={getLocalePath(altLang, `blog/${slug}/`)}
+        class="text-gray-500 hover:text-brand-accent transition-colors font-mono text-sm inline-flex items-center gap-2"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 003 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+        {altLang === 'ru' ? 'Читать по-русски' : 'Read in English'}
       </a>
     </footer>
   </article>
