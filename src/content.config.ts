@@ -3,7 +3,15 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/data/blog' }),
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/data/blog',
+    // Astro 5's default generateId uses `data.slug` from frontmatter, which
+    // causes `<slug>/en.md` and `<slug>/ru.md` to collide (both share the same
+    // slug value). Derive the id from the file path instead so each locale is
+    // a distinct entry, e.g. `qualiflation/en` and `qualiflation/ru`.
+    generateId: ({ entry }) => entry.replace(/\.md$/, ''),
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
