@@ -42,14 +42,66 @@ const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 const ogLocale = lang === 'ru' ? 'ru_RU' : 'en_US';
 const ogLocaleAlt = alternateLang === 'ru' ? 'ru_RU' : alternateLang === 'en' ? 'en_US' : null;
 
-// Default Person JSON-LD for the site
+// WebSite JSON-LD: advertises the site identity and (once we ship a search
+// endpoint) can carry a SearchAction so Google can generate a sitelinks
+// searchbox in SERPs.
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: profile.name,
+  alternateName: profile.company,
+  description: profile.meta.description,
+  publisher: { "@id": `${siteUrl}/#organization` },
+  inLanguage: ['en-US', 'ru-RU'],
+};
+
+// Organization JSON-LD: IFCLLC, the publisher. Kept at a stable @id so other
+// structured data (Person, BlogPosting) can reference it without duplicating.
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  name: profile.company,
+  alternateName: ["IFCLLC", "IFC LLC", "Investment Fidelity Company"],
+  url: siteUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/ivan.png`,
+    width: 512,
+    height: 512,
+  },
+  founder: {
+    "@type": "Person",
+    "@id": `${siteUrl}/#person`,
+    name: profile.name,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Clearwater",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  email: profile.contact.businessEmail ?? profile.contact.email,
+  telephone: profile.contact.phone,
+  sameAs: [profile.social.linkedin],
+};
+
+// Person JSON-LD — links back to the organization via @id reference.
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteUrl}/#person`,
   name: profile.name,
   alternateName: profile.aliases,
   url: siteUrl,
-  image: imageUrl,
+  image: {
+    "@type": "ImageObject",
+    url: `${siteUrl}/ivan.png`,
+    width: 512,
+    height: 512,
+  },
   sameAs: [
     profile.social.linkedin,
     profile.social.medium,
@@ -57,11 +109,7 @@ const personLd = {
     profile.social.github,
   ],
   jobTitle: profile.position,
-  worksFor: {
-    "@type": "Organization",
-    name: profile.company,
-    alternateName: "IFCLLC",
-  },
+  worksFor: { "@id": `${siteUrl}/#organization` },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Clearwater",
@@ -88,6 +136,15 @@ const extraLd = Array.isArray(structuredData)
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
     <link rel="canonical" href={canonicalUrl} />
 
     <title>{title}</title>
@@ -103,6 +160,13 @@ const extraLd = Array.isArray(structuredData)
     <meta property="og:type" content={ogType} />
     <meta property="og:image" content={imageUrl} />
     <meta property="og:image:alt" content={`${profile.name} — ${profile.position}`} />
+    {ogType === 'article' && (
+      <>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+      </>
+    )}
     <meta property="og:site_name" content={profile.company} />
     <meta property="og:locale" content={ogLocale} />
     {ogLocaleAlt && <meta property="og:locale:alternate" content={ogLocaleAlt} />}
@@ -129,6 +193,14 @@ const extraLd = Array.isArray(structuredData)
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
 
+    <!-- RSS feed auto-discovery -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={lang === 'ru' ? `${profile.name} — Блог (RSS)` : `${profile.name} — Blog (RSS)`}
+      href={lang === 'ru' ? `${siteUrl}/ru/rss.xml` : `${siteUrl}/rss.xml`}
+    />
+
     <!-- hreflang for i18n -->
     <link rel="alternate" hreflang={lang} href={canonicalUrl} />
     {alternateLangPath && alternateLang && (
@@ -141,6 +213,12 @@ const extraLd = Array.isArray(structuredData)
     {lang !== 'en' && alternateLangPath && alternateLang === 'en' && (
       <link rel="alternate" hreflang="x-default" href={`${siteUrl}${alternateLangPath}`} />
     )}
+
+    <!-- Structured Data: WebSite (site-wide) -->
+    <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+
+    <!-- Structured Data: Organization (site-wide) -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationLd)} />
 
     <!-- Structured Data: Person (site-wide) -->
     <script type="application/ld+json" set:html={JSON.stringify(personLd)} />

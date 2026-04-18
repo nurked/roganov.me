@@ -2,6 +2,8 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import { useTranslations } from '../../i18n/utils.js';
+import { tagSlug } from '../../utils/tagUtils.js';
+import { computeReadingTime } from '../../utils/readingTime.js';
 import { profile } from '../../config/profile.js';
 
 const lang = 'en';
@@ -62,6 +64,27 @@ const blogLd = {
         Notes on engineering, tools, writing, and the occasional opinion.
         <span class="text-gray-500">{posts.length} articles, oldest dated {posts[posts.length - 1]?.data.date.getFullYear()}.</span>
       </p>
+      <div class="mt-6 flex items-center gap-6">
+        <a
+          href="/rss.xml"
+          class="inline-flex items-center gap-2 text-sm font-mono text-gray-400 hover:text-brand-accent transition-colors"
+          aria-label="Subscribe via RSS"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 11a9 9 0 019 9M4 4a16 16 0 0116 16M6 19a1 1 0 11-2 0 1 1 0 012 0z" />
+          </svg>
+          Subscribe via RSS
+        </a>
+        <a
+          href="/blog/tags/"
+          class="inline-flex items-center gap-2 text-sm font-mono text-gray-400 hover:text-brand-accent transition-colors"
+        >
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 013 12V7a4 4 0 014-4z" />
+          </svg>
+          Browse tags
+        </a>
+      </div>
     </header>
 
     <div class="space-y-20">
@@ -75,28 +98,36 @@ const blogLd = {
           </div>
           <ul class="space-y-0">
             {yearPosts.map((post) => (
-              <li>
-                <a
-                  href={`/blog/${post.data.slug}/`}
-                  class="group grid grid-cols-[88px_1fr] sm:grid-cols-[120px_1fr] gap-5 sm:gap-10 py-6 border-b border-white/5 hover:border-white/20 transition-colors"
-                >
-                  <time class="text-sm text-gray-500 font-mono pt-1 tabular-nums" datetime={post.data.date.toISOString()}>
-                    {post.data.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', timeZone: 'UTC' })}
-                  </time>
-                  <div>
-                    <h3 class="text-xl sm:text-2xl font-semibold text-white group-hover:text-brand-accent transition-colors mb-2 tracking-tight">
+              <li class="group grid grid-cols-[88px_1fr] sm:grid-cols-[120px_1fr] gap-5 sm:gap-10 py-6 border-b border-white/5 hover:border-white/20 transition-colors">
+                <time class="text-sm text-gray-500 font-mono pt-1 tabular-nums" datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit', timeZone: 'UTC' })}
+                </time>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-semibold tracking-tight mb-2">
+                    <a href={`/blog/${post.data.slug}/`} class="text-white group-hover:text-brand-accent transition-colors">
                       {post.data.title}
-                    </h3>
-                    <p class="text-gray-400 leading-relaxed mb-3">{post.data.description}</p>
+                    </a>
+                  </h3>
+                  <p class="text-gray-400 leading-relaxed mb-3">
+                    <a href={`/blog/${post.data.slug}/`} class="text-gray-400 hover:text-gray-200 transition-colors">
+                      {post.data.description}
+                    </a>
+                  </p>
+                  <div class="flex flex-wrap gap-x-3 gap-y-1 items-center">
+                    <span class="text-xs text-gray-600 font-mono tabular-nums">{computeReadingTime(post.body, 'en').minutes} min</span>
                     {post.data.tags && post.data.tags.length > 0 && (
-                      <div class="flex flex-wrap gap-x-3 gap-y-1">
+                      <>
+                        <span class="text-gray-700" aria-hidden="true">&middot;</span>
                         {post.data.tags.map((tag) => (
-                          <span class="text-xs text-gray-500 font-mono">#{tag}</span>
+                          <a
+                            href={`/blog/tags/${tagSlug(tag)}/`}
+                            class="text-xs text-gray-500 hover:text-brand-accent font-mono transition-colors"
+                          >#{tag}</a>
                         ))}
-                      </div>
+                      </>
                     )}
                   </div>
-                </a>
+                </div>
               </li>
             ))}
           </ul>

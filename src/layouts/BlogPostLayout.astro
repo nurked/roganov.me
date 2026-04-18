@@ -1,7 +1,21 @@
 ---
 import PageLayout from './PageLayout.astro';
+import SeriesNav from '../components/SeriesNav.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 import { useTranslations, getLocalePath, getAlternateLang } from '../i18n/utils.js';
+import { tagSlug } from '../utils/tagUtils.js';
 import { profile } from '../config/profile.js';
+
+interface HowToStep { name: string; text: string; url?: string; }
+interface HowToSpec {
+  name?: string;
+  description?: string;
+  totalTime?: string;
+  tools?: string[];
+  supply?: string[];
+  steps: HowToStep[];
+}
+interface FAQItem { question: string; answer: string; }
 
 interface Props {
   title: string;
@@ -10,9 +24,20 @@ interface Props {
   lang: string;
   slug: string;
   tags?: string[];
+  series?: string;
+  seriesOrder?: number;
+  readingTime?: { words: number; minutes: number };
+  howto?: HowToSpec;
+  faq?: FAQItem[];
 }
 
-const { title, date, description, lang, slug, tags } = Astro.props;
+const { title, date, description, lang, slug, tags, series, seriesOrder, readingTime, howto, faq } = Astro.props;
+
+const readingTimeLabel = readingTime
+  ? lang === 'ru'
+    ? `${readingTime.minutes} мин`
+    : `${readingTime.minutes} min read`
+  : null;
 const t = useTranslations(lang);
 const altLang = getAlternateLang(lang);
 
@@ -21,12 +46,18 @@ const canonicalPath = getLocalePath(lang, `blog/${slug}/`);
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
 const alternateLangPath = getLocalePath(altLang, `blog/${slug}/`);
 
+// Per-post OG card rendered at build time by /og/<locale>/blog/<slug>.png
+const ogImagePath = lang === 'ru'
+  ? `/og/ru/blog/${slug}.png`
+  : `/og/blog/${slug}.png`;
+
 // JSON-LD: BlogPosting + BreadcrumbList
 const blogPosting = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   headline: title,
   description,
+  image: `${siteUrl}${ogImagePath}`,
   datePublished: date.toISOString(),
   dateModified: date.toISOString(),
   inLanguage: lang === 'ru' ? 'ru-RU' : 'en-US',
@@ -36,17 +67,55 @@ const blogPosting = {
   },
   url: canonicalUrl,
   author: {
-    "@type": "Person",
-    name: profile.name,
-    url: siteUrl,
+    "@id": `${siteUrl}/#person`,
   },
   publisher: {
-    "@type": "Person",
-    name: profile.name,
-    url: siteUrl,
+    "@id": `${siteUrl}/#organization`,
   },
   ...(tags && tags.length > 0 ? { keywords: tags.join(', ') } : {}),
+  ...(readingTime ? {
+    wordCount: readingTime.words,
+    timeRequired: `PT${readingTime.minutes}M`,
+  } : {}),
 };
+
+// Optional HowTo schema (opt-in via frontmatter)
+const howtoLd = howto ? {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: howto.name ?? title,
+  description: howto.description ?? description,
+  inLanguage: lang === 'ru' ? 'ru-RU' : 'en-US',
+  mainEntityOfPage: { "@id": canonicalUrl },
+  ...(howto.totalTime ? { totalTime: howto.totalTime } : {}),
+  ...(howto.tools && howto.tools.length > 0 ? {
+    tool: howto.tools.map((t) => ({ "@type": "HowToTool", name: t })),
+  } : {}),
+  ...(howto.supply && howto.supply.length > 0 ? {
+    supply: howto.supply.map((s) => ({ "@type": "HowToSupply", name: s })),
+  } : {}),
+  step: howto.steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+    ...(s.url ? { url: s.url } : {}),
+  })),
+} : null;
+
+// Optional FAQ schema (opt-in via frontmatter)
+const faqLd = faq && faq.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer,
+    },
+  })),
+} : null;
 
 const breadcrumbs = {
   "@context": "https://schema.org",
@@ -77,6 +146,7 @@ const breadcrumbs = {
 <PageLayout
   title={`${title} | Blog`}
   description={description}
+  image={ogImagePath}
   lang={lang}
   canonicalPath={canonicalPath}
   alternateLangPath={alternateLangPath}
@@ -89,7 +159,7 @@ const breadcrumbs = {
     tags: tags,
     section: 'Blog',
   }}
-  structuredData={[blogPosting, breadcrumbs]}
+  structuredData={[blogPosting, breadcrumbs, howtoLd, faqLd].filter(Boolean)}
 >
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
     <!-- Breadcrumb -->
@@ -110,6 +180,12 @@ const breadcrumbs = {
             timeZone: 'UTC',
           })}
         </time>
+        {readingTimeLabel && (
+          <>
+            <span aria-hidden="true">&middot;</span>
+            <span class="tabular-nums">{readingTimeLabel}</span>
+          </>
+        )}
       </div>
       <h1 class="text-4xl sm:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-5">{title}</h1>
       {description && (
@@ -118,11 +194,18 @@ const breadcrumbs = {
       {tags && tags.length > 0 && (
         <div class="flex flex-wrap gap-x-3 gap-y-1 mt-6">
           {tags.map((tag) => (
-            <span class="text-xs text-gray-500 font-mono">#{tag}</span>
+            <a
+              href={getLocalePath(lang, `blog/tags/${tagSlug(tag)}/`)}
+              class="text-xs text-gray-500 hover:text-brand-accent font-mono transition-colors"
+            >#{tag}</a>
           ))}
         </div>
       )}
     </header>
+
+    {series && seriesOrder && (
+      <SeriesNav series={series} currentOrder={seriesOrder} lang={lang} />
+    )}
 
     <!-- Body -->
     <div class="prose prose-lg prose-invert max-w-none
@@ -137,6 +220,13 @@ const breadcrumbs = {
       prose-li:marker:text-brand-accent">
       <slot />
     </div>
+
+    <RelatedPosts
+      currentSlug={slug}
+      currentTags={tags}
+      currentSeries={series}
+      lang={lang}
+    />
 
     <!-- Footer -->
     <footer class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
