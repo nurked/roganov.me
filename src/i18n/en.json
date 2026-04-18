@@ -9,27 +9,6 @@
     "subtitle": "My name is Ivan and I'm here to help you",
     "cta": "Let's get to know each other"
   },
-  "about": {
-    "name": "Ivan Roganov",
-    "role": "Entrepreneur",
-    "p1": "With 25 years of experience in IT, I've been programming since 1999, honing my skills and expertise across multiple areas of technology.",
-    "p2": "Since 2004, I've gained hands-on programming experience. Over the years, I've developed a strong leading teams and managing projects, applying my knowledge to problem-solving approach, believing that every issue can be fixed.",
-    "p3": "I have successfully managed over 20 failing IT projects in the past 15 years, turning them around and making them operational. I am confident in my ability to tackle any project, no matter how challenging.",
-    "p4": "There isn't a program that can't be fixed, and there isn't an IT system that can't be made operational.",
-    "p5": "In my career, I've learned that no program is beyond repair, and no IT system is beyond restoration. There's always a way to fix it and make it better."
-  },
-  "banner": {
-    "items": [
-      "25+ years of experience",
-      "20 Projects",
-      "6 teams",
-      "Over $1M saved in production costs",
-      "100+ articles",
-      "3 companies founded",
-      "6 years of education experience",
-      "10000+ hours of volunteer work"
-    ]
-  },
   "contact": {
     "title": "Get in Touch",
     "services": [

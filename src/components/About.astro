@@ -1,55 +1,107 @@
 ---
-import { useTranslations } from '../i18n/utils.js';
+import { getCollection } from 'astro:content';
+import { getLocalePath } from '../i18n/utils.js';
 
 interface Props {
   lang?: string;
 }
 
 const { lang = 'en' } = Astro.props;
-const t = useTranslations(lang);
+
+// Compute live stats that back up the claims in the body copy.
+const posts = await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+});
+const articleCount = posts.length;
+const yearsCoding = new Date().getFullYear() - 1999;
+const yearsWriting = new Date().getFullYear() - 2008;
+
+const copy = lang === 'ru'
+  ? {
+      eyebrow: 'Обо мне',
+      name: 'Иван Роганов',
+      tagline: 'Программист, писатель, траблшутер · Клируотер, Флорида',
+      lede: `Пишу код ${yearsCoding}+ лет и пишу про код почти столько же. Первая опубликованная техническая статья вышла на Хабре в 2008-м — это был разбор ADO.NET Entity Framework, из которого потом вырос небольшой цикл. Основатель IFC LLC. Дни в основном провожу за тем, чтобы распутывать чужой код, учить людей писать код лучше, и записывать всё, что узнал по дороге.`,
+      body: `Моя территория — системы и инфраструктура: Rust, Go, Linux-инфра, NVMe по сети, внутренности планировщиков, вся та сантехника, про которую команды обычно не думают, пока она не загорится. Последние пару лет много пишу про AI — не как фанат, не как алармист, а как человек, который видел достаточно хайповых циклов, чтобы узнавать узор.`,
+      outro: `Если хочется быстрый тур по тому, что я реально знаю —`,
+      outroBlogLink: 'лучшая карта это блог',
+      outroMid: '. Если надо поговорить или подключить меня к чему-то сломанному —',
+      outroContactLink: 'пишите',
+      outroEnd: '.',
+      stats: [
+        { label: 'лет пишу код', value: `${yearsCoding}+` },
+        { label: 'лет пишу статьи', value: `${yearsWriting}+` },
+        { label: 'публикаций здесь', value: `${articleCount}` },
+      ],
+    }
+  : {
+      eyebrow: 'About me',
+      name: 'Ivan Roganov',
+      tagline: 'Programmer, writer, troubleshooter · Clearwater, FL',
+      lede: `I've been writing code since 1999 and writing about it for almost as long. My first published tech article landed on Habr in 2008 — a walkthrough of ADO.NET Entity Framework that turned into a small series. I'm the founder of IFC LLC. Most of my days are spent untangling software that somebody else wrote, teaching people to write better software, and writing down what I learn along the way.`,
+      body: `The systems side is where I live — Rust, Go, Linux infrastructure, NVMe-over-the-network, scheduler internals, the kind of plumbing most teams don't want to think about until it's on fire. For the last couple of years I've also been publishing a lot about AI: not as an evangelist, not as a doomer, just as somebody who's been around long enough to recognize the pattern.`,
+      outro: `If you want the tour of what I actually know —`,
+      outroBlogLink: 'the blog is the best map',
+      outroMid: `. If you want to talk shop or bring me in on something broken —`,
+      outroContactLink: 'get in touch',
+      outroEnd: '.',
+      stats: [
+        { label: 'Years coding', value: `${yearsCoding}+` },
+        { label: 'Years writing', value: `${yearsWriting}+` },
+        { label: 'Articles here', value: `${articleCount}` },
+      ],
+    };
 ---
 
-<div id="about" class="relative bg-surface-base w-full py-20 md:py-32">
+<section id="about" class="relative bg-surface-base w-full py-20 md:py-28">
   <!-- Gradient divider at top -->
   <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent"></div>
 
-  <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-12 md:gap-16 items-center">
-    <!-- Image side -->
-    <div class="w-full md:w-2/5 flex flex-col items-center fade-in-section">
+  <div class="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-12 md:gap-16 items-start">
+    <!-- Portrait column -->
+    <div class="flex flex-col items-center md:items-start">
       <div class="relative">
         <div class="absolute -inset-4 bg-brand/20 rounded-2xl blur-2xl pointer-events-none"></div>
         <img
           src="/ivan.png"
-          alt={`Portrait of ${t('about.name')}, ${t('about.role')}`}
+          alt={`Portrait of ${copy.name}`}
           width="320"
           height="320"
           loading="eager"
           decoding="async"
-          class="relative w-64 md:w-80 rounded-2xl border border-white/10 object-contain"
+          class="relative w-64 md:w-72 rounded-2xl border border-white/10 object-contain"
         />
       </div>
-      <div class="mt-6 text-center">
-        <p class="font-bold text-lg text-white">{t('about.name')}</p>
-        <p class="text-sm text-brand-accent">{t('about.role')}</p>
-      </div>
     </div>
 
-    <!-- Text side -->
-    <div class="w-full md:w-3/5 fade-in-section">
-      <!-- Section label -->
-      <div class="mb-8">
-        <span class="text-xs font-semibold tracking-widest uppercase text-brand-accent">{lang === 'ru' ? 'Обо мне' : 'About Me'}</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 tracking-tight">{t('about.name')}</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-brand-light to-brand-accent rounded-full mt-4"></div>
+    <!-- Copy column -->
+    <div>
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">{copy.eyebrow}</p>
+      <h2 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-3">{copy.name}</h2>
+      <p class="text-sm text-gray-500 font-mono mb-8">{copy.tagline}</p>
+
+      <div class="space-y-5 text-gray-300 text-lg leading-relaxed mb-10">
+        <p>{copy.lede}</p>
+        <p>{copy.body}</p>
+        <p class="text-gray-400">
+          {copy.outro}
+          <a href={getLocalePath(lang, 'blog/')} class="text-brand-accent hover:text-white transition-colors">{copy.outroBlogLink}</a>{copy.outroMid}
+          <a href="#contact" class="text-brand-accent hover:text-white transition-colors">{copy.outroContactLink}</a>{copy.outroEnd}
+        </p>
       </div>
 
-      <div class="space-y-4 text-gray-300 text-lg leading-relaxed">
-        <p>{t('about.p1')}</p>
-        <p>{t('about.p2')}</p>
-        <p>{t('about.p3')}</p>
-        <p>{t('about.p4')}</p>
-        <p>{t('about.p5')}</p>
-      </div>
+      <!-- Grounded stats -->
+      <dl class="grid grid-cols-3 gap-4 max-w-md">
+        {copy.stats.map((s) => (
+          <div class="glass rounded-xl px-4 py-3 text-center">
+            <dt class="sr-only">{s.label}</dt>
+            <dd>
+              <span class="block text-2xl font-bold text-white tabular-nums">{s.value}</span>
+              <span class="block text-xs text-gray-500 mt-1 leading-tight">{s.label}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
     </div>
   </div>
-</div>
+</section>
