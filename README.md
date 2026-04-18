@@ -111,14 +111,6 @@ Edit `src/components/NavBar.astro` (desktop) and `src/components/NavBarMobile.js
 ### Translation Strings
 Edit `src/i18n/en.json` and `src/i18n/ru.json`. These control all text on the homepage, about section, contact section, nav labels, footer, and blog UI.
 
-### Adding a New Birthday Page
-1. Create the React component: `src/components/Birthday2027.jsx` (copy from Birthday2026.jsx, update event details)
-2. Create the page files:
-   - `src/pages/birthday-2027.astro` (English)
-   - `src/pages/ru/birthday-2027.astro` (Russian)
-3. Update nav links in `NavBar.astro` and `NavBarMobile.jsx`
-4. Update `en.json` / `ru.json` nav labels
-
 ### Static Images
 Drop files in `public/img/` — they're served as-is at `/img/filename.ext`.
 
@@ -127,7 +119,7 @@ Drop files in `public/img/` — they're served as-is at `/img/filename.ext`.
 ## Architecture
 
 - **Astro 5** — Static site generator, file-based routing
-- **React islands** — Interactive components (Banner animation, Contact QR code, Birthday pages, mobile menu) hydrate client-side via `client:visible` or `client:load`
+- **React islands** — Interactive components (Banner animation, Contact QR code, mobile menu) hydrate client-side via `client:visible` or `client:load`
 - **Static components** — Hero, About, Superhero, NavBar (desktop), Footer are pure `.astro` files that ship zero JavaScript
 - **i18n** — English at `/`, Russian at `/ru/`. Translation strings in JSON files
 - **Blog** — Astro content collections with Markdown files and frontmatter

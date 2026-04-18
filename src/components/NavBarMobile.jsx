@@ -4,8 +4,8 @@ export default function NavBarMobile({ lang }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const labels = lang === 'ru'
-    ? { portfolio: 'Портфолио', contact: 'Контакт', blog: 'Блог', birthday: 'День Рождения 2026', switchLang: 'Switch to English' }
-    : { portfolio: 'Portfolio', contact: 'Contact', blog: 'Blog', birthday: 'Birthday 2026', switchLang: 'Показать по-русски' };
+    ? { portfolio: 'Портфолио', contact: 'Контакт', blog: 'Блог', switchLang: 'Switch to English' }
+    : { portfolio: 'Portfolio', contact: 'Contact', blog: 'Blog', switchLang: 'Показать по-русски' };
 
   const base = lang === 'ru' ? '/ru' : '';
   const altBase = lang === 'ru' ? '' : '/ru';
@@ -28,7 +28,6 @@ export default function NavBarMobile({ lang }) {
             <li><a href={`${base}/#superhero`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.portfolio}</a></li>
             <li><a href={`${base}/#contact`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.contact}</a></li>
             <li><a href={`${base}/blog/`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.blog}</a></li>
-            <li><a href={`${base}/birthday-2026/`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.birthday}</a></li>
             <li className="border-t border-white/10 pt-3 mt-2">
               <a href={`${altBase}/`} className="flex items-center gap-2 py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
