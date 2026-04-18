@@ -1,5 +1,26 @@
 # CLAUDE.md — roganov.me
 
+## Working Directives (read first)
+
+- **NEVER create a new branch unless the user explicitly asks for one.** Do not auto-branch. Do not create `claude/*` branches or worktrees off them. If the harness spins one up automatically, stop and tell the user before doing any work — do not proceed against an auto-branch.
+- **Active branch is `astro-migration`.** All current work lives here. `main` is the legacy Vite/React site and must not be touched.
+- The main checkout at `/Users/ivan/source/roganov.me` is already on `astro-migration` — edit files there directly. Do not create a new worktree to "isolate" changes.
+- Do not commit unless explicitly asked.
+
+## Current Priority — Ship the Astro Rebuild
+
+We are moving the live site from the old Vite/React codebase (`main`) over to the Astro build on this branch. Until that migration is shipped, everything else is secondary.
+
+Roadmap in priority order:
+
+1. **Fix the blog.** It's broken in the current state. Diagnose and stabilize — `/blog/` listing and `/blog/<slug>/` posts should render cleanly for both EN and RU, with working links, dates, and prose styling.
+2. **Finish the article import.** We started pulling legacy posts from `old_files/` into `src/data/blog/<slug>/{en,ru}.md`; some imports did not complete. Identify what's outstanding (there's an untracked `src/data/blog/docker-mail-server/` dir sitting around as evidence) and finish importing the backlog.
+3. **Remove the Birthday pages.** Delete `src/pages/birthday-2025.astro`, `src/pages/birthday-2026.astro`, their `/ru/` counterparts, `src/components/Birthday.jsx` and `Birthday2026.jsx`, plus any nav / profile / i18n entries. Redirects from old URLs are fine; the content goes.
+4. **Redesign for appeal.** The current look is flat and bleak. Target a superb, premium feel across hero, portfolio grid, blog listing, and blog post pages — typography, layout rhythm, motion, imagery all need a pass. Not generic AI-template aesthetic.
+5. **SEO — heavy.** Per-page `<title>` + meta description, Open Graph + Twitter cards, JSON-LD (`Person` + `Article`), canonical URLs, RU↔EN `hreflang`, complete sitemap, proper `robots.txt`, internal linking between posts, semantic headings, image `alt`s.
+
+Items 1–3 must land before 4 ships. 5 can run in parallel with 4.
+
 ## Project Overview
 
 Personal portfolio and website for Ivan Roganov. Astro static site with React islands, hosted on AWS S3.
@@ -11,7 +32,7 @@ Personal portfolio and website for Ivan Roganov. Astro static site with React is
 - Tailwind CSS 3 (utility-first, via @astrojs/tailwind)
 - @tailwindcss/typography — prose styling for blog posts
 - Framer Motion — animations (React islands only)
-- React 18 — interactive components only (Contact, Banner, Birthday pages, mobile nav)
+- React 18 — interactive components only (Contact, Banner, mobile nav)
 
 ## Commands
 
@@ -38,13 +59,10 @@ src/
     BlogPostLayout.astro    # Blog post wrapper with prose styling
   pages/                    # File-based routing
     index.astro             # Homepage (EN)
-    birthday-2025.astro     # Birthday 2025 (EN)
-    birthday-2026.astro     # Birthday 2026 (EN)
     blog/index.astro        # Blog listing (EN)
     blog/[slug].astro       # Blog post (EN)
     ru/                     # Russian locale prefix
       index.astro           # Homepage (RU)
-      birthday-2025.astro, birthday-2026.astro
       blog/index.astro, blog/[slug].astro
   components/
     NavBar.astro            # Static navbar (desktop links)
@@ -56,16 +74,13 @@ src/
     HeroCard.astro          # Static card component
     Banner.jsx              # React island — framer-motion scrolling banner
     contact/Contact.jsx     # React island — QR code, vCard, contact info
-    Birthday.jsx            # React island — 2025 birthday page
-    Birthday2026.jsx        # React island — 2026 birthday page
   utils/
-    calendarUtils.js        # Calendar event generation (Google Cal / iCal)
     contactUtils.js         # vCard and contact URL generation
   styles/global.css         # Tailwind entry point
   assets/Hero.jpeg          # Hero background image (processed by Astro)
 public/
   img/                      # Static images (hero0-4.png)
-  ivan.png, park-2025.png, park-2026.jpg, robots.txt
+  ivan.png, robots.txt
 ```
 
 ## Routing
@@ -76,8 +91,6 @@ File-based routing with i18n:
 - `/blog/` — English blog listing
 - `/blog/qualiflation/` — English blog post
 - `/ru/blog/` — Russian blog listing
-- `/birthday-2025/`, `/birthday-2026/` — Birthday events (EN)
-- `/ru/birthday-2025/`, `/ru/birthday-2026/` — Birthday events (RU)
 
 Hash route backwards compatibility: old `/#/path` URLs redirect to `/path/` via inline script in BaseLayout.
 
