@@ -3,23 +3,14 @@
 ## Working Directives (read first)
 
 - **NEVER create a new branch unless the user explicitly asks for one.** Do not auto-branch. Do not create `claude/*` branches or worktrees off them. If the harness spins one up automatically, stop and tell the user before doing any work — do not proceed against an auto-branch.
-- **Active branch is `astro-migration`.** All current work lives here. `main` is the legacy Vite/React site and must not be touched.
-- The main checkout at `/Users/ivan/source/roganov.me` is already on `astro-migration` — edit files there directly. Do not create a new worktree to "isolate" changes.
+- **The active branch is `main`.** The Astro rebuild is done and shipped; there is no longer a separate `astro-migration` line. All work happens on `main`.
+- The main checkout at `/Users/ivan/source/roganov.me` is already on `main` — edit files there directly. Do not create a new worktree to "isolate" changes.
 - Do not commit unless explicitly asked.
+- After any content/design change that needs to go live, the full sequence is: `npm run build` → commit → `git push origin main` → `bash deploy.sh`.
 
-## Current Priority — Ship the Astro Rebuild
+## Status
 
-We are moving the live site from the old Vite/React codebase (`main`) over to the Astro build on this branch. Until that migration is shipped, everything else is secondary.
-
-Roadmap in priority order:
-
-1. **Fix the blog.** It's broken in the current state. Diagnose and stabilize — `/blog/` listing and `/blog/<slug>/` posts should render cleanly for both EN and RU, with working links, dates, and prose styling.
-2. **Finish the article import.** We started pulling legacy posts from `old_files/` into `src/data/blog/<slug>/{en,ru}.md`; some imports did not complete. Identify what's outstanding (there's an untracked `src/data/blog/docker-mail-server/` dir sitting around as evidence) and finish importing the backlog.
-3. **Remove the Birthday pages.** Delete `src/pages/birthday-2025.astro`, `src/pages/birthday-2026.astro`, their `/ru/` counterparts, `src/components/Birthday.jsx` and `Birthday2026.jsx`, plus any nav / profile / i18n entries. Redirects from old URLs are fine; the content goes.
-4. **Redesign for appeal.** The current look is flat and bleak. Target a superb, premium feel across hero, portfolio grid, blog listing, and blog post pages — typography, layout rhythm, motion, imagery all need a pass. Not generic AI-template aesthetic.
-5. **SEO — heavy.** Per-page `<title>` + meta description, Open Graph + Twitter cards, JSON-LD (`Person` + `Article`), canonical URLs, RU↔EN `hreflang`, complete sitemap, proper `robots.txt`, internal linking between posts, semantic headings, image `alt`s.
-
-Items 1–3 must land before 4 ships. 5 can run in parallel with 4.
+Astro migration (blog fix, content imports, birthday removal, visual redesign, SEO, Medium imports, portfolio rebuild, hygiene pass) is complete and live at https://roganov.me. Keep improving — but the "migration" phase is closed.
 
 ## Project Overview
 
