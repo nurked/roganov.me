@@ -11,6 +11,15 @@ interface Props {
   canonicalPath?: string;
   alternateLangPath?: string;
   alternateLang?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    tags?: string[];
+    section?: string;
+  };
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const props = Astro.props;

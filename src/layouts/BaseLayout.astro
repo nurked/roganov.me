@@ -10,6 +10,15 @@ interface Props {
   canonicalPath?: string;
   alternateLangPath?: string;
   alternateLang?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  article?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    tags?: string[];
+    section?: string;
+  };
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
@@ -20,11 +29,55 @@ const {
   canonicalPath = '',
   alternateLangPath,
   alternateLang,
+  ogType = 'website',
+  article,
+  structuredData,
 } = Astro.props;
 
 const siteUrl = 'https://roganov.me';
 const canonicalUrl = `${siteUrl}${canonicalPath}`;
-const imageUrl = `${siteUrl}${image}`;
+const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Locale codes for og:locale
+const ogLocale = lang === 'ru' ? 'ru_RU' : 'en_US';
+const ogLocaleAlt = alternateLang === 'ru' ? 'ru_RU' : alternateLang === 'en' ? 'en_US' : null;
+
+// Default Person JSON-LD for the site
+const personLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  alternateName: profile.aliases,
+  url: siteUrl,
+  image: imageUrl,
+  sameAs: [
+    profile.social.linkedin,
+    profile.social.medium,
+    profile.social.telegram,
+    profile.social.github,
+  ],
+  jobTitle: profile.position,
+  worksFor: {
+    "@type": "Organization",
+    name: profile.company,
+    alternateName: "IFCLLC",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Clearwater",
+    addressRegion: "FL",
+    addressCountry: "US",
+  },
+  email: profile.contact.email,
+  telephone: profile.contact.phone,
+  knowsAbout: profile.expertise,
+};
+
+const extraLd = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
 ---
 
 <!doctype html>
@@ -40,14 +93,35 @@ const imageUrl = `${siteUrl}${image}`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={profile.meta.keywords.join(', ')} />
+    <meta name="author" content={profile.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={`${profile.name} — ${profile.position}`} />
     <meta property="og:site_name" content={profile.company} />
+    <meta property="og:locale" content={ogLocale} />
+    {ogLocaleAlt && <meta property="og:locale:alternate" content={ogLocaleAlt} />}
+
+    {ogType === 'article' && article?.publishedTime && (
+      <meta property="article:published_time" content={article.publishedTime} />
+    )}
+    {ogType === 'article' && article?.modifiedTime && (
+      <meta property="article:modified_time" content={article.modifiedTime} />
+    )}
+    {ogType === 'article' && (article?.author || profile.name) && (
+      <meta property="article:author" content={article?.author || profile.name} />
+    )}
+    {ogType === 'article' && article?.section && (
+      <meta property="article:section" content={article.section} />
+    )}
+    {ogType === 'article' && article?.tags && article.tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -56,39 +130,25 @@ const imageUrl = `${siteUrl}${image}`;
     <meta name="twitter:image" content={imageUrl} />
 
     <!-- hreflang for i18n -->
+    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
     {alternateLangPath && alternateLang && (
       <link rel="alternate" hreflang={alternateLang} href={`${siteUrl}${alternateLangPath}`} />
     )}
-    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+    {/* x-default always points at EN (the site's default locale) */}
+    {lang === 'en' && (
+      <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    )}
+    {lang !== 'en' && alternateLangPath && alternateLang === 'en' && (
+      <link rel="alternate" hreflang="x-default" href={`${siteUrl}${alternateLangPath}`} />
+    )}
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: profile.name,
-      alternateName: profile.aliases,
-      url: siteUrl,
-      image: imageUrl,
-      sameAs: [
-        profile.social.linkedin,
-        profile.social.medium,
-        profile.social.telegram,
-      ],
-      jobTitle: profile.position,
-      worksFor: {
-        "@type": "Organization",
-        name: profile.company,
-        alternateName: "IFCLLC",
-      },
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Clearwater",
-        addressRegion: "FL",
-        addressCountry: "US",
-      },
-      email: profile.contact.email,
-      telephone: profile.contact.phone,
-    })} />
+    <!-- Structured Data: Person (site-wide) -->
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+    <!-- Page-specific Structured Data -->
+    {extraLd.map((ld) => (
+      <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    ))}
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WR8FYRV2N"></script>
