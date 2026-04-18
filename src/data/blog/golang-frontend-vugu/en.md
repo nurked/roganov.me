@@ -1,8 +1,8 @@
 ---
-title: "Пишем frontend на golang"
+title: "Go Frontend with Vugu: WebAssembly in Pure Golang"
 slug: "golang-frontend-vugu"
 date: 2021-07-13
-description: "A look at vugu — a young library that lets you write frontend in Go via WebAssembly. Cats, goroutines, and 500 kilobytes of WASM at the finish line."
+description: "A look at vugu, a young library that lets you write frontend in Go via WebAssembly. Cats, goroutines, and 500 KB of WASM payload by the finish line."
 lang: "en"
 tags: ["Go", "WebAssembly", "frontend", "WASM", "vugu"]
 ---

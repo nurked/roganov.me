@@ -1,8 +1,8 @@
 ---
-title: "Brave New World"
+title: "Brave New World: Data Privacy, Brave Browser & You"
 slug: "brave-new-world"
 date: 2021-02-23
-description: "Oh brave new world of data privacy: The Social Dilemma documentary, the Brave browser, and why your grandparents deserve a better internet."
+description: "The brave new world of data privacy: The Social Dilemma documentary, the Brave browser, and why your grandparents deserve a safer, quieter internet."
 lang: "en"
 tags: ["information security", "browsers", "Big Data", "social media"]
 ---

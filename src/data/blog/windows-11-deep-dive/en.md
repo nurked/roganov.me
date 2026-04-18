@@ -1,8 +1,8 @@
 ---
-title: "What the Scary Number Eleven Really Hides — The Windows 11 Story"
+title: "Windows 11 Deep Dive: What's Really Inside"
 slug: "windows-11-deep-dive"
 date: 2021-08-20
-description: "Continuing the series on Windows innovations: a review of Windows 11 inside and out — from rounded corners and the new Start menu to TPM 2.0 and telemetry."
+description: "Windows 11 inside and out: rounded corners, the new Start menu, TPM 2.0 requirements, telemetry, and what the scary number eleven really hides."
 lang: "en"
 tags: ["Windows", "Windows 11", "UI/UX", "system administration"]
 ---

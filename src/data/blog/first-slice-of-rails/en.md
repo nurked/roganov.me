@@ -1,8 +1,8 @@
 ---
-title: "First Slice of Rails: Ruby on Rails Through a .NET Developer's Eyes"
+title: "Ruby on Rails Through a .NET Developer's Eyes"
 slug: "first-slice-of-rails"
 date: 2010-03-01
-description: "A .NET developer's personal experience switching to Ruby on Rails — installation, setup, first scaffold, and impressions of the framework."
+description: "A .NET developer's first experience with Ruby on Rails: installing the stack, setting up the project, running the first scaffold, and honest impressions."
 lang: "en"
 tags: ["Ruby on Rails", "Ruby", ".NET", "web development"]
 ---

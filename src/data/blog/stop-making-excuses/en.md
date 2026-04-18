@@ -1,8 +1,8 @@
 ---
-title: "Stop Making Excuses"
+title: "Stop Making Excuses: A Rant on Developer Ownership"
 slug: "stop-making-excuses"
 date: 2023-01-08
-description: "A blunt rant about programmers who blame everyone but themselves. On responsibility, professionalism, and why excuses are a one-way ticket to burnout and shaky knees."
+description: "A blunt rant on programmers who blame everyone but themselves: responsibility, professionalism, and why excuses are a one-way ticket to burnout."
 lang: "en"
 tags: ["career", "programming", "mindset", "opinion"]
 ---

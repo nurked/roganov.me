@@ -1,8 +1,8 @@
 ---
-title: "What the Scary Number Eight Really Hides Inside"
+title: "Windows 8 Developer Preview: What's Really Inside"
 slug: "windows-8-deep-dive"
 date: 2011-12-06
-description: "A detailed breakdown of Windows 8 Developer Preview — WinRT, Metro UI, tablet features, IE10, and impressions from three months of daily use."
+description: "A detailed breakdown of Windows 8 Developer Preview: WinRT, Metro UI, tablet features, IE10, and honest impressions from three months of daily use."
 lang: "en"
 tags: ["Windows", "Windows 8", "WinRT", "Metro UI", "Microsoft"]
 ---

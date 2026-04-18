@@ -1,8 +1,8 @@
 ---
-title: "First Steps for PowerShell Beginners"
+title: "PowerShell for Beginners: First Practical Steps"
 slug: "powershell-first-steps"
 date: 2011-02-16
-description: "A practical introduction to PowerShell for beginners — cmdlets, pipelines, working with .NET objects, the registry, and scripts."
+description: "A practical PowerShell intro for beginners: cmdlets, pipelines, working with .NET objects, the Windows registry, and writing your first useful scripts."
 lang: "en"
 tags: ["PowerShell", ".NET", "Windows", "administration"]
 ---

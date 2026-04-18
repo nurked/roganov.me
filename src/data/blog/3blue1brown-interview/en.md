@@ -1,8 +1,8 @@
 ---
-title: "Special Interview for Habr: Grant Sanderson (3Blue1Brown)"
+title: "Grant Sanderson (3Blue1Brown): Interview on Math & Code"
 slug: "3blue1brown-interview"
 date: 2021-12-09
-description: "Grant Sanderson, creator of one of the most popular YouTube channels about advanced mathematics — 3Blue1Brown — answers questions about applying math in business and programming, computing integrals in your head, and how a programming side project turned into a massive channel."
+description: "Grant Sanderson, creator of 3Blue1Brown, on applying math in business and programming, computing integrals in your head, and building a massive channel."
 lang: "en"
 tags: ["mathematics", "interview", "YouTube", "education"]
 ---

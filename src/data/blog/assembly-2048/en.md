@@ -1,8 +1,8 @@
 ---
-title: "Shaking Off the Dust — or How to Remember Assembly If You Learned It 20 Years Ago"
+title: "x64 Assembly in 2021: Rebuilding 2048 After 20 Years"
 slug: "assembly-2048"
 date: 2021-09-23
-description: "A warm, nostalgic article about writing the game 2048 in x64 Assembly on Windows: from memories of TASM to NASM, MinGW, and 16 bytes for the game field."
+description: "Writing the game 2048 in x64 Assembly on Windows: from TASM memories to NASM and MinGW, fitting the entire game field into 16 bytes of memory."
 lang: "en"
 tags: ["Assembler", "x64", "systems programming", "NASM"]
 ---

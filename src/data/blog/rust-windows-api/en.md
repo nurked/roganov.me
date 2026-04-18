@@ -2,7 +2,7 @@
 title: "Leveling Up — Rust and Windows API"
 slug: "rust-windows-api"
 date: 2021-10-06
-description: "Continuing the compact programs series: building 2048 in Rust with windows-rs, creating a window via WinAPI, and wrangling the message queue."
+description: "Continuing the compact-programs series: building 2048 in Rust with windows-rs, creating a native window via WinAPI, and wrangling the message queue."
 lang: "en"
 tags: ["Rust", "Windows", "WinAPI", "systems programming"]
 ---

@@ -1,8 +1,8 @@
 ---
-title: "How He Learned to Write Articles on Habr"
+title: "The Sysadmin Who Learned to Write: A Short Story"
 slug: "habr-writing-story"
 date: 2011-05-30
-description: "A sci-fi short story about a sysadmin named Vasya, a 3 AM server room emergency, and an unexpected encounter that inspired him to write his first article."
+description: "A sci-fi short story about Vasya the sysadmin, a 3 AM server-room emergency, and the unexpected encounter that inspired him to write his first article."
 lang: "en"
 tags: ["short story", "Habr", "sci-fi", "sysadmin"]
 ---

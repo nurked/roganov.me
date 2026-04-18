@@ -1,8 +1,8 @@
 ---
-title: "A Guest from the Past"
+title: "HTC Touch Pro 2 in 2022: A Guest from the Past"
 slug: "guest-from-the-past"
 date: 2022-01-21
-description: "How in 2022 I bought a brand-new HTC Touch Pro 2 on eBay for $40 and dove headfirst back into the lost world of Windows Mobile, PDAs, Palm, Nokia, and offline dictionaries."
+description: "Buying a brand-new HTC Touch Pro 2 on eBay for $40 in 2022 and diving back into the lost world of Windows Mobile, PDAs, Palm, Nokia, and offline dicts."
 lang: "en"
 tags: ["gadgets", "smartphones", "retrospective", "nostalgia", "windows-mobile"]
 ---

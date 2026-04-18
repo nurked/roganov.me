@@ -2,7 +2,7 @@
 title: "Inheritance in ADO.NET Entity Framework"
 slug: "entity-framework-inheritance"
 date: 2008-12-20
-description: "A practical walkthrough of two inheritance types in ADO.NET Entity Framework: Table per Type and Table per Hierarchy — with common mistakes and their solutions."
+description: "Two inheritance types in ADO.NET Entity Framework — Table per Type and Table per Hierarchy — walked through with common mistakes and their fixes."
 lang: "en"
 tags: [".NET", "Entity Framework", "databases", "programming"]
 ---

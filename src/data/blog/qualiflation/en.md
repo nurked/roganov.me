@@ -1,8 +1,8 @@
 ---
-title: "Qualiflation"
+title: "Qualiflation: How Quality Decay Erodes the Economy"
 slug: "qualiflation"
 date: 2020-04-01
-description: "What happens when the result of your actions amounts to nothing? A look at how quality degradation affects our economy and our lives."
+description: "What happens when the result of your work is effectively nothing? How quality degradation — 'qualiflation' — quietly corrodes our economy and our lives."
 lang: "en"
 tags: ["economics", "quality", "opinion"]
 ---

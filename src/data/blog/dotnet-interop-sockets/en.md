@@ -2,7 +2,7 @@
 title: ".NET Interop: Working with Sockets via P/Invoke"
 slug: "dotnet-interop-sockets"
 date: 2009-01-19
-description: "Bridging two worlds: using P/Invoke and DllImport to work with native Windows Sockets from a .NET application."
+description: ".NET Interop in practice: using P/Invoke and DllImport to call native Windows Sockets from a managed C# app — a full example with code and pitfalls."
 lang: "en"
 tags: [".NET", "Interop", "sockets", "programming"]
 ---
