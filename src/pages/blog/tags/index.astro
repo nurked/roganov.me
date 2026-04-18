@@ -1,0 +1,54 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import { aggregateTags } from '../../../utils/tagUtils.js';
+import { profile } from '../../../config/profile.js';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'en' && !data.draft;
+});
+const byTag = aggregateTags(posts);
+
+// Sort tags by post count (desc), then alphabetically by label
+const tags = Array.from(byTag.values())
+  .sort((a, b) => {
+    if (b.posts.length !== a.posts.length) return b.posts.length - a.posts.length;
+    return a.label.localeCompare(b.label);
+  });
+---
+
+<PageLayout
+  title={`All tags | ${profile.name} — Blog`}
+  description={`Browse every tag used on the ${profile.name} blog. ${tags.length} tags across ${posts.length} posts.`}
+  lang="en"
+  canonicalPath="/blog/tags/"
+  alternateLangPath="/ru/blog/tags/"
+  alternateLang="ru"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <nav class="mb-10 text-sm" aria-label="Breadcrumb">
+      <a href="/blog/" class="text-gray-500 hover:text-brand-accent transition-colors font-mono">&larr; Blog</a>
+    </nav>
+    <header class="mb-16 pb-10 border-b border-white/10">
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">Browse</p>
+      <h1 class="text-5xl sm:text-6xl font-bold text-white mb-5 tracking-tight">All tags</h1>
+      <p class="text-lg text-gray-400">
+        {tags.length} tags across {posts.length} posts, sorted by frequency.
+      </p>
+    </header>
+
+    <ul class="flex flex-wrap gap-3">
+      {tags.map((t) => (
+        <li>
+          <a
+            href={`/blog/tags/${t.slug}/`}
+            class="inline-flex items-baseline gap-2 px-4 py-2 rounded-full border border-white/10 bg-surface-card/40 hover:border-brand-accent/60 hover:bg-surface-card/80 transition-colors group"
+          >
+            <span class="font-mono text-sm text-gray-300 group-hover:text-brand-accent transition-colors">#{t.label}</span>
+            <span class="text-xs text-gray-500 font-mono tabular-nums">{t.posts.length}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</PageLayout>

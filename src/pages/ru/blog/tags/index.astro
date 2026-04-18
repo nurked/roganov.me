@@ -1,0 +1,53 @@
+---
+import PageLayout from '../../../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import { aggregateTags } from '../../../../utils/tagUtils.js';
+import { profile } from '../../../../config/profile.js';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return data.lang === 'ru' && !data.draft;
+});
+const byTag = aggregateTags(posts);
+
+const tags = Array.from(byTag.values())
+  .sort((a, b) => {
+    if (b.posts.length !== a.posts.length) return b.posts.length - a.posts.length;
+    return a.label.localeCompare(b.label, 'ru');
+  });
+---
+
+<PageLayout
+  title={`Все теги | ${profile.name} — Блог`}
+  description={`Все теги, используемые в блоге ${profile.name}. ${tags.length} тегов в ${posts.length} постах.`}
+  lang="ru"
+  canonicalPath="/ru/blog/tags/"
+  alternateLangPath="/blog/tags/"
+  alternateLang="en"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <nav class="mb-10 text-sm" aria-label="Хлебные крошки">
+      <a href="/ru/blog/" class="text-gray-500 hover:text-brand-accent transition-colors font-mono">&larr; Блог</a>
+    </nav>
+    <header class="mb-16 pb-10 border-b border-white/10">
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">Обзор</p>
+      <h1 class="text-5xl sm:text-6xl font-bold text-white mb-5 tracking-tight">Все теги</h1>
+      <p class="text-lg text-gray-400">
+        {tags.length} тегов в {posts.length} постах, отсортированных по частоте.
+      </p>
+    </header>
+
+    <ul class="flex flex-wrap gap-3">
+      {tags.map((t) => (
+        <li>
+          <a
+            href={`/ru/blog/tags/${t.slug}/`}
+            class="inline-flex items-baseline gap-2 px-4 py-2 rounded-full border border-white/10 bg-surface-card/40 hover:border-brand-accent/60 hover:bg-surface-card/80 transition-colors group"
+          >
+            <span class="font-mono text-sm text-gray-300 group-hover:text-brand-accent transition-colors">#{t.label}</span>
+            <span class="text-xs text-gray-500 font-mono tabular-nums">{t.posts.length}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</PageLayout>
