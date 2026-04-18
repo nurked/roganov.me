@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import { areas, computeAreaStats } from '../config/areas.js';
+import { getLocalePath } from '../i18n/utils.js';
+import { tagSlug } from '../utils/tagUtils.js';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+
+// Pull everything and compute counts per area. Also look up the featured
+// post's title and date for each area so the card can render a writing sample.
+const posts = (await getCollection('blog', ({ data }) => {
+  return data.lang === lang && !data.draft;
+})).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const stats = computeAreaStats(posts);
+
+// Total count & span for the section intro.
+const totalPosts = posts.length;
+const earliestYear = posts[posts.length - 1]?.data.date.getFullYear();
+const latestYear = posts[0]?.data.date.getFullYear();
+
+const labels = lang === 'ru'
+  ? {
+      eyebrow: 'Чем я занимаюсь',
+      title: 'Направления работы',
+      intro: `Почти два десятилетия я что-то строю, преподаю и пишу. Вот карта местности — ${totalPosts} статей, с ${earliestYear} по ${latestYear}.`,
+      sample: 'Пример текста',
+      browse: (n) => `${n} ${ruPluralPosts(n)} →`,
+      postsHere: (n) => `${n} ${ruPluralPosts(n)}`,
+    }
+  : {
+      eyebrow: 'What I work on',
+      title: 'Operating areas',
+      intro: `Nearly two decades of building, teaching, and writing. Here's the lay of the land — ${totalPosts} articles, ${earliestYear} through ${latestYear}.`,
+      sample: 'Writing sample',
+      browse: (n) => `${n} ${n === 1 ? 'article' : 'articles'} →`,
+      postsHere: (n) => `${n} ${n === 1 ? 'article' : 'articles'}`,
+    };
+
+function ruPluralPosts(n) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'статья';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'статьи';
+  return 'статей';
+}
+
+const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
+---
+
+<section id="portfolio" class="relative bg-surface-base py-20 md:py-28">
+  <!-- Subtle accent divider at top -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-accent/30 to-transparent"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <header class="mb-14 max-w-3xl">
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">{labels.eyebrow}</p>
+      <h2 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-5">{labels.title}</h2>
+      <p class="text-lg text-gray-400 leading-relaxed">{labels.intro}</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {areas.map((area) => {
+        const areaStats = stats.get(area.id);
+        const count = areaStats?.count ?? 0;
+        if (count === 0) return null;
+
+        const featured = areaStats.postsBySlug.get(area.featured)
+          // Fallback: if the hand-picked featured post isn't in the language,
+          // grab the most recent match so the card still renders.
+          ?? Array.from(areaStats.postsBySlug.values())
+               .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
+
+        const info = area.i18n[lang] ?? area.i18n.en;
+        // Cards link to a representative tag page — the first primary tag.
+        const primaryTag = area.primaryTags[0];
+        const browseHref = primaryTag
+          ? getLocalePath(lang, `blog/tags/${tagSlug(primaryTag)}/`)
+          : getLocalePath(lang, 'blog/');
+
+        return (
+          <article class="group relative flex flex-col rounded-2xl border border-white/10 bg-surface-card/40 p-6 sm:p-7 hover:border-brand-accent/40 hover:bg-surface-card/70 transition-colors">
+            <!-- Title row -->
+            <div class="flex items-baseline justify-between gap-4 mb-3">
+              <h3 class="text-xl sm:text-2xl font-semibold text-white tracking-tight">{info.title}</h3>
+              <span class="text-xs text-gray-500 font-mono tabular-nums shrink-0">{labels.postsHere(count)}</span>
+            </div>
+
+            <!-- Pitch -->
+            <p class="text-gray-400 leading-relaxed mb-6">{info.pitch}</p>
+
+            {featured && (
+              <!-- Writing sample -->
+              <div class="mb-6 pb-5 border-b border-white/5">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-brand-accent font-mono mb-2">{labels.sample}</p>
+                <a
+                  href={getLocalePath(lang, `blog/${featured.data.slug}/`)}
+                  class="block group/sample"
+                >
+                  <h4 class="text-sm font-semibold text-white group-hover/sample:text-brand-accent transition-colors leading-snug mb-1">
+                    {featured.data.title}
+                  </h4>
+                  <time
+                    class="text-[11px] text-gray-500 font-mono tabular-nums"
+                    datetime={featured.data.date.toISOString()}
+                  >
+                    {featured.data.date.toLocaleDateString(dateLocale, {
+                      year: 'numeric',
+                      month: 'short',
+                      day: '2-digit',
+                      timeZone: 'UTC',
+                    })}
+                  </time>
+                </a>
+              </div>
+            )}
+
+            <!-- Tag chips -->
+            <div class="mt-auto flex flex-wrap gap-x-3 gap-y-1">
+              {area.primaryTags.map((tag) => (
+                <a
+                  href={getLocalePath(lang, `blog/tags/${tagSlug(tag)}/`)}
+                  class="text-xs font-mono text-gray-500 hover:text-brand-accent transition-colors"
+                >#{tag}</a>
+              ))}
+            </div>
+
+            <!-- Browse link as a subtle corner CTA -->
+            <a
+              href={browseHref}
+              class="absolute top-5 right-6 text-xs text-gray-600 hover:text-brand-accent font-mono transition-colors opacity-0 group-hover:opacity-100"
+              aria-label={`Browse ${info.title}`}
+            >
+              {labels.browse(count)}
+            </a>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

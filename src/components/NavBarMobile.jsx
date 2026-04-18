@@ -24,7 +24,7 @@ export default function NavBarMobile({ lang, altPath = '/' }) {
       {isOpen && (
         <div className="sm:hidden absolute top-14 right-0 left-0 bg-gray-900/95 backdrop-blur-xl border-b border-white/10 z-50">
           <ul className="py-4 px-6 space-y-1">
-            <li><a href={`${base}/#superhero`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.portfolio}</a></li>
+            <li><a href={`${base}/#portfolio`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.portfolio}</a></li>
             <li><a href={`${base}/#contact`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.contact}</a></li>
             <li><a href={`${base}/blog/`} className="block py-3 text-gray-300 hover:text-white transition-colors" onClick={() => setIsOpen(false)}>{labels.blog}</a></li>
             <li className="border-t border-white/10 pt-3 mt-2">

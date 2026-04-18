@@ -3,7 +3,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
 import Banner from '../components/Banner.jsx';
-import Superhero from '../components/Superhero.astro';
+import Portfolio from '../components/Portfolio.astro';
 import LatestWriting from '../components/LatestWriting.astro';
 import Contact from '../components/contact/Contact.jsx';
 import { useTranslations } from '../i18n/utils.js';
@@ -21,7 +21,7 @@ const t = useTranslations(lang);
   <Hero lang={lang} />
   <About lang={lang} />
   <Banner client:visible items={t('banner.items')} />
-  <Superhero lang={lang} />
+  <Portfolio lang={lang} />
   <LatestWriting lang={lang} />
   <Contact client:visible lang={lang} />
 </PageLayout>
