@@ -18,7 +18,15 @@ const t = useTranslations(lang);
     <div class="w-full md:w-2/5 flex flex-col items-center fade-in-section">
       <div class="relative">
         <div class="absolute -inset-4 bg-brand/20 rounded-2xl blur-2xl pointer-events-none"></div>
-        <img src="/ivan.png" alt={t('about.name')} class="relative w-64 md:w-80 rounded-2xl border border-white/10 object-contain" />
+        <img
+          src="/ivan.png"
+          alt={`Portrait of ${t('about.name')}, ${t('about.role')}`}
+          width="320"
+          height="320"
+          loading="eager"
+          decoding="async"
+          class="relative w-64 md:w-80 rounded-2xl border border-white/10 object-contain"
+        />
       </div>
       <div class="mt-6 text-center">
         <p class="font-bold text-lg text-white">{t('about.name')}</p>
