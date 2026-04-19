@@ -15,7 +15,7 @@ I sighed heavily and decided there had to be a simpler solution. There was. Mail
 
 Below the cut: how to install Mailu without pain, what the components are, and what you can change and reuse.
 
-I found Mailu after twenty minutes of Googling. It's a neatly packaged set of docker containers that lets you spin up your own email server in minutes. The project isn't exactly obscure — 3,000 stars on GitHub — but it has only been mentioned once on Habr.
+I found Mailu after twenty minutes of Googling. It's a neatly packaged set of docker containers that lets you spin up your own email server in minutes. The project isn't exactly obscure — 3,000 stars on GitHub — but it rarely surfaces in the usual tech write-ups.
 
 ### Why run your own server when Google exists?
 

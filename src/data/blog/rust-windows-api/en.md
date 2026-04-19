@@ -97,7 +97,7 @@ Naturally, following the fine old tradition, we'll start by displaying a useless
 
 ### Writing the Program
 
-Alright, we're done with the setup. What now? Now it's easy. From here you can grab the Windows API documentation and look up whatever interests you. To start, let's figure out a very simple task: displaying a "Hello Habr" message. It's all very straightforward, but it lets us look at two key differences between a winrs program and a regular Rust binary.
+Alright, we're done with the setup. What now? Now it's easy. From here you can grab the Windows API documentation and look up whatever interests you. To start, let's figure out a very simple task: displaying a "Hello World" message. It's all very straightforward, but it lets us look at two key differences between a winrs program and a regular Rust binary.
 
 First — the main function now needs to return `windows::Result<()>`. In this case we'll be returning an empty tuple, but since we're in Windows land, we could return a whole bunch of different values. For those who might need it, Result accepts an error.
 

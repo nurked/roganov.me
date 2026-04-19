@@ -70,7 +70,7 @@ At this point, you have two completely identical hard drives in your system. The
 
 ### Fixing EFI with a Lightsaber Strike from Shoulder to…
 
-The first problem is EFI. Here I could use Habr's help, because there might be a better solution. To boot the system, Debian creates two partitions on our hard drive. The first one is small, for the EFI bootloader; the second one is larger, for the system itself.
+The first problem is EFI. Here I could use some help from the community, because there might be a better solution. To boot the system, Debian creates two partitions on our hard drive. The first one is small, for the EFI bootloader; the second one is larger, for the system itself.
 
 The thing is, Debian saves its bootloader at `/EFI/debian/shim64.efi`, while QEMU looks for the bootloader at `/EFI/BOOT/BOOTx64.efi`.
 

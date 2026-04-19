@@ -15,7 +15,7 @@ Still, I think the situation doesn't have to be more complicated than it needs t
 
 ### Sort Out the Accents
 
-Obviously, you don't need to know the difference between "that" and "zat." But that's far from the only thing that can go wrong in English. Habr has written many times about the subtleties of pronouncing certain words. And you have to keep an eye on this stuff. What's more, you have to keep an eye on it specifically in the region where you work. In 10 years in the US, I never heard the words *lift* or *autumn* once. We all understand perfectly that they mean "elevator" and "fall." But for an American it's grating — those things have always been called *Elevator* and *Fall*.
+Obviously, you don't need to know the difference between "that" and "zat." But that's far from the only thing that can go wrong in English. Plenty has been written online about the subtleties of pronouncing certain words. And you have to keep an eye on this stuff. What's more, you have to keep an eye on it specifically in the region where you work. In 10 years in the US, I never heard the words *lift* or *autumn* once. We all understand perfectly that they mean "elevator" and "fall." But for an American it's grating — those things have always been called *Elevator* and *Fall*.
 
 But the fun is just getting started. You have Brooklyn, New York, Spanglish, Florida and a whole bunch of other local flavors. Naturally, the British may show up to the party with their [tomato'] instead of the American [tomae'to]. Or you might run into Australians who say *G'day, mate!* instead of *Hello*. Canadians are recognizable by their constant *eh* at the end of every question. And if you've ever talked to Italians, you've definitely run into a *"Porko dia!"*
 
@@ -274,7 +274,7 @@ Before you step out onto the international stage, think seriously about your han
 
 Otherwise you risk ending up in the kind of situation where Fedora Linux for Raspberry Pi got named Pidora. Everyone loved it, but we didn't quite appreciate the joke.
 
-Another point about names. Ten years ago @atomlib wrote a great article on Habr about this. It's bookmarked, and I still link to it every time we try to build a multilingual application.
+Another point about names. There's a great article I bookmarked a decade ago that makes the case clearly, and I still link to it every time we try to build a multilingual application.
 
 In American English there's no concept of an "otchestvo" (patronymic). There's a Middle Name, which is just an arbitrary name that relatives might give you. It's, let's say, Plan B in case you and your mother-in-law didn't agree on your name. To avoid starting a nuclear war over it, you get named with two names.
 

@@ -21,7 +21,7 @@ Hey everyone watching. My name is Ivan Roganov. Today I'm going to talk about em
 
 I work in software development in tough situations. If you've ever started a company, or found yourself at your company, or walked into a boardroom and saw all the directors sitting there with their heads in their hands, staring at you — or at whoever — and nobody knows what to do, and everything is going terribly wrong, and so on — those are exactly the kinds of situations where I typically show up and help.
 
-I mostly write on Habr — that's where my virtual life is. I don't have Facebook, Instagram, or TikTok, but you can find me on Habr through the link. I have posts there where I write about various situations I've been in, working across different programming languages.
+I mostly write on my own blog — that's where my virtual life is. I don't have Facebook, Instagram, or TikTok, but you can find me through the links. I have posts there where I write about various situations I've been in, working across different programming languages.
 
 ### How It All Started
 
@@ -68,7 +68,7 @@ You find these wonderful programs that are running on ancient computers that eve
 
 Here's what I want to say. In every single one of these situations, somewhere there was a person sitting there, trembling, unable to speak, waking up every morning thinking — is the system still running? Did the hard drive crash? What am I going to do about all of this? You need to walk up to that person, calm them down, and say: show me your problem. And here's the thing: if you genuinely help someone solve their problem, you can get something much bigger than just a paycheck and a goodbye-see-you-never. Specifically, you can get referrals, new acquaintances and friends, an enormous amount of help in return — especially if you're helping from the heart.
 
-There was a recent article on Habr about how horrible the hiring process looks right now. Especially in the US — how resumes get lost because they all go through a computer that looks at them and tries to pick the best candidates. The candidates get selected, and then they have to go through a three-part interview where they sit down and talk to 15 people who ask stupid questions about notation. Notation you only know because you needed to pass the interview. You go through these questions, draw all over the whiteboard. And a month later you get a notification — thank you so much, we liked the way you work, you have great potential — and that's it.
+There was a recent article online about how horrible the hiring process looks right now. Especially in the US — how resumes get lost because they all go through a computer that looks at them and tries to pick the best candidates. The candidates get selected, and then they have to go through a three-part interview where they sit down and talk to 15 people who ask stupid questions about notation. Notation you only know because you needed to pass the interview. You go through these questions, draw all over the whiteboard. And a month later you get a notification — thank you so much, we liked the way you work, you have great potential — and that's it.
 
 I've seen so many people end up in this position, just sitting there: "I can't find a job, it's been six months, a year," "I became a developer, now what do I do?", "I don't like my specific job, what should I do?" — and so on. I have a question (and always have had) for these people: have you ever tried to help anyone with anything?
 
@@ -82,7 +82,7 @@ Of course, it wasn't all that simple, but the point is that I just went and help
 
 ### The No-Interview Approach
 
-Again, with nothing better to do, I wrote an article on Habr, and then another one, and then another one. Then suddenly offers started appearing — people would say: guys, thanks so much, you write wonderfully, come work with us. I got offers from four different companies: I worked with some of them, didn't with others. The point is that each of them needed something done. They needed help in some form, needed their problems solved — and that's exactly what matters most here.
+Again, with nothing better to do, I wrote an article, and then another one, and then another one. Then suddenly offers started appearing — people would say: guys, thanks so much, you write wonderfully, come work with us. I got offers from four different companies: I worked with some of them, didn't with others. The point is that each of them needed something done. They needed help in some form, needed their problems solved — and that's exactly what matters most here.
 
 When you show up somewhere and solve someone's problems, that someone says: hey, you look like a really valuable resource — could you also do these five other things?
 
@@ -112,6 +112,6 @@ There are companies that genuinely do one thing — produce a specific product. 
 
 ---
 
-One last thing: I wrote an article on Habr. In that article, I described one of those moments when I came in and started helping sort out an old system that had been installed there and wasn't working properly. In the same article, I described how I learned to work with Rust, and also how I found someone, helped them, and learned something new in the process of helping. Honestly, there was nothing complicated about it. And here I am, 35 years old, not experiencing any difficulties making a living. Because I believe there are still people out there who need help. If you honestly, sincerely come to someone and say "hey, let me help you with this," the response you'll mostly get is "sure, I think you can help us, let's take a look and figure it out."
+One last thing: I wrote an article once. In that article, I described one of those moments when I came in and started helping sort out an old system that had been installed there and wasn't working properly. In the same article, I described how I learned to work with Rust, and also how I found someone, helped them, and learned something new in the process of helping. Honestly, there was nothing complicated about it. And here I am, 35 years old, not experiencing any difficulties making a living. Because I believe there are still people out there who need help. If you honestly, sincerely come to someone and say "hey, let me help you with this," the response you'll mostly get is "sure, I think you can help us, let's take a look and figure it out."
 
-If you have any questions — I'm easy to find through my articles on Habr. I can help you make connections, talk to people, help answer existing questions about getting through an interview, or having a conversation, and so on. Thanks for listening.
+If you have any questions — I'm easy to find through my articles and the contact info on this site. I can help you make connections, talk to people, help answer existing questions about getting through an interview, or having a conversation, and so on. Thanks for listening.

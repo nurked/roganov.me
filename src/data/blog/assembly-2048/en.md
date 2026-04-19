@@ -224,7 +224,7 @@ The program itself uses 300 kilobytes of memory for everything. You could shrink
 
 1. It's still alive, and people still use it. There's a wealth of development tools for all operating systems.
 2. It's not as simple as it was in the old days, when you had to memorize the interrupt table by heart. Today the manuals are more numerous and heftier.
-3. But it's not all that hard, either. Again, today the manuals are easier to find, and StackOverflow has plenty of data on assembly. And Habr has a good number of warm, nostalgic articles about Assembly.
+3. But it's not all that hard, either. Again, today the manuals are easier to find, and StackOverflow has plenty of data on assembly. And there are plenty of warm, nostalgic articles about Assembly floating around on tech blogs.
 4. Mixing assembly with other programming languages isn't that hard. In our example we imported functions, but we can also export them. All you need to know are the rules for working with the stack to pass data back and forth.
 5. Serious systems engineers who can debug a BSOD on the fly and tear apart any program to patch it can read this kind of code with no trouble at all. So if you need to seriously get into systems programming, you won't get very far without ASM.
 

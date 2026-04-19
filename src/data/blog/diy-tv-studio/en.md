@@ -43,7 +43,7 @@ Although the connection itself is a fun adventure — but not a simple one.
 
 First, we spin up the Restreamer Docker container. This part is straightforward — by default, it creates an RTMP server. You, video-sysadmin, need to know this stuff well. Understanding video formats and codecs will be essential for fine-tuning your video stream. So don't be lazy, read up.
 
-Launching Restreamer with an RTMP server is fairly simple. The only thing you need to do is expose the port externally (`-p 1935:1935`). And if you want to make sure nobody uninvited barges into your stream, you'll need to add an environment variable (`-e RS_TOKEN=habr-loves-kittens`). In that case, you can redirect video traffic to `rtmp://[address of your box]/live/external.stream?token=...` (And good luck trying to pass a password written in Cyrillic.)
+Launching Restreamer with an RTMP server is fairly simple. The only thing you need to do is expose the port externally (`-p 1935:1935`). And if you want to make sure nobody uninvited barges into your stream, you'll need to add an environment variable (`-e RS_TOKEN=admin-loves-kittens`). In that case, you can redirect video traffic to `rtmp://[address of your box]/live/external.stream?token=...`
 
 All that's left is to teach Jitsi to work with this stream. Until relatively recently, if you wanted to redirect a stream from Jitsi to your own RTMP server, the whole process was a riot. You had to run ffmpeg on the server and stream through bash. But during the pandemic, Jitsi was updated many times, and streaming video conferences became much simpler.
 

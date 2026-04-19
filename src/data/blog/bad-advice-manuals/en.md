@@ -1,8 +1,8 @@
 ---
-title: "Bad Advice for Manual Writers (in the Style of Grigory Oster)"
+title: "Bad Advice for Manual Writers"
 slug: "bad-advice-manuals"
 date: 2021-11-08
-description: "Why people don't read manuals, how to make docs even worse, and why you should write decent ones — satirical Bad Advice in the Grigory Oster style."
+description: "Why people don't read manuals, how to make docs even worse, and why you should write decent ones — a satirical reverse-advice take on documentation."
 lang: "en"
 tags: ["documentation", "management", "writing"]
 series: "bad-advice"
@@ -153,7 +153,7 @@ After that, everything you discuss can be built on that core idea.
 
 This is something that's pleasant to read, and most importantly — something that can actually be read.
 
-Why do we start our articles on Habr with a carefully crafted header image and a great introduction, while our manuals look like the terror that flaps in the night? (That's Darkwing Duck, for the uninitiated. In Russia, his catchphrase is practically a proverb for anything unexpectedly terrifying.)
+Why do we start our blog posts with a carefully crafted header image and a great introduction, while our manuals look like the terror that flaps in the night? (That's Darkwing Duck, for the uninitiated.)
 
 ### Why Do You Need All This?
 

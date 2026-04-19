@@ -37,7 +37,7 @@ A couple of months later, my manager mentioned offhand that it'd be nice to hire
 
 Nobody asked me to solve Big-O notation problems. Nobody asked me to sort arrays using the Knuth method. Nobody wanted to hear about what I'd read from Perelman's puzzle books. They just asked: "Do you know .NET?" I said yes. That was all it took to pass the interview. After that, they sat me down to learn, and within about three weeks I could wire up Telerik controls to forms wherever needed.
 
-Recently, just for kicks, I set my resume on Habr to "looking for work." I listed my desired salary at $10,000 a month and said I was available as a team lead.
+Recently, just for kicks, I flipped my resume on a job board to "looking for work." I listed my desired salary at $10,000 a month and said I was available as a team lead.
 
 Ha. Oh, I had a good laugh. I got a reach-out from a U.S. company. They needed a Russian programmer to work with their team. They were willing to pay $6,000 a month. Best case, after probation periods.
 

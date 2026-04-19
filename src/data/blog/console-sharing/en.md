@@ -117,7 +117,7 @@ By the way, the project itself is on GitHub, and if you really like it — you c
 
 Never forget that sometimes a sysadmin's job is to potentially just wait around. I've spent hours sitting in front of a rack, waiting for a RAID array to rebuild or a production code update to finish.
 
-So what can you do when there's no graphical interface in front of you? Well, sure, you could install lynx and try to read Habr, but honestly, our cozy little site doesn't behave very well in lynx. And half the time you don't even feel like installing lynx.
+So what can you do when there's no graphical interface in front of you? Well, sure, you could install lynx and try to browse your favorite tech site, but honestly, most of them don't behave very well in lynx. And half the time you don't even feel like installing lynx.
 
 But why do we need lynx when there's telnet?
 

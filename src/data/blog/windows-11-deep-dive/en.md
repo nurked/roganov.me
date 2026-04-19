@@ -9,9 +9,9 @@ tags: ["Windows", "Windows 11", "UI/UX", "system administration"]
 
 *Like all previous articles in this series, this article was NOT written in Vim.*
 
-Hello, Habr. We continue our once-a-decade blog covering innovations in the Windows operating system. The list of previous articles can be found here: [What the Scary Number Eight Really Hides Inside](/blog/windows-8-deep-dive/)
+Hello, reader. We continue our once-a-decade blog covering innovations in the Windows operating system. The list of previous articles can be found here: [What the Scary Number Eight Really Hides Inside](/blog/windows-8-deep-dive/)
 
-If back in those ancient times when I was describing Windows 8 innovations, I was a bit frustrated that Microsoft was thoroughly and clearly explaining all the new features in their latest OS versions while Habr was drowning in flame wars, now things are different. Somehow, even Microsoft stopped telling us about what's actually new in the Windows world and what it looks like.
+If back in those ancient times when I was describing Windows 8 innovations, I was a bit frustrated that Microsoft was thoroughly and clearly explaining all the new features in their latest OS versions while the tech forums were drowning in flame wars, now things are different. Somehow, even Microsoft stopped telling us about what's actually new in the Windows world and what it looks like.
 
 Let's dive in and take a look.
 
@@ -67,7 +67,7 @@ Although, unlike other operating systems of this world, Windows bears the heavy 
 
 ## Under the Hood
 
-And here is where we need to crawl under the hood and look at the guts, to find out what the scary number eleven has really prepared for us. And this is where I could genuinely start foaming at the mouth and swearing. Well, I'll skip the swearing — after all, it's been 16 years on Habr now. I can manage without.
+And here is where we need to crawl under the hood and look at the guts, to find out what the scary number eleven has really prepared for us. And this is where I could genuinely start foaming at the mouth and swearing. Well, I'll skip the swearing — I've been writing about this stuff for 16 years now. I can manage without.
 
 If during the Windows 8 release MS was relentlessly talking about magnificent innovations like kernel hibernation mode and the new rendering system, now their Twitter feed is graced with wonderful updates about wallpapers and icons. Everything has become terrifyingly sanitized, even for developers.
 
@@ -99,11 +99,11 @@ So the Big Brotherness is still livable for now. Consider it an almost fair pric
 
 So what do we end up with? Some kind of Windows 10.5 came out. They updated the interface, redesigned Start, but the serious internal stuff somehow got skipped over.
 
-And what's most frustrating is that even on Habr, the team writing articles about Visual Studio works far more nimbly and effectively than the Windows Insider team.
+And what's most frustrating is that the team writing articles about Visual Studio works far more nimbly and effectively than the Windows Insider team.
 
 Microsoft, could you please fix this situation?
 
-I understand that all the articles on your Habr blog are translations of what's posted on the official Insider blog. And the information in the Insider blog is perfectly suited for American teenagers and middle-class businesspeople. But we're Habr. We're known and respected worldwide.
+I understand that the articles on your blog are mostly repackaged versions of what's posted on the official Insider blog. And the information in the Insider blog is perfectly suited for a very specific audience. But your readers are curious engineers from all over.
 
 The people demand blood and spectacle! Or rather, oil and gears! We need to know what's going to happen with support for new drivers, how support for new devices will work. What about Thunderbolt 3, what exactly will TPM protect, and so on. What's new in interface development? Will the new Windows be the main launchpad for MAUI and Project Reunion? What portion of the new OS kernel has been rewritten in Rust? What secure data transfer protocols will be supported in the new release?
 

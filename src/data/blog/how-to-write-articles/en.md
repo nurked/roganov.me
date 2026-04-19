@@ -1,5 +1,5 @@
 ---
-title: "How to Learn to Write Articles (for Habr and Beyond)"
+title: "How to Learn to Write Articles (for Tech Blogs and Beyond)"
 slug: "how-to-write-articles"
 date: 2021-12-13
 description: "A practical guide to writing articles: five elements of good writing — from storytelling and reading tons of literature to developing your own style and dealing with critics."
@@ -7,7 +7,7 @@ lang: "en"
 tags: ["writing", "articles", "education"]
 ---
 
-After reading a post from the Habr moderators, I was horrified to discover that there are a huge number of people out there who "don't know how to write an article properly."
+After reading a forum post from some site moderators, I was horrified to discover that there are a huge number of people out there who "don't know how to write an article properly."
 
 What could be simpler! You take paper and a pen, or a typewriter, or whatever's trendy these days, and you write an article.
 
@@ -37,7 +37,7 @@ Start with jokes. People listen to them. They're short enough stories that you c
 
 And here we encounter the first three important elements of your storytelling ability:
 
-1. **A sense of tact:** By Wikipedia's definition, tact is the ability to conduct oneself in accordance with the moral and ethical norms of society. And in order to conduct yourself appropriately, you need to know those norms. You know whether you can drop a dirty Little Johnny joke into a conversation with your parents. But that doesn't mean the norms on Habr are the same. So first, study the moral norms of the community you'll be telling your story to.
+1. **A sense of tact:** By Wikipedia's definition, tact is the ability to conduct oneself in accordance with the moral and ethical norms of society. And in order to conduct yourself appropriately, you need to know those norms. You know whether you can drop a dirty Little Johnny joke into a conversation with your parents. But that doesn't mean the norms on whatever platform you're posting to are the same. So first, study the moral norms of the community you'll be telling your story to.
 
 2. **The ability to tell a story engagingly:** Adding just enough detail to make the story interesting. Knowing when not to drag things out.
 
@@ -146,7 +146,7 @@ The simplest thing about writing any article/post/email or book is that the resu
 
 I don't have a strict writing schedule. For instance, I work best when someone needs materials "right now." I usually write five pages of text in 1-2 hours. I don't like writing in chunks. But that's me. You are a completely different story.
 
-Don't get into all sorts of superstitions about how the muse is supposed to come to you and how you need to be showered with manna from heaven before you can write. If you have an idea about how something will begin and how it will end, then sit down and write. If you don't have an idea — go and collect data. If you want to write for Habr, go poke around in the guts of some system, and an idea might come to you. If an idea suddenly strikes at an inconvenient moment, grab it and write it down. Write about it later.
+Don't get into all sorts of superstitions about how the muse is supposed to come to you and how you need to be showered with manna from heaven before you can write. If you have an idea about how something will begin and how it will end, then sit down and write. If you don't have an idea — go and collect data. If you want to write a tech post, go poke around in the guts of some system, and an idea might come to you. If an idea suddenly strikes at an inconvenient moment, grab it and write it down. Write about it later.
 
 No matter how many upvotes you get for an article, there will inevitably be someone who shows up to say "meh" about how terrible your article is and how you should stop writing immediately.
 

@@ -7,35 +7,35 @@ lang: "en"
 tags: ["career", "programming", "mindset", "opinion"]
 ---
 
-Hello there, human, %habrauser%, %username%, programmer.
+Hello there, human, %username%, programmer.
 
 *(Image: "This is exactly how I feel right now.")*
 
-This post is full of hate. The needle is off the scale. But yeah — it's been building up. Although, in my defense (heh-heh), I should say that I haven't named a single real person in this article. Even though some of them happen to hang around here on Habr.
+This post is full of hate. The needle is off the scale. But yeah — it's been building up. Although, in my defense (heh-heh), I should say that I haven't named a single real person in this article.
 
 I'd like to have a word with you. Could I please ask you to stop making excuses, and to stop accepting them from others? The second one matters even more. Because you have no idea how badly that habit hurts you.
 
 Allow me to explain.
 
-Take Vasily Vasilyevich the Slacker, born in 199-something. Vasily is a programmer I want to hire. Well, sort of — Vasily is pretending to be that programmer. He diligently grinds leetcode and all that. He can sort trees balanced and unbalanced. He's gotten so good he can sort a string with an O(n^-1) algorithm. Read his resume, and Vasily is pure gold, a no-brainer hire I need to bring on right this second. His resume is composed in the finest traditions of CEO marketing, and it landed on my desk piping hot, straight from the AI that picks the very best CVs.
+Take Chad the Slacker, born in 199-something. Chad is a programmer I want to hire. Well, sort of — Chad is pretending to be that programmer. He diligently grinds leetcode and all that. He can sort trees balanced and unbalanced. He's gotten so good he can sort a string with an O(n^-1) algorithm. Read his resume, and Chad is pure gold, a no-brainer hire I need to bring on right this second. His resume is composed in the finest traditions of CEO marketing, and it landed on my desk piping hot, straight from the AI that picks the very best CVs.
 
 Yeah. Sure. I totally bought it.
 
-Whatever — let's set aside the fact that the only thing Vasily managed to do during his short life at my company was a new project in NestJS.
+Whatever — let's set aside the fact that the only thing Chad managed to do during his short life at my company was a new project in NestJS.
 
 Let me tell you what NestJS is. It's a project written to "make writing microservices easier." And, miracle of miracles, this Nest has no documentation — it's sold for money.
 
-We shipped our app in Docker. And I decided that it was unseemly for a NestJS project to die a horrible death the moment Redis or the database got disconnected. I figured it would be better if the project just kept running and reconnected to whatever services it needed. I asked Vasily to add this fairly simple bit of functionality to the project. And what do you think happened? Vasily couldn't do it.
+We shipped our app in Docker. And I decided that it was unseemly for a NestJS project to die a horrible death the moment Redis or the database got disconnected. I figured it would be better if the project just kept running and reconnected to whatever services it needed. I asked Chad to add this fairly simple bit of functionality to the project. And what do you think happened? Chad couldn't do it.
 
-He spent ages explaining, painfully and at length, that he didn't know how to properly implement this in Nest. And fine, whatever. Honestly, I'd have forgiven him just about anything. Vasily is a relatively junior specialist whom my international company, out of the goodness of its heart, decided to hire. I'd already decided that Vasily could handle it, and figured it was worth helping him out.
+He spent ages explaining, painfully and at length, that he didn't know how to properly implement this in Nest. And fine, whatever. Honestly, I'd have forgiven him just about anything. Chad is a relatively junior specialist whom my international company, out of the goodness of its heart, decided to hire. I'd already decided that Chad could handle it, and figured it was worth helping him out.
 
-I helped. Honestly, I did. I told him his stinking microservices weren't needed by anyone. More than once I showed Vasily the original spec, which contained exactly one thing: a REST API server with five endpoints. That's it. I never asked for NestJS. In fact, I didn't even ask for JavaScript. I wanted the whole thing in Golang. But I knew Vasily wasn't strong, so I figured I should help him out.
+I helped. Honestly, I did. I told him his stinking microservices weren't needed by anyone. More than once I showed Chad the original spec, which contained exactly one thing: a REST API server with five endpoints. That's it. I never asked for NestJS. In fact, I didn't even ask for JavaScript. I wanted the whole thing in Golang. But I knew Chad wasn't strong, so I figured I should help him out.
 
-But Vasily couldn't pull it off. And again — I'd happily have picked Vasily up off his knees and helped him dust himself off. But Vasily made one fatal mistake. He said his troubles were the fault of Kamil Mysliwiec, the person who built NestJS.
+But Chad couldn't pull it off. And again — I'd happily have picked Chad up off his knees and helped him dust himself off. But Chad made one fatal mistake. He said his troubles were the fault of Kamil Mysliwiec, the person who built NestJS.
 
-Vasily blamed the company for bad documentation. And we parted ways with Vasily. Despite the fact that times are uncertain right now, despite the fact that I knew I'd given him chance after chance, I let him go. Because enough was enough.
+Chad blamed the company for bad documentation. And we parted ways with Chad. Despite the fact that times are uncertain right now, despite the fact that I knew I'd given him chance after chance, I let him go. Because enough was enough.
 
-Please, Vasily, understand. You can blame whoever you want for your problems. Kuzka's mother, aliens, dinosaurs — take your pick. But that will be exactly the moment when everything starts falling out of your hands.
+Please, Chad, understand. You can blame whoever you want for your problems. The boogeyman, aliens, dinosaurs — take your pick. But that will be exactly the moment when everything starts falling out of your hands.
 
 You're a programmer. Which means you should be able to make computers do what the customer needs them to do.
 
@@ -61,7 +61,7 @@ They mean you can't just sit in front of YouTube for ten minutes and figure out 
 
 *(Image: "And don't try to sell me on the puppy-dog eyes. I know the difference between someone who's pretending and someone I can trust with critical infrastructure.")*
 
-Responsibility, these days, has turned into a dirty word. For some reason, "responsibility" gets interpreted as "who's going to be the scapegoat?" You know what responsibility actually is? Responsibility is when something smells like money. Responsibility is when you actually know what's running on those five servers, you understand HOW it works, and you know that Vasily Gennadyevich, the company director, is very happy when the servers run without a hiccup.
+Responsibility, these days, has turned into a dirty word. For some reason, "responsibility" gets interpreted as "who's going to be the scapegoat?" You know what responsibility actually is? Responsibility is when something smells like money. Responsibility is when you actually know what's running on those five servers, you understand HOW it works, and you know that Bob, the company director, is very happy when the servers run without a hiccup.
 
 When you walk down the hallway and the CEO and his deputy walk past, and both of them wink at you and say, "There he is! Walking by! Thanks for the great work!" — that's when you understand what responsibility actually means.
 
@@ -77,4 +77,4 @@ The folks at UMG were in shock. They offered me the position right then and ther
 
 That answer implies a Professional Programmer. That answer implies that the person managing the infrastructure carries actual responsibility for it. He's not the scapegoat — no. He's the most trained, well-read, knowledgeable engineer in the whole place. He knows what the rapid blinking of the sixth LED on the eighth panel means. He can resolve any problem. And he's constantly envied. Because the CEO adores him, and he gets paid an indecent salary.
 
-So please, %habrausers%, understand: there is no such thing as "this works badly." There's only "I haven't fully figured this out yet." Examples are everywhere. Any Turing-complete programming language is a programming language. You can write good APIs in Visual Basic inside Word. (I've seen it done.) That doesn't mean you should. It means that if you're a professional programmer, you'll get DOOM running on a kettle and JavaScript working just fine. And if you're a bad programmer, you'll always have a couple of excuses tucked in your pocket about how Go doesn't have generics, or some other rubbish. Stop pretending. I believe in you.
+So please, fellow programmers, understand: there is no such thing as "this works badly." There's only "I haven't fully figured this out yet." Examples are everywhere. Any Turing-complete programming language is a programming language. You can write good APIs in Visual Basic inside Word. (I've seen it done.) That doesn't mean you should. It means that if you're a professional programmer, you'll get DOOM running on a kettle and JavaScript working just fine. And if you're a bad programmer, you'll always have a couple of excuses tucked in your pocket about how Go doesn't have generics, or some other rubbish. Stop pretending. I believe in you.

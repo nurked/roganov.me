@@ -84,7 +84,7 @@ computer. Try reinstalling the program to fix this problem.
 
 What the? So, the compiler itself built everything fine, but it's complaining about a missing linker. Well, dammit. So it needs an external linker. We curse at the compiler, get up from our comfy chair, and walk back inside to plug into the wired internet, because burning through 5 gigs of the Visual Studio Build Tools installer over a hotspot is not exactly thrilling.
 
-Build everything one more time and take a look. You rusty tin can! What the hell?? I've been telling everyone on Habr for two weeks about what a wonderful compiler you are, and how beautifully you build minimal binaries, and you??? 150 kilobytes of executable code from a single line of text on the screen?
+Build everything one more time and take a look. You rusty tin can! What the hell?? I've been telling everyone online for two weeks about what a wonderful compiler you are, and how beautifully you build minimal binaries, and you??? 150 kilobytes of executable code from a single line of text on the screen?
 
 We try compiling with `-C opt-level=3` and get the same thing. What happened to the binary? We won't answer this question right now. File that away for later and move on.
 

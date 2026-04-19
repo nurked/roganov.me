@@ -122,7 +122,7 @@ Hmm. Magic.
 
 With these parameters, in a random write of 4 GB of data, NVMe beats everyone and everything. But remotely it works like a piece of… ahem. Like nothing at all. Total garbage, basically.
 
-It's possible that one of our esteemed Habr readers will tell me I made a mess of things and configured `fio` incorrectly. Fair enough — I'd be happy to receive your tips on how to properly benchmark NVMe with `fio`.
+It's possible that one of you reading this will tell me I made a mess of things and configured `fio` incorrectly. Fair enough — I'd be happy to receive your tips on how to properly benchmark NVMe with `fio`.
 
 But empirically I figured out the following. If you pass `fio` the `numjobs` parameter and set it to, say, 4, the tests perk up considerably.
 
@@ -164,7 +164,7 @@ Microarchitectures:
 
 Bumping the number of threads simply spreads the load across cores, and everything runs much faster.
 
-I consulted with Habr readers who participated actively in the discussion of the previous article. Some advised enabling Jumbo Frames on the switch and bumping up the MTU. I did, but in practice it made no difference. In this case the MTU didn't really matter.
+I consulted with readers who participated actively in the discussion of the previous article. Some advised enabling Jumbo Frames on the switch and bumping up the MTU. I did, but in practice it made no difference. In this case the MTU didn't really matter.
 
 So once again — if you've got a useful tip on how to properly run all of this through FIO, let me know.
 

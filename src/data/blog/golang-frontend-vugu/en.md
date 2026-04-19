@@ -22,7 +22,7 @@ Then come on in, because I'm about to show you how to move your frontend to Go.
 
 Meet **vugu**. A young (fair warning — not yet released) and very interesting library that lets you use Go directly in HTML. Naturally, since there are no browsers with built-in Go support yet, everything had to be implemented through WASM.
 
-Vugu is a very young library, and I couldn't find any mentions of it on Habr, except for a couple of weekly digests.
+Vugu is a very young library, and I couldn't find any serious write-ups about it, just a couple of passing mentions in weekly digests.
 
 Let's take a look under the hood and get our hands dirty with this library. So, what exactly is vugu?
 

@@ -7,9 +7,9 @@ lang: "en"
 tags: ["mathematics", "interview", "YouTube", "education"]
 ---
 
-Last month I wrote a post about Grant Sanderson, creator of one of the most popular YouTube channels about advanced mathematics — 3Blue1Brown — agreeing to answer questions from the Habr community (a major Russian-language tech platform).
+Last month I organized a Q&A with Grant Sanderson, creator of one of the most popular YouTube channels about advanced mathematics — 3Blue1Brown. The questions came from readers of Habr, a Russian-language tech community where I originally published this piece. I've preserved the exchange as it happened, including Grant's answer about Habr itself.
 
-Grant answered your questions. Below you'll find a modern take on teaching mathematics, how to properly apply math in programming, and the story of how a simple animation utility turned into a massive channel. And of course, you'll get some on-the-fly derivative-taking and a story about computing antiderivatives in your head.
+Below you'll find a modern take on teaching mathematics, how to properly apply math in programming, and the story of how a simple animation utility turned into a massive channel. And of course, you'll get some on-the-fly derivative-taking and a story about computing antiderivatives in your head.
 
 Let's go!
 

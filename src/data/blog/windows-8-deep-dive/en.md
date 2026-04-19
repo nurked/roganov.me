@@ -23,7 +23,7 @@ The thing is, after six hours of excellent video presentations, tons of text and
 
 So from here on, I'll be laying out the facts about what Windows 8 is, how you consume it, and what it goes well with.
 
-So what great and mysterious secrets does this system hold? A newbie will tell you that Windows 8 is just a new and disgusting Start menu. But we're not just people — we're Habr-people. Our task is to deeply understand the topic at hand.
+So what great and mysterious secrets does this system hold? A newbie will tell you that Windows 8 is just a new and disgusting Start menu. But we're not just people — we're the curious sort. Our task is to deeply understand the topic at hand.
 
 ### WinRT
 
@@ -96,7 +96,7 @@ A brilliant idea, in my opinion. No more arguments about how many useful pixels 
 
 So, every application takes up the full screen, works only on presenting data, and doesn't bother drawing any borders around elements.
 
-An offended designer might say that such a brutal approach leaves no freedom whatsoever. Not at all. Who told you data can't be beautiful? Think about it — if you want someone to read beautiful articles, why do you need to draw attention to the hosting logo? Habr's logo is simple and memorable, but it doesn't hurt your eyes. The main thing on Habr is good articles.
+An offended designer might say that such a brutal approach leaves no freedom whatsoever. Not at all. Who told you data can't be beautiful? Think about it — if you want someone to read beautiful articles, why do you need to draw attention to the hosting logo? A good blog's logo is simple and memorable, but it doesn't hurt your eyes. The main thing on any content site is the content itself.
 
 That's the foundation of the Metro UI approach. If you have a weather forecast, who needs to draw attention to the "Refresh" button when you can draw attention to the weather itself?
 

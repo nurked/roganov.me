@@ -7,11 +7,11 @@ lang: "en"
 tags: ["information security", "browsers", "Big Data", "social media"]
 ---
 
-Oh, brave new world! How beautiful you are. How wrong George Orwell was, and how right Aldous Huxley turned out to be. Nobody is forcing anyone to do anything. People stampede in droves on their own, all to get a new pill and hand over every last bit of personal information to whoever asks. And of course, you, fellow Habr reader, are above all of this. We're not like the rest of the herd. We're smart. We sit behind firewalls, Tor, and all the rest. But all too often, we overlook the little matter of our grandmothers, grandfathers, mothers, fathers, and all the other ordinary people around us.
+Oh, brave new world! How beautiful you are. How wrong George Orwell was, and how right Aldous Huxley turned out to be. Nobody is forcing anyone to do anything. People stampede in droves on their own, all to get a new pill and hand over every last bit of personal information to whoever asks. And of course, you, fellow tech reader, are above all of this. We're not like the rest of the herd. We're smart. We sit behind firewalls, Tor, and all the rest. But all too often, we overlook the little matter of our grandmothers, grandfathers, mothers, fathers, and all the other ordinary people around us.
 
 We're going to talk about Brave and a film called The Social Dilemma.
 
-On Habr, this film has barely been mentioned at all. Unless I somehow missed a translated Russian version somewhere. And that's a shame.
+This film has barely been discussed in tech circles. And that's a shame.
 
 ### The Social Dilemma
 
@@ -45,9 +45,9 @@ Instead of suggesting we all form a circle and toss our phones into the fiery ab
 
 By the way, the film has a solid rating on your beloved Rotten Tomatoes. And Google itself rated it at 95%, which is amusing given that Google took quite a beating from this movie.
 
-(A brief aside and a small fly in the ointment: the film is in English. It was released in September 2020 and I haven't seen any Russian translations of it. To address this, I'd like to see if we can Habr-effect this whole thing. On the [film's website](https://www.thesocialdilemma.com/contact/), you can send feedback. If you're not an English speaker, ask if there are plans. And if you're feeling up to it — why not offer the team your help with translation? Even just subtitles.)
+(A brief aside: the film is in English, released September 2020. On the [film's website](https://www.thesocialdilemma.com/contact/), you can send feedback. If English isn't your first language, ask whether localized versions are planned. And if you're feeling up to it — why not offer the team your help with translation? Even just subtitles.)
 
-The truth is, we already know all of this. We, fellow Habr readers, don't need to be told why Facebook implemented infinite scrolling. We relentlessly strip out telemetry scripts from everything we can get our hands on. Our browsers are so decked out with blockers that only half the websites function semi-normally (and we're happy about that). Some of us don't even have accounts on social media at all, and those who do only use them to message grandma and grandpa.
+The truth is, we already know all of this. We, fellow engineers, don't need to be told why Facebook implemented infinite scrolling. We relentlessly strip out telemetry scripts from everything we can get our hands on. Our browsers are so decked out with blockers that only half the websites function semi-normally (and we're happy about that). Some of us don't even have accounts on social media at all, and those who do only use them to message grandma and grandpa.
 
 But we are not legion. We are rare individuals, and there's a handful of us (at best). Fighters against addiction are forced to exist in an addicted world. We can compete all day long over how many firewalls we have installed, right up until we visit our dear mother (well, you have to show your face once in a while, even if just on a video call) only to discover she's had a falling out with dad because dad supports [that person we shall not discuss in this article], and she herself does not.
 
@@ -71,13 +71,13 @@ Oh, why is everything so bad? Why is it so hard to just do things properly?
 
 Because building browsers is hard business. At this point we have only one browser left, and it's Chromium. Unfortunately, the war has been lost. Firefox is still hanging on, but barely.
 
-And building your own Chrome is no simple matter. More than once, articles have surfaced on Habr about how incredibly complex this browser's codebase is. And maintaining it independently is a losing proposition. So you need money, because programmers need to be paid, and servers don't fall from the sky, for crying out loud!
+And building your own Chrome is no simple matter. More than once, articles have surfaced online about how incredibly complex this browser's codebase is. And maintaining it independently is a losing proposition. So you need money, because programmers need to be paid, and servers don't fall from the sky, for crying out loud!
 
 And what is our Brave trying to do? They're trying to walk this razor-thin line — the dividing strip between obscene profits and ethical handling of our data. They simply have no other way of doing it. They're stuck having to make do and improvise.
 
-And that's why we, fellow Habr readers, are watching this lion warily. On one hand — thanks. On the other hand — whose gnawed-up skeleton is that lying over there? Ah, you devoured a zebra. Well, we understand, lions will be lions — they need their zebra.
+And that's why we, fellow engineers, are watching this lion warily. On one hand — thanks. On the other hand — whose gnawed-up skeleton is that lying over there? Ah, you devoured a zebra. Well, we understand, lions will be lions — they need their zebra.
 
-So where does that leave us? Well, here's the thing: I know that on Habr, there are people involved with the project, and they keep an eye on what's going on here.
+So where does that leave us? Well, here's the thing: I know some of the people involved with the project read these kinds of posts and keep an eye on what's going on here.
 
 I'd like to propose (and I hope you'll back me up) that Brave add the following feature — a super-paranoia mode. This mode can be activated in the most arcane way possible. I'd be fine punching in the Konami code ten times in a row in the browser's main system menu just to enable it.
 

@@ -35,7 +35,7 @@ Ladies and gentlemen, meet UUIDv7!
 
 At the moment, Version 7 is a draft RFC available at https://datatracker.ietf.org/doc/html/draft-peabody-dispatch-new-uuid-format-01.
 
-The main development is driven by two developers: bradleypeabody and kyzer-davis. Fellow Habr readers and Habr aliens can join the discussion and contribute to the format on GitHub: https://github.com/uuid6/uuid6-ietf-draft/.
+The main development is driven by two developers: bradleypeabody and kyzer-davis. Anyone interested can join the discussion and contribute to the format on GitHub: https://github.com/uuid6/uuid6-ietf-draft/.
 
 Five days ago this specification sparked a lively discussion on Hacker News.
 
@@ -190,4 +190,4 @@ I wrote my own implementation in Golang. It's a rather unusual version, designed
 
 On top of that, here's a toy website for you: http://www.new-uuid.info. A single-page site written in Go+WASM that uses my package to generate these identifiers online. You can tweak the knobs and see exactly where and how the bits of your UUID are laid out.
 
-In short, join in — there are still plenty of questions to sort out, and over the next month we'll be submitting the third draft revision to the RFC. I have a feeling we can't do it without the Habr community.
+In short, join in — there are still plenty of questions to sort out, and over the next month we'll be submitting the third draft revision to the RFC. I have a feeling we can't do it without the wider community.

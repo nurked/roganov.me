@@ -1,10 +1,10 @@
 ---
-title: "Bad Advice for Teaching People to Code (Oster Style)"
+title: "Bad Advice for Teaching People to Code"
 slug: "bad-advice-teaching"
 date: 2021-12-02
 description: "How to teach programming without killing the spark: three idiotic claims, understanding vs. rote memorization, and why 'couldn't learn' is a cop-out."
 lang: "en"
-tags: ["teaching", "programming", "management", "Grigory Oster"]
+tags: ["teaching", "programming", "management"]
 series: "bad-advice"
 seriesOrder: 2
 ---
@@ -21,9 +21,11 @@ Have you ever sat through continuing education courses that exist solely for a c
 
 Come on in. Let's talk.
 
-### A Digression: On Grigory Oster
+### A Note on Format
 
-Let's talk about how to teach people.
+Before we dive in, a heads-up on the structure: each section opens with a short piece of satirical verse — anti-advice, phrased as the *worst* thing you could do. It's a reverse-advice frame borrowed from a tradition of children's rhymes that poke fun at bad behavior by instructing you to do it. Take them as ironic warnings, not recipes.
+
+Now — let's talk about how to teach people.
 
 My experience in this area is backed by extensive experimentation. In my final year at university, back in 2008, I was handed a group of finance students who needed to learn computer graphics. After that, at work, I was constantly saddled with grad students, newbies, and occasionally people who had absolutely nothing to do with computers.
 
@@ -48,11 +50,11 @@ All findings have been tested (and studied) through personal experience.
 
 You. First, you need to sit down and figure out how you're going to teach someone something. The world is full of prejudices and stereotypes about teaching. The biggest one is the belief that some people simply can't be taught.
 
-So, here we have a spherical student in a vacuum. Let's call him Vasily. Vasily has landed in your clutches and stands before you with a spark in his eyes. Vasily wants to learn HTML and JavaScript. And this is where you start killing his desire to learn. How? Accidentally. I've heard plenty of idiotic methodologies that "explain" how to teach. Here are the main ones:
+So, here we have a spherical student in a vacuum. Let's call him Jake. Jake has landed in your clutches and stands before you with a spark in his eyes. Jake wants to learn HTML and JavaScript. And this is where you start killing his desire to learn. How? Accidentally. I've heard plenty of idiotic methodologies that "explain" how to teach. Here are the main ones:
 
 **Idiotic Claim Number One: The dumber the people around you, the more you'll get paid.** There are people who will say something like this with a straight face. "I don't need specialists who'll compete with me." If you're good at training specialists, nobody will compete with you. They'll carry you on their shoulders because you can make specialists.
 
-Yes, you obviously need to stay in shape yourself. If you walk into any decent shop right now and announce that you know how to set up docker swarm, they'll laugh you out of the building. These days, even k8s isn't trendy anymore. People have moved on to Helm and all sorts of other gizmos. But that's no reason not to teach Vasily. It's a reason to sit down and level up yourself.
+Yes, you obviously need to stay in shape yourself. If you walk into any decent shop right now and announce that you know how to set up docker swarm, they'll laugh you out of the building. These days, even k8s isn't trendy anymore. People have moved on to Helm and all sorts of other gizmos. But that's no reason not to teach Jake. It's a reason to sit down and level up yourself.
 
 I was recently offered a six-figure monthly bonus just for taking on a couple of interns and turning them into proper programmers.
 
@@ -60,7 +62,7 @@ The better the programmers around you, the easier your life will be. You'll have
 
 Now, of course, there's a carve-out for those special establishments where work materializes on its own and exists solely for the sake of having work. If it doesn't pay to rock the boat and produce better code — if you're just sitting there month after month pocketing $75K net — then fine. Sit tight and don't rock the boat. Or, consider changing jobs.
 
-**Idiotic Claim Number Two: Vasily is an idiot and can't learn.** There's no such thing as "couldn't." There's only "didn't try hard enough." Vasily isn't "an idiot by default." He just hasn't been taught with enough dedication. People are one of the most important resources at your company. You can invest in people, and they'll push more commits — beautiful, diverse ones.
+**Idiotic Claim Number Two: Jake is an idiot and can't learn.** There's no such thing as "couldn't." There's only "didn't try hard enough." Jake isn't "an idiot by default." He just hasn't been taught with enough dedication. People are one of the most important resources at your company. You can invest in people, and they'll push more commits — beautiful, diverse ones.
 
 A bit further down, I'll talk about what to do with that "freshly chopped log" that HR stood in front of you and announced will be the new DevOps.
 
@@ -76,7 +78,7 @@ Again, specific methods and techniques are described below.
 
 University education gives you one gigantic advantage. You get foundational knowledge across a huge number of fields, which can later become useful when learning something specific.
 
-We all remember that "calculus with differential equations and statistics was pure hell and nobody liked it." We all know that "all that stuff is absolutely useless," etc. Nonsense. Ask any data sa... scientist Pete who's raking in money hand over fist because he perfectly understands how statistical methods work. Ask AI engineer Vic how he manages to build such killer video recognition models without a basic understanding of Fourier series. Walk up to 3D programmer Anatoly and ask him to explain how to rotate an image without multiplying matrices.
+We all remember that "calculus with differential equations and statistics was pure hell and nobody liked it." We all know that "all that stuff is absolutely useless," etc. Nonsense. Ask any data sa... scientist Pete who's raking in money hand over fist because he perfectly understands how statistical methods work. Ask AI engineer Vic how he manages to build such killer video recognition models without a basic understanding of Fourier series. Walk up to 3D programmer Tony and ask him to explain how to rotate an image without multiplying matrices.
 
 But don't forget — all this knowledge is fairly detached from reality. Calculus isn't Maya or Blender. You won't get far in TensorFlow armed with nothing but differential equations. Moreover, you don't actually need to know the underlying science to use these tools. But if you do know the underlying theory, you can use these tools effectively.
 
@@ -135,7 +137,7 @@ One of the most critical moments in teaching is not killing the spark. A neophyt
 
 Unless you've got a true fanatic on your hands, you'll never see them again.
 
-That spark in their eyes, that eternal "I want you to teach me" — it's wonderful. It's what makes Vasily want to learn. At some point, the kid saw a scary bearded guy who, with five keystrokes, made his phone whistle melodies. Someone saw a video game materialize from nothing. Someone else, after spending five weeks playing a game, suddenly realized that this game was written by someone.
+That spark in their eyes, that eternal "I want you to teach me" — it's wonderful. It's what makes Jake want to learn. At some point, the kid saw a scary bearded guy who, with five keystrokes, made his phone whistle melodies. Someone saw a video game materialize from nothing. Someone else, after spending five weeks playing a game, suddenly realized that this game was written by someone.
 
 Come on, remember what it was like for you the first time. Each of us has our own story. After many hours of playing specifically Theme Park, I noticed patterns in how visitors moved along the pathways. In that moment, I realized that someone had just described an incredible universe that lives by its own rules. I was stunned by how interesting this universe could be. And I wanted to create my own game. Many years passed before I actually learned to write programs. I learned Pascal, Assembly, and many other things, but that exact image always stayed with me.
 
@@ -283,4 +285,4 @@ If you've never taught anyone anything, know this: it's one of the most wonderfu
 
 You do understand that by teaching people, you make them better, right? They'll thank you for it many times over.
 
-*P.S. Another installment with verses is here: [Bad Advice for Manual Writers (in the Style of Grigory Oster)](/blog/bad-advice-manuals/)*
+*P.S. Another installment with verses is here: [Bad Advice for Manual Writers](/blog/bad-advice-manuals/)*
