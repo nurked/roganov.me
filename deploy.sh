@@ -77,6 +77,13 @@ aws s3 rm s3://roganov.me/sitemap.xml 2>/dev/null || true
 
 echo "🧹 Stale-object cleanup complete"
 
+# CloudFront fronts the bucket since 2026-06: invalidate the edge cache so
+# the new deploy is visible immediately instead of after the HTML TTL.
+CF_DISTRIBUTION_ID="E5720VQKHG550"
+echo "🌀 Invalidating CloudFront cache..."
+aws cloudfront create-invalidation --distribution-id "$CF_DISTRIBUTION_ID" \
+    --paths "/*" --query 'Invalidation.{Id:Id,Status:Status}' --output text || true
+
 # IndexNow: push the current URL list to search engines (Bing, Yandex, Seznam,
 # Naver share the endpoint) instead of waiting for them to re-crawl. The key
 # file lives in public/ and is already synced by the passes above.
