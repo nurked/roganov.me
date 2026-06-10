@@ -37,5 +37,11 @@
   "language": {
     "switchTo": "Switch to English",
     "current": "Русский"
+  },
+  "aiBanner": {
+    "label": "Работайте со мной",
+    "title": "Нужна интеграция ИИ в вашем бизнесе?",
+    "body": "Я внедряю ИИ-системы в работающие компании — от модернизации legacy до LLM-процессов в продакшене. Загляните в мою компанию:",
+    "cta": "investmentfidelity.company"
   }
 }

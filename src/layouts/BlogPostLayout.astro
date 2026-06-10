@@ -2,6 +2,7 @@
 import PageLayout from './PageLayout.astro';
 import SeriesNav from '../components/SeriesNav.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
+import AIServicesBanner from '../components/AIServicesBanner.astro';
 import { useTranslations, getLocalePath, getAlternateLang } from '../i18n/utils.js';
 import { tagSlug } from '../utils/tagUtils.js';
 import { profile } from '../config/profile.js';
@@ -48,6 +49,10 @@ const allPosts = await getCollection('blog');
 const hasAlternate = allPosts.some(
   (p) => p.data.slug === slug && p.data.lang === altLang && !p.data.draft,
 );
+
+// AI-related posts get a services banner pointing at the company site.
+const AI_TAGS = new Set(['ai', 'ии', 'machine learning', 'машинное обучение', 'нейросети', 'llm', 'agents', 'агенты', 'chatgpt', 'claude']);
+const isAiPost = (tags ?? []).some((tag) => AI_TAGS.has(tag.toLowerCase()));
 
 const siteUrl = 'https://roganov.me';
 const canonicalPath = getLocalePath(lang, `blog/${slug}/`);
@@ -228,6 +233,8 @@ const breadcrumbs = {
       prose-li:marker:text-brand-accent">
       <slot />
     </div>
+
+    {isAiPost && <AIServicesBanner lang={lang} />}
 
     <RelatedPosts
       currentSlug={slug}

@@ -37,5 +37,11 @@
   "language": {
     "switchTo": "Показать по-русски",
     "current": "English"
+  },
+  "aiBanner": {
+    "label": "Work with me",
+    "title": "Need an AI integration in your business?",
+    "body": "I build AI systems for real companies — from legacy modernization to production LLM workflows. Check out my company:",
+    "cta": "investmentfidelity.company"
   }
 }

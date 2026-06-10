@@ -1,0 +1,29 @@
+---
+import { useTranslations } from '../i18n/utils.js';
+import { profile } from '../config/profile.js';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = useTranslations(lang);
+
+const href = `${profile.companySite}/?utm_source=roganov.me&utm_medium=blog&utm_campaign=ai-articles`;
+---
+
+<aside
+  class="mt-14 rounded-lg border border-brand-accent/30 bg-brand-accent/5 p-6 sm:p-8"
+  aria-label={t('aiBanner.title')}
+>
+  <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-3">{t('aiBanner.label')}</p>
+  <p class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">{t('aiBanner.title')}</p>
+  <p class="text-gray-400 leading-relaxed mb-5">{t('aiBanner.body')}</p>
+  <a
+    href={href}
+    rel="noopener"
+    class="inline-flex items-center gap-2 font-mono text-sm text-brand-accent hover:text-white transition-colors"
+  >
+    {t('aiBanner.cta')} &rarr;
+  </a>
+</aside>
