@@ -56,8 +56,7 @@ src/
       index.astro           # Homepage (RU)
       blog/index.astro, blog/[slug].astro
   components/
-    NavBar.astro            # Static navbar (desktop links)
-    NavBarMobile.jsx        # React island — mobile hamburger menu
+    NavBar.astro            # Static navbar (desktop + mobile menu, inline toggle script)
     Footer.astro            # Static footer
     Hero.astro              # Static hero section
     About.astro             # Static about section

@@ -1,6 +1,5 @@
 ---
 import { useTranslations, getLocalePath, getAlternatePath } from '../i18n/utils.js';
-import NavBarMobile from './NavBarMobile.jsx';
 
 interface Props {
   lang?: string;
@@ -9,6 +8,7 @@ interface Props {
 const { lang = 'en' } = Astro.props;
 const t = useTranslations(lang);
 const altPath = getAlternatePath(Astro.url.pathname);
+const base = lang === 'ru' ? '/ru' : '';
 ---
 
 <nav id="main-nav" class="w-full z-50 bg-surface-base/80 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-4 py-3 sm:px-8 sm:py-4 max-w-full mx-auto sticky top-0 transition-all duration-300">
@@ -39,6 +39,55 @@ const altPath = getAlternatePath(Astro.url.pathname);
     </a>
   </div>
 
-  <!-- Mobile Menu (React island for interactivity) -->
-  <NavBarMobile client:load lang={lang} altPath={altPath} />
+  <!-- Mobile Menu (static markup + tiny inline toggle, no framework) -->
+  <button
+    id="mobile-menu-toggle"
+    type="button"
+    class="sm:hidden rounded-full flex items-center p-2 -m-2 cursor-pointer"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    aria-label={lang === 'ru' ? 'Открыть меню' : 'Open menu'}
+  >
+    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path id="mobile-menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <div id="mobile-menu" class="hidden sm:hidden absolute top-14 right-0 left-0 bg-gray-900/95 backdrop-blur-xl border-b border-white/10 z-50">
+    <ul class="py-4 px-6 space-y-1">
+      <li><a href={`${base}/#portfolio`} class="block py-3 text-gray-300 hover:text-white transition-colors">{t('nav.portfolio')}</a></li>
+      <li><a href={`${base}/#contact`} class="block py-3 text-gray-300 hover:text-white transition-colors">{t('nav.contact')}</a></li>
+      <li><a href={`${base}/blog/`} class="block py-3 text-gray-300 hover:text-white transition-colors">{t('nav.blog')}</a></li>
+      <li class="border-t border-white/10 pt-3 mt-2">
+        <a href={altPath} class="flex items-center gap-2 py-3 text-gray-300 hover:text-white transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 003 12c0-1.605.42-3.113 1.157-4.418" />
+          </svg>
+          {t('language.switchTo')}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var toggle = document.getElementById('mobile-menu-toggle');
+      var menu = document.getElementById('mobile-menu');
+      var icon = document.getElementById('mobile-menu-icon');
+      var HAMBURGER = 'M4 6h16M4 12h16M4 18h16';
+      var CLOSE = 'M6 18L18 6M6 6l12 12';
+      if (!toggle || !menu || !icon) return;
+      function setOpen(open) {
+        menu.classList.toggle('hidden', !open);
+        toggle.setAttribute('aria-expanded', String(open));
+        icon.setAttribute('d', open ? CLOSE : HAMBURGER);
+      }
+      toggle.addEventListener('click', function () {
+        setOpen(menu.classList.contains('hidden'));
+      });
+      menu.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
+      });
+    })();
+  </script>
 </nav>

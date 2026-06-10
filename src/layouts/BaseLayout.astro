@@ -252,13 +252,29 @@ const extraLd = Array.isArray(structuredData)
       <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     ))}
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WR8FYRV2N"></script>
+    <!-- Google Analytics: deferred until first user interaction so the
+         156 KiB gtag.js stays out of page load. Events queue in dataLayer
+         beforehand and flush once the script arrives. -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3WR8FYRV2N');
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-3WR8FYRV2N');
+        var loaded = false;
+        function loadGA() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-3WR8FYRV2N';
+          document.head.appendChild(s);
+        }
+        ['scroll', 'touchstart', 'pointerdown', 'keydown'].forEach(function (e) {
+          addEventListener(e, loadGA, { once: true, passive: true });
+        });
+      })();
     </script>
 
     <!-- Hash route redirect for backwards compatibility -->

@@ -124,7 +124,7 @@ const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
               {area.primaryTags.map((tag) => (
                 <a
                   href={getLocalePath(lang, `blog/tags/${tagSlug(tag)}/`)}
-                  class="text-xs font-mono text-gray-400 hover:text-brand-accent transition-colors"
+                  class="inline-flex items-center text-xs font-mono text-gray-400 hover:text-brand-accent transition-colors px-1.5 py-1.5 -mx-1.5 -my-1.5"
                 >#{tag}</a>
               ))}
             </div>
