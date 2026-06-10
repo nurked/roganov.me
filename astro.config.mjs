@@ -3,6 +3,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { readdirSync, readFileSync } from 'node:fs';
+import rehypeAiBanner from './src/plugins/rehype-ai-banner.mjs';
 
 // Per-page lastmod for the sitemap, read from blog frontmatter. A blanket
 // `lastmod: new Date()` stamps every URL with the build time, which tells
@@ -35,6 +36,10 @@ for (const path of ['/', '/ru/', '/blog/', '/ru/blog/']) {
 
 export default defineConfig({
   site: 'https://roganov.me',
+
+  markdown: {
+    rehypePlugins: [rehypeAiBanner],
+  },
 
   integrations: [
     react(),
