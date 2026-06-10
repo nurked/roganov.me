@@ -87,7 +87,7 @@ const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
             <!-- Title row -->
             <div class="flex items-baseline justify-between gap-4 mb-3">
               <h3 class="text-xl sm:text-2xl font-semibold text-white tracking-tight">{info.title}</h3>
-              <span class="text-xs text-gray-500 font-mono tabular-nums shrink-0">{labels.postsHere(count)}</span>
+              <span class="text-xs text-gray-400 font-mono tabular-nums shrink-0">{labels.postsHere(count)}</span>
             </div>
 
             <!-- Pitch -->
@@ -105,7 +105,7 @@ const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
                     {featured.data.title}
                   </h4>
                   <time
-                    class="text-[11px] text-gray-500 font-mono tabular-nums"
+                    class="text-[11px] text-gray-400 font-mono tabular-nums"
                     datetime={featured.data.date.toISOString()}
                   >
                     {featured.data.date.toLocaleDateString(dateLocale, {
@@ -124,7 +124,7 @@ const dateLocale = lang === 'ru' ? 'ru-RU' : 'en-US';
               {area.primaryTags.map((tag) => (
                 <a
                   href={getLocalePath(lang, `blog/tags/${tagSlug(tag)}/`)}
-                  class="text-xs font-mono text-gray-500 hover:text-brand-accent transition-colors"
+                  class="text-xs font-mono text-gray-400 hover:text-brand-accent transition-colors"
                 >#{tag}</a>
               ))}
             </div>

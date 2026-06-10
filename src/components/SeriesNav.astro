@@ -46,7 +46,7 @@ const next = siblings.find((p) => (p.data.seriesOrder ?? 0) === currentOrder + 1
       <p class="text-[11px] uppercase tracking-[0.2em] text-brand-accent font-mono">
         {labels.label}
       </p>
-      <span class="text-xs text-gray-500 font-mono tabular-nums">
+      <span class="text-xs text-gray-400 font-mono tabular-nums">
         {labels.partOf(currentOrder, total)}
       </span>
     </div>
@@ -69,7 +69,7 @@ const next = siblings.find((p) => (p.data.seriesOrder ?? 0) === currentOrder + 1
               ]}
               aria-current={isCurrent ? 'page' : undefined}
             >
-              <span class="font-mono text-gray-500 tabular-nums text-xs pt-0.5">
+              <span class="font-mono text-gray-400 tabular-nums text-xs pt-0.5">
                 {String(s.data.seriesOrder ?? 0).padStart(2, '0')}
               </span>
               <span class="flex-1">{s.data.title}</span>
