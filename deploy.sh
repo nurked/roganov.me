@@ -77,6 +77,32 @@ aws s3 rm s3://roganov.me/sitemap.xml 2>/dev/null || true
 
 echo "🧹 Stale-object cleanup complete"
 
+# IndexNow: push the current URL list to search engines (Bing, Yandex, Seznam,
+# Naver share the endpoint) instead of waiting for them to re-crawl. The key
+# file lives in public/ and is already synced by the passes above.
+INDEXNOW_KEY="b4d8841175aeeb7bf15c79a063402f80"
+if [ -f "$BUILD_DIR/sitemap-0.xml" ]; then
+    echo "📡 Submitting URLs to IndexNow..."
+    INDEXNOW_STATUS=$(grep -o '<loc>[^<]*</loc>' "$BUILD_DIR/sitemap-0.xml" \
+        | sed -e 's/<loc>//' -e 's,</loc>,,' \
+        | INDEXNOW_KEY="$INDEXNOW_KEY" python3 -c '
+import json, os, sys
+urls = [line.strip() for line in sys.stdin if line.strip()]
+key = os.environ["INDEXNOW_KEY"]
+print(json.dumps({
+    "host": "roganov.me",
+    "key": key,
+    "keyLocation": f"https://roganov.me/{key}.txt",
+    "urlList": urls,
+}))' \
+        | curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            --data-binary @-) || INDEXNOW_STATUS="failed"
+    echo "📡 IndexNow response: $INDEXNOW_STATUS (200/202 = accepted)"
+else
+    echo "⚠️  sitemap-0.xml not found, skipping IndexNow ping"
+fi
+
 # Final listing
 echo "📁 Contents of S3 bucket:"
 aws s3 ls s3://roganov.me --recursive | tail -20
