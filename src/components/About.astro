@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import { getLocalePath } from '../i18n/utils.js';
+import ivanPortrait from '../assets/ivan-portrait.png';
 
 interface Props {
   lang?: string;
@@ -62,12 +64,14 @@ const copy = lang === 'ru'
     <div class="flex flex-col items-center md:items-start">
       <div class="relative">
         <div class="absolute -inset-4 bg-brand/20 rounded-2xl blur-2xl pointer-events-none"></div>
-        <img
-          src="/ivan.png"
+        <Image
+          src={ivanPortrait}
           alt={`Portrait of ${copy.name}`}
-          width="320"
-          height="320"
-          loading="eager"
+          widths={[256, 288, 512, 576]}
+          sizes="(min-width: 768px) 288px, 256px"
+          format="webp"
+          quality={80}
+          loading="lazy"
           decoding="async"
           class="relative w-64 md:w-72 rounded-2xl border border-white/10 object-contain"
         />

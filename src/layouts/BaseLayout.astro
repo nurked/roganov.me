@@ -155,10 +155,20 @@ const extraLd = Array.isArray(structuredData)
       as="style"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     />
+    {/* Load the font stylesheet without blocking first paint: it arrives via
+        the preload above, then media="print" -> "all" applies it async. */}
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
     <link rel="canonical" href={canonicalUrl} />
 
     <title>{title}</title>
