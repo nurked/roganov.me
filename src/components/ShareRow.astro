@@ -1,0 +1,70 @@
+---
+import { useTranslations } from '../i18n/utils.js';
+
+interface Props {
+  lang?: string;
+  url: string;
+  title: string;
+}
+
+const { lang = 'en', url, title } = Astro.props;
+const t = useTranslations(lang);
+
+const u = encodeURIComponent(url);
+const text = encodeURIComponent(title);
+
+// Plain intent URLs — no platform SDKs, no tracking scripts.
+const targets = [
+  { label: 'X', href: `https://twitter.com/intent/tweet?url=${u}&text=${text}` },
+  { label: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { label: 'Telegram', href: `https://t.me/share/url?url=${u}&text=${text}` },
+  { label: 'HN', href: `https://news.ycombinator.com/submitlink?u=${u}&t=${text}` },
+  { label: 'Reddit', href: `https://www.reddit.com/submit?url=${u}&title=${text}` },
+  { label: t('share.email'), href: `mailto:?subject=${text}&body=${u}` },
+];
+
+const chipClass = 'inline-flex items-center text-xs text-gray-400 hover:text-brand-accent font-mono transition-colors border border-white/15 hover:border-brand-accent/40 rounded-full px-3.5 py-2';
+---
+
+<div class="mt-12 pt-8 border-t border-white/10">
+  <p class="text-xs text-gray-400 font-mono uppercase tracking-[0.2em] mb-4">{t('share.label')}</p>
+  <div class="flex flex-wrap gap-2" data-share-row data-url={url} data-title={title}>
+    {targets.map((s) => (
+      <a href={s.href} target="_blank" rel="noopener noreferrer" class={chipClass}>{s.label}</a>
+    ))}
+    <button type="button" data-share-copy class={chipClass + ' cursor-pointer'} data-copied-label={t('share.copied')}>
+      {t('share.copy')}
+    </button>
+    <button type="button" data-share-native class={chipClass + ' cursor-pointer hidden'}>
+      {t('share.native')}
+    </button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var row = document.querySelector('[data-share-row]');
+    if (!row) return;
+    var url = row.getAttribute('data-url');
+    var title = row.getAttribute('data-title');
+
+    var copyBtn = row.querySelector('[data-share-copy]');
+    if (copyBtn && navigator.clipboard) {
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(url).then(function () {
+          var original = copyBtn.textContent;
+          copyBtn.textContent = copyBtn.getAttribute('data-copied-label');
+          setTimeout(function () { copyBtn.textContent = original; }, 2000);
+        });
+      });
+    }
+
+    var nativeBtn = row.querySelector('[data-share-native]');
+    if (nativeBtn && navigator.share) {
+      nativeBtn.classList.remove('hidden');
+      nativeBtn.addEventListener('click', function () {
+        navigator.share({ url: url, title: title }).catch(function () {});
+      });
+    }
+  })();
+</script>

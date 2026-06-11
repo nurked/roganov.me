@@ -2,6 +2,8 @@
 import PageLayout from './PageLayout.astro';
 import SeriesNav from '../components/SeriesNav.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
+import ShareRow from '../components/ShareRow.astro';
+import Comments from '../components/Comments.astro';
 import { useTranslations, getLocalePath, getAlternateLang } from '../i18n/utils.js';
 import { tagSlug } from '../utils/tagUtils.js';
 import { profile } from '../config/profile.js';
@@ -229,12 +231,16 @@ const breadcrumbs = {
       <slot />
     </div>
 
+    <ShareRow lang={lang} url={canonicalUrl} title={title} />
+
     <RelatedPosts
       currentSlug={slug}
       currentTags={tags}
       currentSeries={series}
       lang={lang}
     />
+
+    <Comments lang={lang} />
 
     <!-- Footer -->
     <footer class="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">

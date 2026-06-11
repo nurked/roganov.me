@@ -43,5 +43,15 @@
     "title": "Need an AI integration in your business?",
     "body": "I build AI systems for real companies — from legacy modernization to production LLM workflows. Check out my company:",
     "cta": "investmentfidelity.company"
+  },
+  "share": {
+    "label": "Share this article",
+    "copy": "Copy link",
+    "copied": "Copied!",
+    "native": "Share…",
+    "email": "Email"
+  },
+  "comments": {
+    "title": "Comments"
   }
 }
