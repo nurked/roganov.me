@@ -1,0 +1,372 @@
+---
+// Standalone birthday invitation — intentionally separate from the site's
+// layouts/design system. Private page: noindex + excluded from the sitemap
+// (see astro.config.mjs).
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nikki's Birthday Party · День рождения Никиты</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Nikki is turning 7! Join us at Clearwater Tides Marina · Никите исполняется 7!">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Golos+Text:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F3EDE0;
+    --paper:#FCF9F1;
+    --ink:#201E1A;
+    --coral:#D97757;
+    --coral-deep:#BC5B3B;
+    --sun:#E9B44C;
+    --sea:#5E8FBF;
+    --sea-soft:#DCE8F2;
+    --leaf:#7D9B6A;
+    --shadow:6px 6px 0 var(--ink);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Golos Text",system-ui,sans-serif;
+    overflow-x:hidden;
+    line-height:1.55;
+  }
+  .display{font-family:"Unbounded",system-ui,sans-serif}
+
+  /* ---------- bunting ---------- */
+  .bunting{display:flex;justify-content:center;gap:6px;padding-top:18px;position:relative;z-index:3}
+  .flag{
+    width:34px;height:44px;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    animation:sway 3s ease-in-out infinite;
+    transform-origin:top center;
+  }
+  .flag:nth-child(4n+1){background:var(--coral)}
+  .flag:nth-child(4n+2){background:var(--sun)}
+  .flag:nth-child(4n+3){background:var(--sea)}
+  .flag:nth-child(4n+4){background:var(--leaf)}
+  .flag:nth-child(odd){animation-delay:.4s}
+  .flag:nth-child(3n){animation-delay:.9s}
+  @keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+
+  /* ---------- confetti ---------- */
+  .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .confetti i{
+    position:absolute;display:block;width:10px;height:14px;border-radius:2px;
+    opacity:.85;animation:drift 7s linear infinite;
+  }
+  @keyframes drift{
+    0%{transform:translateY(-8vh) rotate(0deg)}
+    100%{transform:translateY(110vh) rotate(540deg)}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;text-align:center;padding:34px 20px 130px}
+  .hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto}
+  .ahoy{
+    display:inline-block;background:var(--paper);border:2.5px solid var(--ink);
+    border-radius:999px;padding:8px 22px;font-weight:600;font-size:.95rem;
+    box-shadow:4px 4px 0 var(--ink);transform:rotate(-2deg);margin-bottom:26px;
+  }
+  h1{
+    font-size:clamp(2.2rem,6.5vw,4.3rem);
+    font-weight:900;line-height:1.06;letter-spacing:-.5px;
+  }
+  h1 .pop{color:var(--coral)}
+  .h1-ru{
+    font-size:clamp(1.2rem,3.4vw,1.9rem);font-weight:700;color:var(--coral-deep);
+    margin-top:14px;
+  }
+  .starburst{
+    position:absolute;top:-38px;right:-30px;width:100px;height:100px;z-index:5;
+    background:var(--sun);border:2.5px solid var(--ink);
+    clip-path:polygon(50% 0%,61% 15%,79% 8%,81% 27%,98% 35%,86% 50%,98% 65%,81% 73%,79% 92%,61% 85%,50% 100%,39% 85%,21% 92%,19% 73%,2% 65%,14% 50%,2% 35%,19% 27%,21% 8%,39% 15%);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:900;font-size:1rem;transform:rotate(12deg);
+    animation:spinlite 14s linear infinite;
+  }
+  @keyframes spinlite{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .date-pill{
+    display:inline-flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:34px;
+    background:var(--ink);color:var(--cream);border-radius:16px;padding:16px 28px;
+    font-size:clamp(1rem,2.6vw,1.35rem);font-weight:700;transform:rotate(1deg);
+    box-shadow:6px 6px 0 var(--coral);
+  }
+  .date-pill span.dot{color:var(--sun)}
+
+  /* ---------- polaroid photo ---------- */
+  .photo-frame{
+    width:min(320px,78vw);margin:48px auto -64px;background:#fff;
+    border:2.5px solid var(--ink);border-radius:8px;padding:10px 10px 12px;
+    box-shadow:8px 8px 0 var(--ink);transform:rotate(-2.5deg);
+    position:relative;z-index:4;
+  }
+  .photo-frame img{
+    display:block;width:100%;aspect-ratio:1/1;object-fit:cover;
+    border:2px solid var(--ink);border-radius:5px;
+  }
+  .tape{
+    position:absolute;width:92px;height:26px;top:-13px;
+    background:rgba(233,180,76,.85);border:1.5px solid var(--ink);border-radius:2px;
+  }
+  .tape-l{left:-28px;transform:rotate(-8deg)}
+  .tape-r{right:-28px;transform:rotate(7deg)}
+  .photo-cap{font-weight:800;text-align:center;margin-top:9px;font-size:.95rem}
+
+  /* ---------- waves ---------- */
+  .waves{display:block;width:100%;height:70px;margin-bottom:-2px}
+
+  /* ---------- sea band ---------- */
+  .sea-band{background:var(--sea-soft);padding:20px 20px 80px;position:relative}
+  .boat{
+    width:110px;margin:-95px 0 24px 8%;position:relative;z-index:2;
+    animation:bob 4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg)}}
+
+  .cards{
+    max-width:980px;margin:0 auto;display:grid;
+    grid-template-columns:repeat(2,1fr);gap:28px;
+  }
+  .card{
+    background:var(--paper);border:2.5px solid var(--ink);border-radius:20px;
+    padding:26px 26px 24px;box-shadow:var(--shadow);position:relative;
+    transition:transform .2s ease;
+  }
+  .card:hover{transform:translateY(-4px) rotate(0deg) !important}
+  .card:nth-child(1){transform:rotate(-1.2deg)}
+  .card:nth-child(2){transform:rotate(1deg)}
+  .card:nth-child(3){transform:rotate(.8deg)}
+  .card:nth-child(4){transform:rotate(-1deg)}
+  .badge{
+    position:absolute;top:-24px;left:22px;width:48px;height:48px;border-radius:14px;
+    border:2.5px solid var(--ink);display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;box-shadow:3px 3px 0 var(--ink);background:var(--sun);
+  }
+  .card:nth-child(2) .badge{background:var(--coral)}
+  .card:nth-child(3) .badge{background:var(--leaf)}
+  .card:nth-child(4) .badge{background:var(--sea)}
+  .card h2{font-family:"Unbounded";font-size:1.05rem;font-weight:700;margin:8px 0 4px}
+  .card h2 small{display:block;font-size:.8rem;color:var(--coral-deep);font-weight:500;margin-top:2px}
+  .card p{margin-top:10px;font-size:.98rem}
+  .card p.ru{color:#57534A;font-size:.93rem;margin-top:6px}
+  .linkrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .btn{
+    display:inline-block;text-decoration:none;color:var(--ink);font-weight:600;font-size:.9rem;
+    background:var(--cream);border:2px solid var(--ink);border-radius:999px;padding:8px 16px;
+    box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s;
+    cursor:pointer;font-family:inherit;
+  }
+  .btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+  .btn.primary{background:var(--coral);color:#fff}
+  .btn.calendar{background:var(--leaf);color:#fff}
+
+  /* ---------- RSVP ---------- */
+  .rsvp{max-width:980px;margin:60px auto 0;text-align:center}
+  .rsvp-card{
+    background:var(--coral);border:2.5px solid var(--ink);border-radius:26px;
+    padding:44px 28px;color:#fff;box-shadow:8px 8px 0 var(--ink);transform:rotate(-.6deg);
+    position:relative;overflow:hidden;
+  }
+  .rsvp-card::before{
+    content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+    background:rgba(255,255,255,.14);top:-90px;left:-70px;
+  }
+  .rsvp-card h2{font-family:"Unbounded";font-size:clamp(1.4rem,4vw,2rem);font-weight:900}
+  .rsvp-card .ru{opacity:.92;margin-top:6px;font-weight:500}
+  .phone{
+    display:inline-block;margin-top:24px;background:var(--paper);color:var(--ink);
+    font-family:"Unbounded";font-weight:700;font-size:clamp(1.15rem,3.4vw,1.7rem);
+    text-decoration:none;border:2.5px solid var(--ink);border-radius:16px;padding:14px 30px;
+    box-shadow:5px 5px 0 var(--ink);transition:transform .12s,box-shadow .12s;
+  }
+  .phone:hover{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+  .rsvp-note{margin-top:16px;font-size:.9rem;opacity:.9}
+
+  footer{text-align:center;padding:56px 20px 42px;font-weight:600}
+  footer .waveline{color:var(--sea);letter-spacing:6px;font-size:1.2rem;margin-bottom:10px}
+  footer p.ru{color:#57534A;font-weight:500;font-size:.92rem;margin-top:4px}
+
+  @media (max-width:700px){
+    .cards{grid-template-columns:1fr;gap:34px}
+    .starburst{width:80px;height:80px;font-size:.72rem;top:-26px;right:-14px}
+    .flag{width:24px;height:32px}
+    .boat{margin:0 auto 24px;width:90px;display:block}
+  }
+</style>
+</head>
+<body>
+
+<div class="confetti" aria-hidden="true">
+  <i style="left:4%;background:#D97757;animation-delay:0s"></i>
+  <i style="left:12%;background:#E9B44C;animation-delay:1.8s"></i>
+  <i style="left:22%;background:#5E8FBF;animation-delay:3.4s"></i>
+  <i style="left:31%;background:#7D9B6A;animation-delay:.9s"></i>
+  <i style="left:43%;background:#E9B44C;animation-delay:2.6s"></i>
+  <i style="left:55%;background:#D97757;animation-delay:4.5s"></i>
+  <i style="left:64%;background:#5E8FBF;animation-delay:1.2s"></i>
+  <i style="left:73%;background:#7D9B6A;animation-delay:3.9s"></i>
+  <i style="left:84%;background:#D97757;animation-delay:.4s"></i>
+  <i style="left:93%;background:#E9B44C;animation-delay:2.1s"></i>
+</div>
+
+<nav class="bunting" aria-hidden="true">
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+  <span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="ahoy">⚓ Ahoy, friends! · Эй, на палубе! ⚓</div>
+    <div style="position:relative">
+      <h1 class="display">Nikki is turning <span class="pop">7!</span></h1>
+      <p class="h1-ru display">Никите исполняется 7 — приходите на день рождения!</p>
+    </div>
+    <div class="date-pill display">
+      <span>Sunday, Aug 16</span><span class="dot">✦</span><span>2–6 PM</span><span class="dot">✦</span><span>16 августа, 14:00–18:00</span>
+    </div>
+    <div class="photo-frame">
+      <div class="starburst display">YAY!</div>
+      <span class="tape tape-l" aria-hidden="true"></span>
+      <span class="tape tape-r" aria-hidden="true"></span>
+      <img src="/img/nikki.jpg" alt="Nikki" width="720" height="720">
+      <div class="photo-cap display">Nikki ⭐ Никита</div>
+    </div>
+  </div>
+</header>
+
+<svg class="waves" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0,40 C120,70 240,10 360,40 C480,70 600,10 720,40 C840,70 960,10 1080,40 C1200,70 1320,10 1440,40 L1440,70 L0,70 Z" fill="#DCE8F2" stroke="#201E1A" stroke-width="2.5"/>
+</svg>
+
+<section class="sea-band">
+  <svg class="boat" viewBox="0 0 120 100" aria-hidden="true">
+    <line x1="60" y1="10" x2="60" y2="62" stroke="#201E1A" stroke-width="3"/>
+    <path d="M60 12 L92 50 L60 50 Z" fill="#D97757" stroke="#201E1A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M56 20 L30 50 L56 50 Z" fill="#F3EDE0" stroke="#201E1A" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M22 62 L98 62 L84 82 L36 82 Z" fill="#E9B44C" stroke="#201E1A" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="60" cy="8" r="4" fill="#D97757" stroke="#201E1A" stroke-width="2"/>
+  </svg>
+
+  <div class="cards">
+    <div class="card">
+      <div class="badge">📅</div>
+      <h2>When<small>Когда</small></h2>
+      <p><strong>Sunday, August 16</strong> · from 2:00 PM to 6:00 PM</p>
+      <p class="ru"><strong>Воскресенье, 16 августа</strong> · с 14:00 до 18:00</p>
+      <div class="linkrow">
+        <button class="btn calendar" id="add-to-calendar" type="button">📆 Add to calendar · В календарь</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">📍</div>
+      <h2>Where<small>Где</small></h2>
+      <p><strong>Clearwater Tides Marina</strong> — right by the water!</p>
+      <p class="ru"><strong>Марина Clearwater Tides</strong> — прямо у воды!</p>
+      <div class="linkrow">
+        <a class="btn" href="https://maps.apple/p/ZJ_DmJwaZmfcg3" target="_blank" rel="noopener">🧭 Apple Maps</a>
+        <a class="btn" href="https://maps.app.goo.gl/t7rYkmXWkN49mvCs9" target="_blank" rel="noopener">🗺️ Google Maps</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">🎁</div>
+      <h2>Presents<small>Подарки</small></h2>
+      <p>Want to bring a gift? Peek at Nikki's wishlist — but honestly, just come! That's the best gift.</p>
+      <p class="ru">Хотите подарить подарок? Загляните в вишлист Никиты — но главное, приходите сами!</p>
+      <div class="linkrow">
+        <a class="btn primary" href="https://www.amazon.com/hz/wishlist/ls/1JIQYPUM8ZK6L" target="_blank" rel="noopener">🛒 Amazon wishlist · Вишлист</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">🅿️</div>
+      <h2>Parking<small>Парковка</small></h2>
+      <p>Street parking nearby — here's the best spot to leave your ship:</p>
+      <p class="ru">Парковка на улицах рядом — вот лучшее место для вашего корабля:</p>
+      <div class="linkrow">
+        <a class="btn" href="https://maps.apple/p/Mp2z9BbMwweQD1" target="_blank" rel="noopener">🧭 Apple Maps</a>
+        <a class="btn" href="https://maps.app.goo.gl/XAxA84aMRVZhPXsf8" target="_blank" rel="noopener">🗺️ Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rsvp">
+    <div class="rsvp-card">
+      <h2>Please RSVP! 🎈</h2>
+      <p class="ru">Пожалуйста, подтвердите, что придёте!</p>
+      <a class="phone" href="tel:+17079687533">📞 (707) 968-7533</a>
+      <p class="rsvp-note">Call or text · Позвоните или напишите СМС</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="waveline" aria-hidden="true">〜〜〜〜〜〜</div>
+  <p>See you at the marina! ⛵🎂</p>
+  <p class="ru">Увидимся на марине!</p>
+</footer>
+
+<script is:inline>
+  // Add-to-calendar: ICS download on iOS (opens straight into Calendar),
+  // Google Calendar tab everywhere else — same approach as the 2025/26
+  // birthday pages.
+  (function () {
+    var event = {
+      title: "Nikki's Birthday Party · День рождения Никиты",
+      description:
+        "Nikki is turning 7! · Никите исполняется 7! RSVP: +1 (707) 968-7533",
+      location: "Clearwater Tides Marina, Clearwater, FL",
+      start: "20260816T140000",
+      end: "20260816T180000",
+    };
+
+    document.getElementById("add-to-calendar").addEventListener("click", function () {
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+      if (isIOS) {
+        var ics = [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          "BEGIN:VEVENT",
+          "DTSTART:" + event.start,
+          "DTEND:" + event.end,
+          "SUMMARY:" + event.title,
+          "DESCRIPTION:" + event.description,
+          "LOCATION:" + event.location,
+          "END:VEVENT",
+          "END:VCALENDAR",
+        ].join("\n");
+        var blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "nikki-birthday.ics");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      } else {
+        var googleUrl =
+          "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+          "&text=" + encodeURIComponent(event.title) +
+          "&details=" + encodeURIComponent(event.description) +
+          "&location=" + encodeURIComponent(event.location) +
+          "&dates=" + event.start + "/" + event.end;
+        window.open(googleUrl, "_blank");
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

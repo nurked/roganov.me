@@ -53,7 +53,8 @@ export default defineConfig({
       },
       // Tag pages are thin navigation; keeping them out of the sitemap
       // focuses crawl budget on posts (they remain linked and crawlable).
-      filter: (page) => !page.includes('/blog/tags/'),
+      // /nikki/ is a private invitation page (noindex).
+      filter: (page) => !page.includes('/blog/tags/') && !page.includes('/nikki'),
       serialize(item) {
         const date = postDates[new URL(item.url).pathname];
         if (date) item.lastmod = date;
