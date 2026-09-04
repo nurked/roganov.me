@@ -1,5 +1,4 @@
 import { createRequire } from 'node:module';
-import { profile } from './profile.js';
 
 // Build-time only (used by the rehype plugin): createRequire keeps JSON
 // loading compatible with the Node context astro.config plugins run in.
@@ -9,45 +8,28 @@ const translations = {
   ru: require('../i18n/ru.json'),
 };
 
-// Posts tagged with any of these (lowercased) get the AI-services banner
-// injected into the article body. AI topics plus core software/engineering
-// topics, EN and RU spellings.
-export const BANNER_TAGS = new Set([
-  'ai', 'ии', 'llm', 'machine learning', 'машинное обучение', 'нейросети',
-  'agents', 'агенты', 'chatgpt', 'claude',
-  'programming', 'программирование', 'systems programming', 'системное программирование',
-  'web development', 'веб-разработка', 'frontend', 'blazor', 'vugu',
-  'sysadmin', 'system administration', 'системное администрирование',
-  'administration', 'администрирование', 'devops', 'infrastructure',
-  'docker', 'virtualization', 'qemu', 'backup', 'console', 'powershell',
-  'debian', 'linux', 'windows', 'windows 8', 'windows 11', 'winapi', 'winrt',
-  'interop', 'rdp', 'it',
-  'databases', 'базы данных', 'entity framework', 'nvme', 'uuid',
-  'compilers', 'компиляторы', 'llvm', 'assembler', 'nasm', 'x64',
-  'wasm', 'webassembly',
-  'networking', 'sockets', 'сокеты', 'tcp', 'protocols',
-  'go', 'goroutines', 'горутины', 'rust', 'ruby', 'ruby on rails', 'c#', '.net',
-  'scheduler', 'планировщик задач',
-  'information security', 'информационная безопасность',
-]);
+export const SKYPECK_URL = 'https://skypeck.fun';
 
-export function isBannerPost(tags) {
-  return (tags ?? []).some((t) => BANNER_TAGS.has(String(t).toLowerCase()));
-}
-
-// Markup mirrors the site's component idiom (Tailwind utility classes; this
-// file is in tailwind.config content globs so the classes are retained).
-// `not-prose` keeps @tailwindcss/typography from restyling the banner when
-// it lands inside the article's prose container.
+// SkyPeck promo banner, injected into the body of every published post.
+// Markup mirrors the hero promo (Hero.astro); the gradient + glow animation
+// lives in global.css as `.skypeck-promo` so both share it. `not-prose`
+// keeps @tailwindcss/typography from restyling the banner inside the
+// article's prose container. This file is in tailwind.config content globs
+// so the utility classes are retained.
 export function bannerHtml(lang) {
-  const t = (translations[lang] ?? translations.en).aiBanner;
-  const href = `${profile.companySite}/?utm_source=roganov.me&utm_medium=blog&utm_campaign=ai-articles`;
+  const t = (translations[lang] ?? translations.en).skypeckBanner;
+  const href = `${SKYPECK_URL}/?utm_source=roganov.me&utm_medium=blog&utm_campaign=articles`;
   return [
-    `<aside class="not-prose my-12 rounded-lg border border-brand-accent/30 bg-brand-accent/5 p-6 sm:p-8" aria-label="${t.title}">`,
-    `<p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-3">${t.label}</p>`,
-    `<p class="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">${t.title}</p>`,
-    `<p class="text-gray-400 leading-relaxed mb-5">${t.body}</p>`,
-    `<a href="${href}" rel="noopener" class="inline-flex items-center gap-2 font-mono text-sm text-brand-accent hover:text-white transition-colors underline decoration-1 underline-offset-[3px] decoration-brand-accent/50 hover:decoration-white/70 py-2">${t.cta} &rarr;</a>`,
+    `<aside class="not-prose my-12" aria-label="${t.title}">`,
+    `<a href="${href}" target="_blank" rel="noopener" class="skypeck-promo group relative flex items-center gap-4 sm:gap-6 pl-5 pr-10 sm:pr-14 py-4 sm:py-5 rounded-2xl -rotate-1 hover:rotate-0 hover:scale-[1.02] transition-transform duration-300 no-underline">`,
+    `<img src="/img/skypeck.png" alt="" width="96" height="96" loading="lazy" class="w-14 h-14 sm:w-20 sm:h-20 rounded-full border-4 border-white/80 shadow-xl animate-bounce shrink-0" />`,
+    `<span class="text-left leading-tight">`,
+    `<span class="block text-lg sm:text-2xl font-extrabold uppercase tracking-wide text-[#052e0f]">${t.title}</span>`,
+    `<span class="block text-sm sm:text-base font-semibold text-[#0a4d1c]">${t.body}</span>`,
+    `<span class="mt-1 block font-mono text-xs sm:text-sm text-[#052e0f]/80">${t.cta} &rarr;</span>`,
+    `</span>`,
+    `<span class="absolute -top-3 -right-3 rotate-12 bg-red-500 text-white text-xs sm:text-sm font-black px-3 py-1 rounded-full shadow-lg animate-pulse">${t.badge}</span>`,
+    `</a>`,
     `</aside>`,
   ].join('');
 }

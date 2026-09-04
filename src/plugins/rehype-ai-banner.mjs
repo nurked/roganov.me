@@ -1,12 +1,12 @@
-import { isBannerPost, bannerHtml } from '../config/aiBanner.js';
+import { bannerHtml } from '../config/aiBanner.js';
 
-// Injects the AI-services banner into the article body of AI/software posts:
+// Injects the SkyPeck promo banner into the body of every published post:
 // after the 4th top-level paragraph when the post is long enough to keep
 // reading past it (6+ paragraphs), otherwise at the end of the body.
 export default function rehypeAiBanner() {
   return (tree, file) => {
     const fm = file.data?.astro?.frontmatter;
-    if (!fm || fm.draft || !isBannerPost(fm.tags)) return;
+    if (!fm || fm.draft) return;
 
     const banner = { type: 'raw', value: bannerHtml(fm.lang ?? 'en') };
     const kids = tree.children;

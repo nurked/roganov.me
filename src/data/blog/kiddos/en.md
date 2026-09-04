@@ -97,9 +97,19 @@ KidDOS is small on purpose. Every file in it was put there by a person with a re
 
 ## What I'm asking you
 
-I have a plan. Rust, a virtual file system, an embedded BASIC, wasmtime for the compiled languages, a cartridge format so games are just folders you drop in. I know how to build it and I've scoped the phases.
+I have a plan. Rust, a virtual file system, an embedded BASIC, wasmtime for the compiled languages, a cartridge format so games are just folders you drop in. I've scoped the phases.
 
-There's also a first, rough prototype in the repo, and I owe you an apology up front: a lot of it was written with AI. It's a proof of concept, not a finished thing. The story lines, the dialogue, the little touches that make it feel like there's someone inside the machine — all of that needs a LOT of manual work, and I fully acknowledge it. Please read it as a sketch of the idea, not as the idea done right.
+And here's the part I almost forgot to say: it's not just a plan. It's built. The first two phases are done and the code is public, right now, at [github.com/nurked/kiddos](https://github.com/nurked/kiddos). The shell, the virtual drive, the manual, twelve lessons with a tutor that watches what you type, `edit`, BASIC, and seven cartridges — the cave adventure, guess, snake, hangman, typing, tetris and sokoban, all in BASIC the kid can read and change. There are no installers yet, so you need Rust on your machine, and then it's one line:
+
+```
+git clone https://github.com/nurked/kiddos
+cd kiddos
+cargo run --release -p kiddos
+```
+
+Type `hi`. That's it. You're in.
+
+I owe you an apology up front, though: a lot of that repo was written with AI. It's a first, rough prototype, a proof of concept, not a finished thing. The story lines, the dialogue, the little touches that make it feel like there's someone inside the machine — all of that needs a LOT of manual work, and I fully acknowledge it. Please read it as a sketch of the idea, not as the idea done right.
 
 What I don't know is whether anyone besides me wants it.
 
@@ -109,7 +119,7 @@ Is this a good idea?
 
 Would you put it in front of your kid?
 
-Would you download it, install it, and tell me what happened?
+Would you clone it, run it, and tell me what happened?
 
 If the answer is yes, tell me. If the answer is "this exists already, it's called X" — tell me that too, I'd rather use it than build it. And if the answer is "this is nostalgia and kids today don't need any of this" — I'd like to hear that argument made properly, because I haven't heard a good version of it yet.
 
