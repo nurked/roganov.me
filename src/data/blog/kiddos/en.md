@@ -67,6 +67,10 @@ You're in a folder called /home/kid. Folders hold files.
 There's a letter for you. Try: cat welcome.txt
 ```
 
+Here's what the real thing looks like today, straight from the build:
+
+![KidDOS 0.3.0 boot screen: a CRT terminal where the kid types hi, the machine asks for a name, and a tutor line in magenta suggests typing help](/img/blog/kiddos-hi.png)
+
 Underneath, it's a real Unix-style shell. `ls`, `cd`, `cat`, `mkdir`, `rm`, pipes, redirects, `man`. Not DOS commands, even though I'm calling it KidDOS — I want the muscle memory to transfer. A kid who spends a year in KidDOS should be able to open a real terminal and feel at home.
 
 It has its own virtual hard drive. The kid can `rm -rf` the whole thing and the only consequence is a lesson. Reset is one button in parent mode. The family laptop is never at risk, because KidDOS never touches the family laptop — everything the kid sees is simulated, and the only bridge to the real OS is a tiny whitelist: say text out loud, beep, tell the time.
