@@ -69,7 +69,7 @@ There's a letter for you. Try: cat welcome.txt
 
 Here's what the real thing looks like today, straight from the build:
 
-![KidDOS 0.3.0 boot screen: a CRT terminal where the kid types hi, the machine asks for a name, and a tutor line in magenta suggests typing help](/img/blog/kiddos-hi.png)
+![KidDOS 0.3.0 boot screen: a CRT terminal where the kid types hi, the machine asks for a name, and a tutor line in magenta suggests typing help](/img/blog/kiddos-hi.webp)
 
 Underneath, it's a real Unix-style shell. `ls`, `cd`, `cat`, `mkdir`, `rm`, pipes, redirects, `man`. Not DOS commands, even though I'm calling it KidDOS — I want the muscle memory to transfer. A kid who spends a year in KidDOS should be able to open a real terminal and feel at home.
 
