@@ -116,3 +116,5 @@ Once the script is written, production of a 12-minute video usually takes about 
 Thanks for the interesting questions!
 
 *— Grant Sanderson, "3Blue1Brown"*
+
+*Grant's point about memorizing the digits of π, and his father's sugar cubes, ended up in my [guide on teaching kids to program](https://kiddos.dev/how-to-teach-kids-programming/).*

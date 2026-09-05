@@ -1,0 +1,41 @@
+---
+import { projects } from '../config/projects.js';
+
+interface Props { lang?: string }
+const { lang = 'en' } = Astro.props;
+
+const labels = lang === 'ru'
+  ? { eyebrow: 'Что я делаю руками', title: 'Проекты', intro: 'Две вещи, которые можно скачать и потрогать, а не только прочитать.' }
+  : { eyebrow: 'What I ship', title: 'Projects', intro: 'Two things you can download and put in front of a kid, not just read about.' };
+---
+
+<section id="projects" class="relative bg-surface-base py-20 md:py-28">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-accent/30 to-transparent"></div>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <header class="mb-12 max-w-3xl">
+      <p class="text-brand-accent text-xs font-mono uppercase tracking-[0.2em] mb-4">{labels.eyebrow}</p>
+      <h2 class="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-5">{labels.title}</h2>
+      <p class="text-lg text-gray-400 leading-relaxed">{labels.intro}</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {projects.map((p) => {
+        const info = p.i18n[lang] ?? p.i18n.en;
+        return (
+          <article class="flex flex-col rounded-2xl border border-white/10 bg-surface-card/40 p-6 sm:p-7 hover:border-brand-accent/40 hover:bg-surface-card/70 transition-colors">
+            <h3 class="text-2xl font-semibold text-white tracking-tight mb-1">
+              <a href={p.url} class="hover:text-brand-accent transition-colors">{info.name}</a>
+            </h3>
+            <p class="text-sm text-gray-400 font-mono mb-4">{info.tagline}</p>
+            <p class="text-gray-400 leading-relaxed mb-6">{info.pitch}</p>
+            <div class="mt-auto flex flex-wrap gap-2">
+              {info.links.map((l) => (
+                <a href={l.href} class="inline-flex items-center text-xs text-gray-300 hover:text-brand-accent font-mono transition-colors border border-white/15 hover:border-brand-accent/40 rounded-full px-3.5 py-2">{l.label} &rarr;</a>
+              ))}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

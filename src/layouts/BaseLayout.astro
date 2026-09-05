@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { profile } from '../config/profile.js';
+import { projectsItemList } from '../config/projects.js';
 
 interface Props {
   title?: string;
@@ -247,6 +248,9 @@ const extraLd = Array.isArray(structuredData)
 
     <!-- Structured Data: Person (site-wide) -->
     <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+    <!-- Structured Data: projects (KidDOS, SkyPeck) authored by the same person -->
+    <script type="application/ld+json" set:html={JSON.stringify(projectsItemList(siteUrl))} />
 
     <!-- Page-specific Structured Data -->
     {extraLd.map((ld) => (

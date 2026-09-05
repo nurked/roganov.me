@@ -113,6 +113,8 @@ cargo run --release -p kiddos
 
 Type `hi`. That's it. You're in.
 
+Since this was written, the project got a home of its own: [kiddos.dev](https://kiddos.dev/), with [signed builds for Mac, Windows and Linux](https://kiddos.dev/download/), a [page for parents](https://kiddos.dev/parents/) on how to get out of fullscreen, and [the teaching side of the argument](https://kiddos.dev/how-to-teach-kids-programming/) written out properly.
+
 I owe you an apology up front, though: a lot of that repo was written with AI. It's a first, rough prototype, a proof of concept, not a finished thing. The story lines, the dialogue, the little touches that make it feel like there's someone inside the machine — all of that needs a LOT of manual work, and I fully acknowledge it. Please read it as a sketch of the idea, not as the idea done right.
 
 What I don't know is whether anyone besides me wants it.

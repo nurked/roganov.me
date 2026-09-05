@@ -286,3 +286,5 @@ If you've never taught anyone anything, know this: it's one of the most wonderfu
 You do understand that by teaching people, you make them better, right? They'll thank you for it many times over.
 
 *P.S. Another installment with verses is here: [Bad Advice for Manual Writers](/blog/bad-advice-manuals/)*
+
+*P.P.S. Years later I rewrote every rule on this page for a seven-year-old: [How to Teach Your Kid Programming (Without Killing the Spark)](https://kiddos.dev/how-to-teach-kids-programming/), on the KidDOS site.*

@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { profile } from '../config/profile.js';
+import { projects } from '../config/projects.js';
 
 const siteUrl = 'https://roganov.me';
 
@@ -30,6 +31,10 @@ export async function GET() {
     `- [Blog in Russian](${siteUrl}/ru/blog/): Русскоязычная версия блога`,
     `- [RSS feed](${siteUrl}/rss.xml)`,
     `- [Investment Fidelity Company](${profile.companySite}/): Ivan's company — AI integration for business`,
+    '',
+    '## Projects',
+    '',
+    ...projects.map((p) => `- [${p.i18n.en.name}](${p.url}/): ${p.i18n.en.pitch}`),
     '',
     '## Contact',
     '',

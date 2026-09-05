@@ -284,3 +284,5 @@ seriesOrder: 2
 Вы же понимаете, что, обучая людей, Вы делаете их лучше? Вам за это будут благодарны много раз.
 
 *P.S. Ещё одна часть со стихами — тут: [Григорий Остер — Вредные советы для писателей мануалов](/ru/blog/bad-advice-manuals/)*
+
+*P.P.S. Спустя годы я переписал каждое правило из этой статьи для семилетнего ребёнка: [How to Teach Your Kid Programming (Without Killing the Spark)](https://kiddos.dev/how-to-teach-kids-programming/), на сайте KidDOS (по-английски).*
