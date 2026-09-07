@@ -9,6 +9,8 @@ series: "goscheduler"
 seriesOrder: 2
 ---
 
+> **Note from 2026:** This post was written in October 2021 against the Go runtime source on the master branch at the time, which became Go 1.18. The scheduler's design has not changed since, but the details have drifted: the line numbers quoted below match no released version, `netpollblock` and `netpollunblock` were rewritten, and since Go 1.25 the default `GOMAXPROCS` also respects the container's CPU limit and is re-evaluated at runtime. Read the snippets as a 2021 snapshot.
+
 I recommend starting with [Part I](/blog/goscheduler-part-1/), where we torment an OS with an absurd number of threads, see what comes of it, and learn that concurrency is not necessarily multithreading.
 
 Let's dig into the source and find out what all those G's, P's, and M's are about.
@@ -41,7 +43,9 @@ This all happens inside the `schedinit` function, which is responsible for boots
 // The new G calls runtime main.
 ```
 
-Aha, so we're not just starting the scheduler — we're booting up the entire program. First, `osinit` kicks in, and right there in the OS initialization section we do this:
+Aha, so we're not just starting the scheduler — we're booting up the entire program. By the time `schedinit` runs, `osinit` has already done its job: it's the one that asks the OS how many cores we have (on Linux via `sched_getaffinity`) and stores the answer in `ncpu`. The source code for that differs across operating systems, so we won't dive into details here — there are simply too many of them.
+
+Then, inside `schedinit`, we do this:
 
 ```go
 cpuinit() // must run before alginit
@@ -49,7 +53,7 @@ cpuinit() // must run before alginit
 
 By the way, right before that we set `sched.maxmcount = 10000`. So right off the bat, we limit the maximum number of machines to 10,000 for some reason. Let's file that away and move on.
 
-`Cpuinit` together with `osinit`, using a healthy dose of assembly and standard OS library calls, figures out the number of cores available on the host machine. The source code for these functions differs across processors and operating systems, so we won't dive into details here — there are simply too many of them.
+Despite the name, `cpuinit` doesn't count anything. It reads `GODEBUG` and detects which CPU features we're allowed to use (SSE4.1, FMA, atomics on ARM64), with a healthy dose of assembly under the hood.
 
 In any case, we set the number of processors based on OS data, and THEN override it with whatever's stored in GOMAXPROCS. And if GOMAXPROCS contains nonsense, we just ignore it and carry on with the processor count provided by the system.
 
@@ -217,13 +221,13 @@ if s == _Psyscall {
     // On the one hand we don't want to retake Ps if there is no other work to do,
     // but on the other hand we want to retake them eventually
     // because they can prevent the sysmon thread from deep sleep.
-    if runqempty(_p_) && atomic.Load(&sched.nmspinning)+atomic.Load(&sched.npidle) > 0 {
+    if runqempty(_p_) && atomic.Load(&sched.nmspinning)+atomic.Load(&sched.npidle) > 0 && pd.syscallwhen+10*1000*1000 > now {
         continue
     }
 }
 ```
 
-So we try to free up the processor that's stuck waiting for a system call to complete. But we won't be too greedy about it. If there's no work at the moment, we'll leave them alone and let them work on those system calls. At some point we'll still reclaim those processors because they've been spinning for way too long, but that's in the distant future.
+So we try to free up the processor that's stuck waiting for a system call to complete. But we won't be too greedy about it. If there's no work at the moment, we'll leave them alone and let them work on those system calls. But not forever: once a P has been sitting in a system call for 10 milliseconds (that last `pd.syscallwhen` check), we take it back regardless.
 
 When we finally get the return value from the system call, we'll be able to check whether the processor was freed. In other words, we check if we pulled the rug out from under goroutine G and it's sitting there without a processor — then we either give that goroutine a new processor P, or we just send it to the global execution queue, where it'll eventually be picked up by a processor with nothing to do.
 

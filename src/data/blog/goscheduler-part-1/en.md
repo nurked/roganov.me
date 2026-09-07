@@ -9,6 +9,8 @@ series: "goscheduler"
 seriesOrder: 1
 ---
 
+> **Note from 2026:** This post was written in October 2021. The Microsoft documentation quoted below has since been reworded (the 2,048-thread figure now explicitly refers to 32-bit systems), and the numbers from my laptop are what they were that day. The Go runtime details are still accurate as of Go 1.25.
+
 Every time I pick up a new book about golang, I inevitably flip to the chapter on goroutines and once again read about how ruthlessly magnificent Go is. Just think about it — instead of spawning OS threads to handle concurrent tasks, we get to use the language's own built-in tools!
 
 That's all wonderful, and most books and courses on golang provide tons of examples of just how fast Go is and how it can effortlessly handle an infinite number of tasks. Unfortunately, none of these books actually explain what's going on under the hood. So let's crack open the gopher's source code and take a look inside.
@@ -18,7 +20,7 @@ That's all wonderful, and most books and courses on golang provide tons of examp
 > The first rule of parallelism in Go goes like this:
 >
 > *Concurrency is not parallelism*
-> — Andrew Gerrand, 16 January 2013
+> — Rob Pike, "Concurrency is not parallelism", Heroku Waza, January 2012
 >
 > Wonderful. We've all heard this one. Now try writing it in Russian:
 > Parallelism is not concurrency… Sounds terrible. Let's translate "concurrency" into Russian. Nope, no luck. I think the word **согласованность** (agreement/consistency) fits better than the alternatives. Alright, we'll just have to live with that word going forward.
@@ -33,7 +35,7 @@ Here we are, running our program — everything's fine and dandy. Instructions e
 
 Microsoft's documentation includes the following note:
 
-> The number of threads a process can create is limited by the available virtual memory. By default, each thread is created with one megabyte of address space. Therefore, you can create at most 2,048 threads. If you reduce the stack size, you can create more threads. However, your application will have better performance if you create one thread per processor and build queues of tasks for which the application maintains context.
+> The number of threads a process can create is limited by the available virtual memory. By default, each thread is created with one megabyte of stack space. Therefore, you can create at most 2,048 threads. If you reduce the stack size, you can create more threads. However, your application will have better performance if you create one thread per processor and build queues of tasks for which the application maintains context.
 
 Now we can read data from disk in a separate thread. Easy enough — create the main execution thread plus a second thread for data operations. We keep developing and decide it's time to aim higher and rewrite nginx.
 
@@ -109,9 +111,9 @@ Let's look at some of the points from that paper. Scheduling execution is an ext
 
 The OS has to distribute these threads across processors. And since we typically have fewer processors than threads, it has to run each thread for a certain amount of time, then pull it off and run other threads instead.
 
-And if you look at how any CPU's cache is structured, you'll realize the problem runs even deeper. In our synthetic test above, we weren't using memory in our processes, weren't saving any data, and weren't performing any computations. But any real program will be reading and writing data from RAM. Data read from memory during program execution gets placed into the CPU cache. So when the operating system decides that a particular thread has had enough fun on the processor and it's time for a break, there's a lot of work to do. You don't just need to change the instructions the CPU is executing — you also have to flush and reload caches.
+And if you look at how any CPU's cache is structured, you'll realize the problem runs even deeper. In our synthetic test above, we weren't using memory in our processes, weren't saving any data, and weren't performing any computations. But any real program will be reading and writing data from RAM. Data read from memory during program execution gets placed into the CPU cache. So when the operating system decides that a particular thread has had enough fun on the processor and it's time for a break, there's a lot of work to do. You don't just need to change the instructions the CPU is executing. The new thread's data also evicts the old thread's data from the caches, so the old thread starts cold when it comes back.
 
-And it's not just one cache. There are four different ones per core. IL and DL are the instruction and data caches at Level 1. Then each core has a Level 2 cache, and all cores share a Level 3 cache.
+And it's not just one cache. Each core has three of its own: L1i and L1d, the instruction and data caches at Level 1, plus a Level 2 cache. And all cores share a Level 3 cache.
 
 When working with caches, latencies get progressively more serious. If Process Explorer is to be believed, at this very moment — under no particular load — my OS is switching context roughly 20,000 times per second. And when our killer program is running, context switches jump to 700,000 per second.
 
@@ -119,9 +121,9 @@ Accordingly, the operating system, working together with the CPU, has to figure 
 
 To figure out when to perform context switches, the OS uses a task scheduler.
 
-Based on all this, we know that Windows uses a preemptive, priority-based task scheduler. Depending on the current system configuration, certain time quanta are allocated — intervals during which a process executes. Each process runs only during its allotted quantum, after which it gets pulled off the CPU and replaced by another process based on priority.
+Based on all this, we know that Windows uses a preemptive, priority-based task scheduler. Depending on the current system configuration, certain time quanta are allocated — intervals during which a thread executes. Each thread runs only during its allotted quantum, after which it gets pulled off the CPU and replaced by another thread based on priority.
 
-By the way, depending on that same priority, a process might not even finish its quantum if a higher-priority process comes along.
+By the way, depending on that same priority, a thread might not even finish its quantum if a higher-priority thread comes along.
 
 ### Interim Conclusions
 

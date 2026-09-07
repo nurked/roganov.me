@@ -9,6 +9,8 @@ series: "rust-2021"
 seriesOrder: 3
 ---
 
+> **Note from 2026:** This post was written in January 2021 against rustc commit `b12290861` (1.51.0-nightly), and every snippet below matches that source. Since then `rustc_typeck` was split into `rustc_hir_analysis` and `rustc_hir_typeck`, `rustc_mir` was split into `rustc_borrowck`, `rustc_mir_transform` and friends, THIR now sits between HIR and MIR, the `?` operator desugars through `Try::branch`, and `-Z ast-json` was replaced by `-Z unpretty=ast-tree`. Treat the file paths as a 2021 snapshot.
+
 In my previous article about Rust, I tried to tell the story of the language and show where it came from. The article was full of simplifications. An absolutely absurd number of them. People were not happy. But in the poll at the end, you said you wanted me to show the compiler's guts. Well then — below the fold you'll find a walkthrough of the Rust compiler source code. We'll trace the journey of a program, from source file straight to binary.
 
 ### Glossary
@@ -522,7 +524,7 @@ We dig a little deeper and find rustc-target, where we see various additional cl
 
 Once codegen is complete, we can pass the IR to LLVM itself. rustc_llvm to the rescue.
 
-And that, folks, is basically it! LLVM is beyond our line of sight. On my operating system, Visual Studio Build Tools take over and convert LLVM IR into a regular binary.
+And that, folks, is basically it! LLVM is beyond our line of sight. It's linked into rustc itself and turns the IR into object files. On my operating system, the linker from Visual Studio Build Tools then takes over and links those objects into a regular binary.
 
 ### TL;DR
 
