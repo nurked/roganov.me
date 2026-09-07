@@ -2,8 +2,8 @@ export const profile = {
   name: "Ivan Roganov",
   aliases: ["nurked", "N'urk", "IFCLLC", "Ivan's Freacking Company"],
   position: "AI Integration & Enterprise Systems Engineer",
-  company: "Investment Fidelity Company LLC",
-  companySite: "https://investmentfidelity.company",
+  company: "Intelligent Forge Company LLC",
+  companySite: "https://intelligentforge.net",
   location: "Clearwater, Florida",
   expertise: [
     "AI Integration & LLM Systems",
@@ -27,13 +27,13 @@ export const profile = {
   },
   contact: {
     email: "ivan@roganov.me",
-    businessEmail: "ceo@investmentfidelity.company",
+    businessEmail: "ceo@intelligentforge.net",
     phone: "+1 (707) 968-7533",
   },
   meta: {
     title: "Ivan Roganov - AI Integration & Enterprise Systems Engineer | IFCLLC",
     description:
-      "Enterprise engineer for the AI era: 15+ years modernizing legacy systems, now integrating LLMs and AI agents into real businesses. Founder of Investment Fidelity Company LLC. Available for AI integration projects.",
+      "Enterprise engineer for the AI era: 15+ years modernizing legacy systems, now integrating LLMs and AI agents into real businesses. Founder of Intelligent Forge Company LLC. Available for AI integration projects.",
     keywords: [
       "Ivan Roganov",
       "IFCLLC",
