@@ -46,7 +46,7 @@ Humans had the same thing, and we called it a dictionary. Them books explained t
 
 Now, somebody is already typing "but dictionaries never agreed either." Correct. Webster and Oxford and Ozhegov have been disagreeing for a century. But they disagreed *in print*. In a numbered edition, with a year on the spine, saying the same thing to every single person who opened it. The disagreement was public and it was versioned. You could put two dictionaries on the table and argue. Hold that thought — it's the hinge of this whole piece.
 
-And yes, a formal definition doesn't really tell you what a dog *is*. Try describing one to a seven-year-old. Who cares that you have the full Latin — your poor kid is stuck enduring a lecture about the word *dog*. But a dog is the easy case. Worst case, you take the kid outside and point.
+There are basic words you'll have to understand by observing the world, but once you have a base of 1,000–3,000 words, you can describe practically anything. Take a dog, for example… Try describing one to a seven-year-old. Who cares that you have the full Latin — your poor kid is stuck enduring a lecture about the word *dog*. But a dog is the easy case. Worst case, you take the kid outside and point.
 
 ## Where exactness kills
 
